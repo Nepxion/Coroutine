@@ -1,6 +1,6 @@
 # Coroutine
 
-## 概要
+## 介绍
 
     Coroutine是基于Kilim/Promise JDeferred的协程式驱动框架，基于Apache Zookeeper的分布式规则存储和动态规则变更通知
     1. 基于微服务框架理念设计
