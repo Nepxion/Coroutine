@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coroutine>    
+    <rule version="1">
+        <component>
+            <class class="com.nepxion.coroutine.testcase.service.AServiceImpl">
+                <method index="1" method="doThen"/>
+                <method index="2" method="doWhen"/>
+                <method index="3" method="doMerge"/>
+            </class>
+            <class class="com.nepxion.coroutine.testcase.service.BServiceImpl">
+                <method index="4" method="doThen"/>
+                <method index="5" method="doWhen"/>
+                <method index="6" method="doMerge"/>
+            </class>
+            <class class="com.nepxion.coroutine.testcase.service.CServiceImpl">
+                <method index="7" method="doThen"/>
+                <method index="8" method="doWhen"/>
+                <method index="9" method="doMerge"/>
+            </class>
+            <class class="com.nepxion.coroutine.testcase.service.DServiceImpl">
+                <method index="10" method="doThen"/>
+                <method index="11" method="doWhen"/>
+                <method index="12" method="doMerge"/>
+            </class>
+        </component>
+        
+        <chain name="chain2-1">
+            <when index="2,5"/>
+            <then index="9,10"/>
+            <when index="8,11"/>
+            <then index="3,4"/>
+        </chain>
+        
+        <chain name="chain2-2">
+            <then index="1,4,7,10"/>
+        </chain>
+    </rule>
+</coroutine>

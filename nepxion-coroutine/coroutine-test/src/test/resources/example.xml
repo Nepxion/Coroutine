@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coroutine>
+    <!-- 规则定义 -->
+    <!-- 1. 规则目录即为注册中心的目录(category)节点名，规则名称即为存储当前规则内容的规则(rule)节点名 -->
+    <!-- 2. 协程(coroutine)节点下可以存在多个规则(rule)节点，以版本号(version)为区分，驱动过程采用最大版本号的规则，版本号必须全局唯一 -->
+    <!-- 3. 索引(index)号在当前规则下必须全局唯一 -->
+    <rule version="1">
+        <!-- 规则组件定义，可以存在多个组件(component)节点 -->
+        <!-- 1. 规则组件引用支持本地反射引用和远程分布式(例如Dubbo接口)引用 -->
+        <!--    本地和远程在配置上的区别，是远程多了applicationContext和id的配置 -->
+        <!--    applicationContext的配置值，有两种方式： -->
+        <!--    1) 读取claspath下的applicationContext。例如applicationContext="classpath:bApplicationContext"或者applicationContext="classpath*:bApplicationContext" -->
+        <!--    2) 读取jar包里的applicationContext，不需要含有classpath，只需要给出正确的相对路径就可以了。例如applicationContext="b/bApplicationContext.xml" -->
+        <!--    id为Spring Bean的id -->
+        <!-- 2. 一个组件(component)一般对应一个jar，而一个class视一个jar包里的接口或类，class的值必须为类全路径，class必须全局唯一。例如class="com.nepxion.coroutine.demo.AService" -->
+        <!-- 3. 当一个接口/类下，存在多态的方法(即方法名相同，参数类型不一样)，必须以参数类型作为区分 -->
+        <component>
+            <class class="com.nepxion.coroutine.demo.AService">
+                <method index="1" method="doA" parameterTypes="java.lang.String,int"/>
+                <method index="2" method="doA" parameterTypes="java.lang.String"/>
+            </class>
+        </component>
+
+        <component applicationContext="b/bApplicationContext.xml">
+            <class id="bService" class="com.nepxion.coroutine.demo.BService">
+                <method index="3" method="doB"/>
+            </class>
+        </component>
+        <component applicationContext="c/cApplicationContext.xml">
+            <class id="cService" class="com.nepxion.coroutine.demo.CService">
+                <method index="4" method="doC"/>
+            </class>
+        </component>
+
+        <!-- 子规则依赖定义，可以存在多个依赖(dependency)节点 -->
+        <!-- 1. 子规则不能当前父规则，否则会引起死循环。例如父规则A，引用子规则B，子规则B又引用父规则A -->
+        <dependency index="5" category="A规则目录" rule="A-1规则" chain="a" timeout="5000"/>
+        <dependency index="6" category="A规则目录" rule="A-2规则" chain="b" timeout="5000"/>
+        <dependency index="7" category="B规则目录" rule="B-1规则" chain="c" timeout="5000"/>
+        <dependency index="8" category="B规则目录" rule="B-2规则" chain="d" timeout="5000"/>
+
+        <!-- 链式调用定义 -->
+        <!-- 可定义多个chain。调用端需要把name值传入，如果配置里name不配，则传入null即可 -->
+        <!-- 1. 并行(when)的索引(index)值列表，不需要区分次序 -->
+        <!-- 2. 串行(then)的索引(index)值列表，需要区分次序 -->
+        <chain name="x">
+            <then index="1,2"/>
+            <when index="3,4"/>
+            <then index="5,6,7,8"/>
+        </chain>
+        
+        <chain name="y">
+            <then index="1,2"/>
+            <when index="3,4"/>
+            <then index="5,6,7,8"/>
+        </chain>
+    </rule>
+</coroutine>

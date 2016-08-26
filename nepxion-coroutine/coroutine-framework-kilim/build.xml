@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project name="kilim" default="all">
+	<path id="kilim.classpath">
+		<pathelement location="target/classes/" />
+		<fileset dir="./lib">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement path="${java.class.path}" />
+	</path>
+	<!--maven的时候不需要，ant独立打包使用-->
+	<target name="all">
+		<property name="target.classpath" refid="kilim.classpath" />
+		<echo message="Classpath = ${target.classpath}" />
+	</target>
+	<!--maven的时候不需要，ant独立打包使用-->
+	<target name="compile">
+		<javac includeantruntime="false" debug="on" srcdir="src" destdir="target/classes" classpathref="kilim.classpath" />
+	</target>
+	<!--maven 织入的时候使用-->
+	<target name="weave">
+		<property name="target.classpath" refid="kilim.classpath" />
+		<echo message="Classpath = ${target.classpath}" />
+		<java classname="kilim.tools.Weaver" fork="yes">
+			<classpath refid="kilim.classpath" />
+			<assertions>
+				<enable />
+			</assertions>
+			<arg value="-d" />
+			<arg value="./target/classes" />
+			<arg line="./target/classes" />
+		</java>
+	</target>
+</project>
