@@ -36,10 +36,10 @@ public class CoroutineManager {
     
     static {
         System.out.println("");
-        System.out.println("╔═══╗───────────╔╗");
-        System.out.println("║╔═╗║──────────╔╝╚╗");
-        System.out.println("║║─╚╬══╦═╦══╦╗╔╬╗╔╬╦═╗╔══╗");
-        System.out.println("║║─╔╣╔╗║╔╣╔╗║║║║║║╠╣╔╗╣║═╣");
+        System.out.println("╔═══╗           ╔╗");
+        System.out.println("║╔═╗║          ╔╝╚╗");
+        System.out.println("║║ ╚╬══╦═╦══╦╗╔╬╗╔╬╦═╗╔══╗");
+        System.out.println("║║ ╔╣╔╗║╔╣╔╗║║║║║║╠╣╔╗╣║═╣");
         System.out.println("║╚═╝║╚╝║║║╚╝║╚╝║║╚╣║║║║║═╣");
         System.out.println("╚═══╩══╩╝╚══╩══╝╚═╩╩╝╚╩══╝");
         System.out.println("Nepxion Coroutine  v1.0.0.RELEASE");
