@@ -90,24 +90,24 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>nepxion-coroutine-assembly-${project.version}</finalName>
+                            <finalName>coroutine-all-${project.version}</finalName>
                             <createSourcesJar>false</createSourcesJar>
                             <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
                             <artifactSet>
                                 <includes>
-                                    <include>nepxion:coroutine-common</include>
-                                    <include>nepxion:coroutine-data</include>
-                                    <include>nepxion:coroutine-event</include>
-                                    <include>nepxion:coroutine-framework</include>
-                                    <include>nepxion:coroutine-framework-kilim</include>
-                                    <include>nepxion:coroutine-framework-promise</include>
-                                    <include>nepxion:coroutine-monitor</include>
-                                    <include>nepxion:coroutine-monitor-log</include>
-                                    <include>nepxion:coroutine-monitor-mail</include>
-                                    <include>nepxion:coroutine-registry</include>
-                                    <include>nepxion:coroutine-registry-zookeeper</include>
-                                    <include>nepxion:coroutine-serialization</include>
-                                    <include>nepxion:coroutine-serialization-protostuff</include>
+                                    <include>${project.groupId}:coroutine-common</include>
+                                    <include>${project.groupId}:coroutine-data</include>
+                                    <include>${project.groupId}:coroutine-event</include>
+                                    <include>${project.groupId}:coroutine-framework</include>
+                                    <include>${project.groupId}:coroutine-framework-kilim</include>
+                                    <include>${project.groupId}:coroutine-framework-promise</include>
+                                    <include>${project.groupId}:coroutine-monitor</include>
+                                    <include>${project.groupId}:coroutine-monitor-log</include>
+                                    <include>${project.groupId}:coroutine-monitor-mail</include>
+                                    <include>${project.groupId}:coroutine-registry</include>
+                                    <include>${project.groupId}:coroutine-registry-zookeeper</include>
+                                    <include>${project.groupId}:coroutine-serialization</include>
+                                    <include>${project.groupId}:coroutine-serialization-protostuff</include>
                                 </includes>
                             </artifactSet>
                             <transformers>
