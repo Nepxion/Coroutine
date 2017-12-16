@@ -90,7 +90,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>coroutine-all-${project.version}</finalName>
+                            <finalName>coroutine-${project.version}</finalName>
                             <createSourcesJar>false</createSourcesJar>
                             <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
                             <artifactSet>
