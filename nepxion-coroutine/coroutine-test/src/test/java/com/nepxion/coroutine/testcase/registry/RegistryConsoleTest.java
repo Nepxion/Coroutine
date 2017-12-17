@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.nepxion.coroutine.common.constant.CoroutineConstants;
 import com.nepxion.coroutine.common.property.CoroutineContent;
+import com.nepxion.coroutine.common.property.CoroutinePropertiesManager;
 import com.nepxion.coroutine.registry.RegistryLauncher;
 import com.nepxion.coroutine.registry.zookeeper.ZookeeperRegistryLauncher;
 
@@ -25,6 +26,7 @@ public class RegistryConsoleTest {
     @Test
     public void test1() throws Exception {
         RegistryLauncher launcher = new ZookeeperRegistryLauncher();
+        launcher.setProperties(CoroutinePropertiesManager.getProperties());
         launcher.start();
 
         launcher.getRegistryExecutor().registerRule("PayRoute", "Rule");
