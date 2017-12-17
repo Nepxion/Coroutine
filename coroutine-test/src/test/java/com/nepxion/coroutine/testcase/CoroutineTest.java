@@ -1,4 +1,4 @@
-package com.nepxion.coroutine.testcase.framework;
+package com.nepxion.coroutine.testcase;
 
 /**
  * <p>Title: Nepxion Coroutine</p>
