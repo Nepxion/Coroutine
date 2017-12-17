@@ -37,13 +37,13 @@
         <curator.version>2.9.0</curator.version>
         <protostuff.version>1.4.0</protostuff.version>
         <objenesis.version>2.4</objenesis.version>
-        <guava.version>19.0</guava.version>
-        <disruptor.version>3.3.4</disruptor.version>
+        <guava.version>20.0</guava.version>
         <asm.version>4.1</asm.version>
         <kilim.version>1.0.0</kilim.version>
         <jdeferred.version>1.2.4</jdeferred.version>
         <dom4j.version>1.6.1</dom4j.version>
-        <log4j.version>2.3</log4j.version>
+        <disruptor.version>3.3.7</disruptor.version>
+        <log4j.version>2.9.1</log4j.version>
         <junit.version>4.12</junit.version>
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
