@@ -12,7 +12,10 @@ package com.nepxion.coroutine.registry;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class RegistryEntity implements Serializable {
     private static final long serialVersionUID = -7164716570644944474L;
@@ -38,42 +41,16 @@ public class RegistryEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (type != null) {
-            hashCode = 37 * hashCode + type.hashCode();
-        }
-
-        if (address != null) {
-            hashCode = 37 * hashCode + address.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof RegistryEntity)) {
-            return false;
-        }
-
-        RegistryEntity registryEntity = (RegistryEntity) object;
-        if (this.type == registryEntity.type
-                && StringUtils.equals(this.address, registryEntity.address)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("type=");
-        builder.append(type);
-        builder.append(", address=");
-        builder.append(address);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
