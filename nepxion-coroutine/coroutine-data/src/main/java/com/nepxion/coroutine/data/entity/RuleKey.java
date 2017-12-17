@@ -12,7 +12,10 @@ package com.nepxion.coroutine.data.entity;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class RuleKey implements Serializable {
     private static final long serialVersionUID = 6378628183086911005L;
@@ -38,42 +41,16 @@ public class RuleKey implements Serializable {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (categoryName != null) {
-            hashCode = 37 * hashCode + categoryName.hashCode();
-        }
-
-        if (ruleName != null) {
-            hashCode = 37 * hashCode + ruleName.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof RuleKey)) {
-            return false;
-        }
-
-        RuleKey ruleKey = (RuleKey) object;
-        if (StringUtils.equals(this.categoryName, ruleKey.categoryName)
-                && StringUtils.equals(this.ruleName, ruleKey.ruleName)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("categoryName=");
-        builder.append(categoryName);
-        builder.append(", ruleName=");
-        builder.append(ruleName);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

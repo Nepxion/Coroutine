@@ -12,6 +12,11 @@ package com.nepxion.coroutine.data.entity;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 // 每个链式调用的返回结果
 public class CoroutineResult<T> implements Serializable {
     private static final long serialVersionUID = 5882891394862237693L;
@@ -55,55 +60,16 @@ public class CoroutineResult<T> implements Serializable {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (id != null) {
-            hashCode = 37 * hashCode + id.hashCode();
-        }
-
-        hashCode = 37 * hashCode + (int) timestamp;
-
-        if (result != null) {
-            hashCode = 37 * hashCode + result.hashCode();
-        }
-
-        if (exception != null) {
-            hashCode = 37 * hashCode + exception.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof CoroutineResult)) {
-            return false;
-        }
-
-        CoroutineResult<T> coroutineResult = (CoroutineResult<T>) object;
-        if (this.id.equals(coroutineResult.id)
-                && this.timestamp == coroutineResult.timestamp
-                && this.result.equals(coroutineResult.result)
-                && this.exception.equals(coroutineResult.exception)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("id=");
-        builder.append(id);
-        builder.append(", timestamp=");
-        builder.append(timestamp);
-        builder.append(", result=");
-        builder.append(result);
-        builder.append(", exception=");
-        builder.append(exception);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

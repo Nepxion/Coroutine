@@ -12,7 +12,10 @@ package com.nepxion.coroutine.data.entity;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class StepEntity implements Serializable {
     private static final long serialVersionUID = -3202934598824591147L;
@@ -38,40 +41,16 @@ public class StepEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        hashCode = 37 * hashCode + indexes.hashCode();
-
-        if (stepType != null) {
-            hashCode = 37 * hashCode + stepType.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof StepEntity)) {
-            return false;
-        }
-
-        StepEntity stepEntity = (StepEntity) object;
-        if (ArrayUtils.isEquals(this.indexes, stepEntity.indexes)
-                && this.stepType == stepEntity.stepType) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("indexes=");
-        builder.append(indexes);
-        builder.append(", stepType=");
-        builder.append(stepType);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

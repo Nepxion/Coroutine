@@ -10,7 +10,10 @@ package com.nepxion.coroutine.data.entity;
  * @version 1.0
  */
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class ServiceId extends CoroutineId {
     private static final long serialVersionUID = -401397971609375544L;
@@ -27,54 +30,16 @@ public class ServiceId extends CoroutineId {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (id != null) {
-            hashCode = 37 * hashCode + id.hashCode();
-        }
-
-        if (categoryName != null) {
-            hashCode = 37 * hashCode + categoryName.hashCode();
-        }
-
-        if (ruleName != null) {
-            hashCode = 37 * hashCode + ruleName.hashCode();
-        }
-
-        hashCode = 37 * hashCode + index;
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof ServiceId)) {
-            return false;
-        }
-
-        ServiceId serviceId = (ServiceId) object;
-        if (StringUtils.equals(this.id, serviceId.id)
-                && StringUtils.equals(this.categoryName, serviceId.categoryName)
-                && StringUtils.equals(this.ruleName, serviceId.ruleName)
-                && this.index == serviceId.index) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("id=");
-        builder.append(id);
-        builder.append(", categoryName=");
-        builder.append(categoryName);
-        builder.append(", ruleName=");
-        builder.append(ruleName);
-        builder.append(", index=");
-        builder.append(index);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

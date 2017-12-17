@@ -13,8 +13,11 @@ package com.nepxion.coroutine.data.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class RuleEntity implements Serializable {
     private static final long serialVersionUID = -966938499277118469L;
@@ -92,49 +95,16 @@ public class RuleEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (componentEntityList != null) {
-            hashCode = 37 * hashCode + componentEntityList.hashCode();
-        }
-
-        if (dependencyEntityList != null) {
-            hashCode = 37 * hashCode + dependencyEntityList.hashCode();
-        }
-
-        if (chainEntityList != null) {
-            hashCode = 37 * hashCode + chainEntityList.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof RuleEntity)) {
-            return false;
-        }
-
-        RuleEntity ruleEntity = (RuleEntity) object;
-        if (CollectionUtils.isEqualCollection(this.componentEntityList, ruleEntity.componentEntityList)
-                && CollectionUtils.isEqualCollection(this.dependencyEntityList, ruleEntity.dependencyEntityList)
-                && CollectionUtils.isEqualCollection(this.chainEntityList, ruleEntity.chainEntityList)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("componentList=");
-        builder.append(componentEntityList);
-        builder.append(", dependencyList=");
-        builder.append(dependencyEntityList);
-        builder.append(", chainEntityList=");
-        builder.append(chainEntityList);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

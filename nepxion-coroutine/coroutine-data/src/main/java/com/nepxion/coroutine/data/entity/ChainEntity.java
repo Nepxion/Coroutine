@@ -13,8 +13,10 @@ package com.nepxion.coroutine.data.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class ChainEntity implements Serializable {
     private static final long serialVersionUID = 7084094152372962217L;
@@ -40,40 +42,16 @@ public class ChainEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (name != null) {
-            hashCode = 37 * hashCode + name.hashCode();
-        }
-        
-        if (stepEntityList != null) {
-            hashCode = 37 * hashCode + stepEntityList.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof ChainEntity)) {
-            return false;
-        }
-
-        ChainEntity chainEntity = (ChainEntity) object;
-        if (StringUtils.equals(this.name, chainEntity.name) 
-                && CollectionUtils.isEqualCollection(this.stepEntityList, chainEntity.stepEntityList)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("stepEntityList=");
-        builder.append(stepEntityList);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

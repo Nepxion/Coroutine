@@ -12,6 +12,11 @@ package com.nepxion.coroutine.data.entity;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class CoroutineEntry<T> implements Serializable {
     private static final long serialVersionUID = -1012429028036247568L;
 
@@ -45,50 +50,16 @@ public class CoroutineEntry<T> implements Serializable {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (id != null) {
-            hashCode = 37 * hashCode + id.hashCode();
-        }
-
-        if (referenceEntity != null) {
-            hashCode = 37 * hashCode + referenceEntity.hashCode();
-        }
-
-        if (result != null) {
-            hashCode = 37 * hashCode + result.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof CoroutineEntry)) {
-            return false;
-        }
-
-        CoroutineEntry<T> coroutineEntry = (CoroutineEntry<T>) object;
-        if (this.id.equals(coroutineEntry.id)
-                && this.referenceEntity.equals(coroutineEntry.referenceEntity)
-                && this.result.equals(coroutineEntry.result)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("id=");
-        builder.append(id);
-        builder.append(", referenceEntity=");
-        builder.append(referenceEntity);
-        builder.append(", result=");
-        builder.append(result);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

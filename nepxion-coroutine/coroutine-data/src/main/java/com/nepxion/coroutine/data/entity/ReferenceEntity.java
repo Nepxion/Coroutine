@@ -12,6 +12,11 @@ package com.nepxion.coroutine.data.entity;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public abstract class ReferenceEntity implements Serializable {
     private static final long serialVersionUID = 911701778667270004L;
 
@@ -26,4 +31,19 @@ public abstract class ReferenceEntity implements Serializable {
     }
 
     public abstract ReferenceType getReferenceType();
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return EqualsBuilder.reflectionEquals(this, object);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

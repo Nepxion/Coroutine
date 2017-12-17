@@ -13,8 +13,11 @@ package com.nepxion.coroutine.data.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.context.ApplicationContext;
 
 import com.nepxion.coroutine.data.cache.ObjectCache;
@@ -39,7 +42,7 @@ public class ComponentEntity implements Serializable {
         if (StringUtils.isEmpty(applicationContextPath)) {
             return null;
         }
-        
+
         return ObjectCache.getApplicationContext(applicationContextPath);
     }
 
@@ -47,7 +50,7 @@ public class ComponentEntity implements Serializable {
         if (StringUtils.isEmpty(applicationContextPath)) {
             return;
         }
-        
+
         ObjectCache.putApplicationContext(applicationContextPath, applicationContext);
     }
 
@@ -61,42 +64,16 @@ public class ComponentEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (applicationContextPath != null) {
-            hashCode = 37 * hashCode + applicationContextPath.hashCode();
-        }
-
-        if (classEntityList != null) {
-            hashCode = 37 * hashCode + classEntityList.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof ComponentEntity)) {
-            return false;
-        }
-
-        ComponentEntity componentEntity = (ComponentEntity) object;
-        if (StringUtils.equals(this.applicationContextPath, componentEntity.applicationContextPath)
-                && CollectionUtils.isEqualCollection(this.classEntityList, componentEntity.classEntityList)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("applicationContextPath=");
-        builder.append(applicationContextPath);
-        builder.append(", classEntityList=");
-        builder.append(classEntityList);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

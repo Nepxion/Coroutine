@@ -11,6 +11,10 @@ package com.nepxion.coroutine.data.entity;
  */
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.nepxion.coroutine.common.util.ClassUtil;
 import com.nepxion.coroutine.data.cache.ObjectCache;
@@ -58,7 +62,7 @@ public class MethodEntity extends ReferenceEntity {
             throw new IllegalArgumentException("Create parameter classes failed", e);
         }
     }
-    
+
     public Class<?>[] getParameterClasses() {
         return parameterClasses;
     }
@@ -77,7 +81,7 @@ public class MethodEntity extends ReferenceEntity {
             this.parameterTypes = ClassUtil.createParameterTypes(parameterClasses);
         }
     }
-    
+
     public boolean isCache() {
         return cache;
     }
@@ -93,56 +97,16 @@ public class MethodEntity extends ReferenceEntity {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        hashCode = 37 * hashCode + index;
-
-        if (clazz != null) {
-            hashCode = 37 * hashCode + clazz.hashCode();
-        }
-
-        if (method != null) {
-            hashCode = 37 * hashCode + method.hashCode();
-        }
-
-        if (parameterTypes != null) {
-            hashCode = 37 * hashCode + parameterTypes.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof MethodEntity)) {
-            return false;
-        }
-
-        MethodEntity methodEntity = (MethodEntity) object;
-        if (this.index == methodEntity.index
-                && StringUtils.equals(this.clazz, methodEntity.clazz)
-                && StringUtils.equals(this.method, methodEntity.method)
-                && StringUtils.equals(this.parameterTypes, methodEntity.parameterTypes)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("index=");
-        builder.append(index);
-        builder.append(", class=");
-        builder.append(clazz);
-        builder.append(", method=");
-        builder.append(method);
-        builder.append(", parameterTypes=");
-        builder.append(parameterTypes);
-        builder.append(", cache=");
-        builder.append(cache);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

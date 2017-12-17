@@ -10,7 +10,10 @@ package com.nepxion.coroutine.data.entity;
  * @version 1.0
  */
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 // 依赖外部的子规则
 public class DependencyEntity extends ReferenceEntity {
@@ -60,59 +63,16 @@ public class DependencyEntity extends ReferenceEntity {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        hashCode = 37 * hashCode + index;
-
-        if (categoryName != null) {
-            hashCode = 37 * hashCode + categoryName.hashCode();
-        }
-
-        if (ruleName != null) {
-            hashCode = 37 * hashCode + ruleName.hashCode();
-        }
-        
-        if (chainName != null) {
-            hashCode = 37 * hashCode + chainName.hashCode();
-        }
-
-        hashCode = 37 * hashCode + String.valueOf(timeout).hashCode();
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof DependencyEntity)) {
-            return false;
-        }
-
-        DependencyEntity dependencyEntity = (DependencyEntity) object;
-        if (this.index == dependencyEntity.index
-                && StringUtils.equals(this.categoryName, dependencyEntity.categoryName)
-                && StringUtils.equals(this.ruleName, dependencyEntity.ruleName)
-                && StringUtils.equals(this.chainName, dependencyEntity.chainName)
-                && this.timeout == dependencyEntity.timeout) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("index=");
-        builder.append(index);
-        builder.append(", categoryName=");
-        builder.append(categoryName);
-        builder.append(", ruleName=");
-        builder.append(ruleName);
-        builder.append(", chainName=");
-        builder.append(chainName);
-        builder.append(", timeout=");
-        builder.append(timeout);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

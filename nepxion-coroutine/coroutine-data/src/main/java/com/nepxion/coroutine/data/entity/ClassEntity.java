@@ -13,8 +13,10 @@ package com.nepxion.coroutine.data.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class ClassEntity implements Serializable {
     private static final long serialVersionUID = -3445750912195446532L;
@@ -49,49 +51,16 @@ public class ClassEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (id != null) {
-            hashCode = 37 * hashCode + id.hashCode();
-        }
-
-        if (clazz != null) {
-            hashCode = 37 * hashCode + clazz.hashCode();
-        }
-
-        if (methodEntityList != null) {
-            hashCode = 37 * hashCode + methodEntityList.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof ClassEntity)) {
-            return false;
-        }
-
-        ClassEntity classEntity = (ClassEntity) object;
-        if (StringUtils.equals(this.id, classEntity.id)
-                && StringUtils.equals(this.clazz, classEntity.clazz)
-                && CollectionUtils.isEqualCollection(this.methodEntityList, classEntity.methodEntityList)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("id=");
-        builder.append(id);
-        builder.append(", class=");
-        builder.append(clazz);
-        builder.append(", methodEntityList=");
-        builder.append(methodEntityList);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

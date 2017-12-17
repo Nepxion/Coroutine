@@ -13,7 +13,10 @@ package com.nepxion.coroutine.data.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class CoroutineList<T> implements Serializable {
     private static final long serialVersionUID = 1859680578996231396L;
@@ -40,36 +43,16 @@ public class CoroutineList<T> implements Serializable {
     
     @Override
     public int hashCode() {
-        int hashCode = 17;
-
-        if (coroutineEntryList != null) {
-            hashCode = 37 * hashCode + coroutineEntryList.hashCode();
-        }
-
-        return hashCode;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof CoroutineList)) {
-            return false;
-        }
-
-        CoroutineList<Object> coroutineList = (CoroutineList<Object>) object;
-        if (CollectionUtils.isEqualCollection(this.coroutineEntryList, coroutineList.coroutineEntryList)) {
-            return true;
-        }
-
-        return false;
+        return EqualsBuilder.reflectionEquals(this, object);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(", coroutineEntryList=");
-        builder.append(coroutineEntryList);
-
-        return builder.toString();
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
