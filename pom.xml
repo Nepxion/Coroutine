@@ -25,6 +25,8 @@
         <module>coroutine-serialization</module>
         <module>coroutine-serialization-protostuff</module>
         <module>coroutine-test</module>
+        <module>coroutine-spring-boot-client-example</module>
+        <module>coroutine-spring-boot-dubbo-server-example</module>
     </modules>
 
     <properties>

@@ -2,24 +2,24 @@
 <coroutine>    
     <rule version="1">        
         <component applicationContext="dubbo-client-context-coroutine.xml">
-            <class id="aService" class="com.nepxion.coroutine.test.AService">
+            <class id="aService" class="com.nepxion.coroutine.service.AService">
                 <method index="1" method="doThen"/>
                 <method index="2" method="doWhen"/>
                 <method index="3" method="doMerge"/>
             </class>
-            <class id="bService" class="com.nepxion.coroutine.test.BService">
+            <class id="bService" class="com.nepxion.coroutine.service.BService">
                 <method index="4" method="doThen"/>
                 <method index="5" method="doWhen"/>
                 <method index="6" method="doMerge"/>
             </class>
         </component>
-        <component applicationContext="thunder-client-context-coroutine.xml">
-            <class id="cService" class="com.nepxion.coroutine.test.CService">
+        <component applicationContext="dubbo-client-context-coroutine.xml">
+            <class id="cService" class="com.nepxion.coroutine.service.CService">
                 <method index="7" method="doThen"/>
                 <method index="8" method="doWhen"/>
                 <method index="9" method="doMerge"/>
             </class>
-            <class id="dService" class="com.nepxion.coroutine.test.DService">
+            <class id="dService" class="com.nepxion.coroutine.service.DService">
                 <method index="10" method="doThen"/>
                 <method index="11" method="doWhen"/>
                 <method index="12" method="doMerge"/>
