@@ -21,7 +21,6 @@ import com.nepxion.coroutine.event.RuleReconnectedEvent;
 import com.nepxion.coroutine.event.RuleRemovedEvent;
 import com.nepxion.coroutine.event.RuleUpdatedEvent;
 import com.nepxion.coroutine.event.eventbus.EventControllerFactory;
-import com.nepxion.coroutine.event.eventbus.EventControllerType;
 import com.nepxion.coroutine.registry.RegistryLauncher;
 import com.nepxion.coroutine.registry.zookeeper.ZookeeperRegistryLauncher;
 
@@ -30,7 +29,7 @@ public class RegistryListenerTest {
     
     @Test
     public void test() throws Exception {
-        EventControllerFactory.getController(RuleEvent.getEventName(), EventControllerType.ASYNC).register(this);
+        EventControllerFactory.getAsyncController(RuleEvent.getEventName()).register(this);
         
         RegistryLauncher launcher = new ZookeeperRegistryLauncher();
         launcher.start();

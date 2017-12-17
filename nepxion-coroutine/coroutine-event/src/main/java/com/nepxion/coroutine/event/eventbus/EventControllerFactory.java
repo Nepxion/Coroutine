@@ -10,44 +10,64 @@ package com.nepxion.coroutine.event.eventbus;
  * @version 1.0
  */
 
-import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executor;
 
 import com.google.common.collect.Maps;
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.SubscriberExceptionHandler;
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
-import com.nepxion.coroutine.common.thread.ThreadPoolFactory;
 
 public final class EventControllerFactory {
-    private static final String SINGLETON = "Singleton";
-    private static final Map<Object, EventController> SYNC_CONTROLLER_MAP = Maps.newConcurrentMap();
-    private static final Map<Object, EventController> ASYNC_CONTROLLER_MAP = Maps.newConcurrentMap();
+    private static final String SHARED_CONTROLLER = "SharedController";
+    private static final ConcurrentMap<Object, EventController> SYNC_CONTROLLER_MAP = Maps.newConcurrentMap();
+    private static final ConcurrentMap<Object, EventController> ASYNC_CONTROLLER_MAP = Maps.newConcurrentMap();
 
     private EventControllerFactory() {
 
     }
 
-    public static EventController getSingletonController(EventControllerType type) {
-        return getController(SINGLETON, type);
+    public static EventController getAsyncController() {
+        return getAsyncController(SHARED_CONTROLLER);
     }
 
-    public static EventController getController(Object id, EventControllerType type) {
+    public static EventController getAsyncController(String identifier) {
+        return getController(identifier, true);
+    }
+
+    public static EventController getSyncController() {
+        return getSyncController(SHARED_CONTROLLER);
+    }
+
+    public static EventController getSyncController(String identifier) {
+        return getController(identifier, false);
+    }
+
+    public static EventController getController(String identifier, boolean async) {
+        return getController(identifier, async ? EventType.ASYNC : EventType.SYNC);
+    }
+
+    public static EventController getController(String identifier, EventType type) {
         switch (type) {
             case SYNC:
-                EventController syncEventController = SYNC_CONTROLLER_MAP.get(id);
+                EventController syncEventController = SYNC_CONTROLLER_MAP.get(identifier);
                 if (syncEventController == null) {
-                    syncEventController = createSyncController();
-                    SYNC_CONTROLLER_MAP.put(id, syncEventController);
+                    EventController newEventController = createSyncController(identifier);
+                    syncEventController = SYNC_CONTROLLER_MAP.putIfAbsent(identifier, newEventController);
+                    if (syncEventController == null) {
+                        syncEventController = newEventController;
+                    }
                 }
 
                 return syncEventController;
             case ASYNC:
-                EventController asyncEventController = ASYNC_CONTROLLER_MAP.get(id);
+                EventController asyncEventController = ASYNC_CONTROLLER_MAP.get(identifier);
                 if (asyncEventController == null) {
-                    asyncEventController = createAsyncController(ThreadPoolFactory.createThreadPoolExecutor(CoroutineConstants.EVENT_BUS, 2, 4, 15 * 60 * 1000, false));
-                    ASYNC_CONTROLLER_MAP.put(id, asyncEventController);
+                    EventController newEventController = createAsyncController(identifier, threadPoolFactory.getThreadPoolExecutor(identifier));
+                    asyncEventController = ASYNC_CONTROLLER_MAP.putIfAbsent(identifier, newEventController);
+                    if (asyncEventController == null) {
+                        asyncEventController = newEventController;
+                    }
                 }
 
                 return asyncEventController;

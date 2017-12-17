@@ -22,7 +22,6 @@ import com.nepxion.coroutine.data.entity.RuleKey;
 import com.nepxion.coroutine.event.RuleEvent;
 import com.nepxion.coroutine.event.RuleUpdatedEvent;
 import com.nepxion.coroutine.event.eventbus.EventControllerFactory;
-import com.nepxion.coroutine.event.eventbus.EventControllerType;
 import com.nepxion.coroutine.framework.parser.RuleParser;
 import com.nepxion.coroutine.monitor.MonitorLoader;
 import com.nepxion.coroutine.registry.RegistryExecutor;
@@ -100,7 +99,7 @@ public class CoroutineManager {
     }
 
     private CoroutineManager() {
-        EventControllerFactory.getController(RuleEvent.getEventName(), EventControllerType.ASYNC).register(this);
+        EventControllerFactory.getAsyncController(RuleEvent.getEventName()).register(this);
     }
 
     private void parse(String categoryName, String ruleName, String ruleContent) throws Exception {

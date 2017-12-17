@@ -19,7 +19,6 @@ import com.nepxion.coroutine.common.constant.CoroutineConstants;
 import com.nepxion.coroutine.event.RuleEvent;
 import com.nepxion.coroutine.event.RuleUpdatedEvent;
 import com.nepxion.coroutine.event.eventbus.EventControllerFactory;
-import com.nepxion.coroutine.event.eventbus.EventControllerType;
 import com.nepxion.coroutine.registry.zookeeper.common.ZookeeperException;
 import com.nepxion.coroutine.registry.zookeeper.common.ZookeeperInvoker;
 import com.nepxion.coroutine.registry.zookeeper.common.listener.ZookeeperNodeCacheListener;
@@ -43,7 +42,7 @@ public class ZookeeperRuleListener extends ZookeeperNodeCacheListener {
 
         RuleUpdatedEvent ruleEvent = new RuleUpdatedEvent(categoryName, ruleName, ruleContent);
 
-        EventControllerFactory.getController(RuleEvent.getEventName(), EventControllerType.ASYNC).post(ruleEvent);
+        EventControllerFactory.getAsyncController(RuleEvent.getEventName()).post(ruleEvent);
 
         LOG.info("Rule updated : category={}, rule={}", categoryName, ruleName);
     }
