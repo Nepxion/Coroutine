@@ -16,20 +16,19 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.google.common.collect.Maps;
-
 public class CoroutineProperties implements Serializable {
-    private static final long serialVersionUID = -2472070968260967737L;
+    private static final long serialVersionUID = 1722927234615067236L;
 
     private static final char ASTERISK = '*';
 
-    private final Map<String, String> map = Maps.newConcurrentMap();
+    private final Map<String, String> map = new LinkedHashMap<String, String>();
 
     private String content;
 
