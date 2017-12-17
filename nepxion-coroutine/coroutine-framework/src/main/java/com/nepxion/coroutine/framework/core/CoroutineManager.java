@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.eventbus.Subscribe;
 import com.nepxion.coroutine.common.constant.CoroutineConstants;
-import com.nepxion.coroutine.common.util.IOUtil;
+import com.nepxion.coroutine.common.property.CoroutineContent;
 import com.nepxion.coroutine.data.entity.RuleKey;
 import com.nepxion.coroutine.event.RuleEvent;
 import com.nepxion.coroutine.event.RuleUpdatedEvent;
@@ -33,7 +33,7 @@ public class CoroutineManager {
     private static final Logger LOG = LoggerFactory.getLogger(CoroutineManager.class);
     private static final CoroutineManager COROUTINE_MANAGER = new CoroutineManager();
     private static final AtomicBoolean START = new AtomicBoolean(false);
-    
+
     static {
         System.out.println("");
         System.out.println("╔═══╗           ╔╗");
@@ -44,7 +44,7 @@ public class CoroutineManager {
         System.out.println("╚═══╩══╩╝╚══╩══╝╚═╩╩╝╚╩══╝");
         System.out.println("Nepxion Coroutine  v1.0.0.RELEASE");
         System.out.println("");
-        
+
         MonitorLoader.load();
         RegistryLoader.load();
         CoroutineLoader.load();
@@ -90,7 +90,7 @@ public class CoroutineManager {
     }
 
     public static void parseLocal(String categoryName, String ruleName, String rulePath) throws Exception {
-        String ruleContent = IOUtil.read(rulePath, CoroutineConstants.ENCODING_FORMAT);
+        String ruleContent = new CoroutineContent(rulePath, CoroutineConstants.ENCODING_FORMAT).getContent();
 
         COROUTINE_MANAGER.parse(categoryName, ruleName, ruleContent);
     }

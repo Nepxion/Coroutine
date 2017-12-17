@@ -22,7 +22,6 @@ import org.apache.commons.io.IOUtils;
 
 import com.google.common.collect.Maps;
 import com.nepxion.coroutine.common.constant.CoroutineConstants;
-import com.nepxion.coroutine.common.util.IOUtil;
 import com.nepxion.coroutine.common.util.MathsUtil;
 
 public class CoroutineProperties implements Serializable {
@@ -46,7 +45,7 @@ public class CoroutineProperties implements Serializable {
             put(key, value);
         }
 
-        content = IOUtil.read(path, CoroutineConstants.ENCODING_FORMAT).trim();
+        content = new CoroutineContent(path, CoroutineConstants.ENCODING_FORMAT).getContent().trim();
     }
 
     public CoroutineProperties(byte[] bytes) throws Exception {

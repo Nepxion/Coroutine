@@ -15,46 +15,46 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nepxion.coroutine.common.constant.CoroutineConstants;
-import com.nepxion.coroutine.common.util.IOUtil;
+import com.nepxion.coroutine.common.property.CoroutineContent;
 import com.nepxion.coroutine.registry.RegistryLauncher;
 import com.nepxion.coroutine.registry.zookeeper.ZookeeperRegistryLauncher;
 
 public class RegistryConsoleTest {
     private static final Logger LOG = LoggerFactory.getLogger(RegistryConsoleTest.class);
-    
+
     @Test
-    public void test1() throws Exception {        
+    public void test1() throws Exception {
         RegistryLauncher launcher = new ZookeeperRegistryLauncher();
         launcher.start();
-        
+
         launcher.getRegistryExecutor().registerRule("PayRoute", "Rule");
-        launcher.getRegistryExecutor().persistRule("PayRoute", "Rule", IOUtil.read("rule1.xml", CoroutineConstants.ENCODING_FORMAT));
+        launcher.getRegistryExecutor().persistRule("PayRoute", "Rule", new CoroutineContent("rule1.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
         LOG.info("规则 : {}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "Rule"));
-        
+
         System.in.read();
     }
-    
+
     @Test
-    public void test2() throws Exception {        
+    public void test2() throws Exception {
         RegistryLauncher launcher = new ZookeeperRegistryLauncher();
         launcher.start();
-        
+
         launcher.getRegistryExecutor().registerRule("PayRoute", "SubRule");
-        launcher.getRegistryExecutor().persistRule("PayRoute", "SubRule", IOUtil.read("rule2.xml", CoroutineConstants.ENCODING_FORMAT));
+        launcher.getRegistryExecutor().persistRule("PayRoute", "SubRule", new CoroutineContent("rule2.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
         LOG.info("规则 : {}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "SubRule"));
-        
+
         System.in.read();
     }
-    
+
     @Test
-    public void test3() throws Exception {        
+    public void test3() throws Exception {
         RegistryLauncher launcher = new ZookeeperRegistryLauncher();
         launcher.start();
-        
+
         launcher.getRegistryExecutor().registerRule("Distribution PayRoute", "Distribution Rule");
-        launcher.getRegistryExecutor().persistRule("Distribution PayRoute", "Distribution Rule", IOUtil.read("rule3.xml", CoroutineConstants.ENCODING_FORMAT));
+        launcher.getRegistryExecutor().persistRule("Distribution PayRoute", "Distribution Rule", new CoroutineContent("rule3.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
         LOG.info("规则 : {}", launcher.getRegistryExecutor().retrieveRule("Distribution PayRoute", "Distribution Rule"));
-        
+
         System.in.read();
     }
 }

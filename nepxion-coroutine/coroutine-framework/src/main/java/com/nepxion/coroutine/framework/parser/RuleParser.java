@@ -10,10 +10,6 @@ package com.nepxion.coroutine.framework.parser;
  * @version 1.0
  */
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,8 +17,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Attribute;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +25,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.nepxion.coroutine.common.constant.CoroutineConstants;
 import com.nepxion.coroutine.common.util.ClassUtil;
-import com.nepxion.coroutine.common.xml.Dom4JReader;
+import com.nepxion.coroutine.common.xml.Dom4JParser;
 import com.nepxion.coroutine.data.cache.RuleCache;
 import com.nepxion.coroutine.data.entity.ChainEntity;
 import com.nepxion.coroutine.data.entity.ClassEntity;
@@ -44,7 +38,7 @@ import com.nepxion.coroutine.data.entity.StepEntity;
 import com.nepxion.coroutine.data.entity.StepType;
 import com.nepxion.coroutine.framework.core.CoroutineManager;
 
-public class RuleParser {
+public class RuleParser extends Dom4JParser {
     private static final Logger LOG = LoggerFactory.getLogger(RuleParser.class);
 
     private RuleKey ruleKey;
@@ -53,50 +47,9 @@ public class RuleParser {
         this.ruleKey = ruleKey;
     }
 
-    public void parse(String text) throws DocumentException {
-        Document document = Dom4JReader.getDocument(text);
-
-        parse(document);
-    }
-
-    public void parseFormat(String text) throws DocumentException, UnsupportedEncodingException {
-        Document document = Dom4JReader.getFormatDocument(text);
-
-        parse(document);
-    }
-
-    public void parse(File file) throws DocumentException, IOException, UnsupportedEncodingException {
-        Document document = Dom4JReader.getDocument(file);
-
-        parse(document);
-    }
-
-    public void parseFormat(File file) throws DocumentException, IOException, UnsupportedEncodingException {
-        Document document = Dom4JReader.getFormatDocument(file);
-
-        parse(document);
-    }
-
-    public void parse(InputStream inputStream) throws DocumentException, IOException {
-        Document document = Dom4JReader.getDocument(inputStream);
-
-        parse(document);
-    }
-
-    public void parseFormat(InputStream inputStream) throws DocumentException, IOException, UnsupportedEncodingException {
-        Document document = Dom4JReader.getFormatDocument(inputStream);
-
-        parse(document);
-    }
-
-    public void parse(Document document) {
-        Element rootElement = document.getRootElement();
-
-        parseRoot(rootElement);
-    }
-
     @SuppressWarnings("rawtypes")
-    private void parseRoot(Element element) {
+    @Override
+    protected void parseRoot(Element element) {
         LOG.info("Start to parse rule, categoryName={}, ruleName={}", ruleKey.getCategoryName(), ruleKey.getRuleName());
 
         List<RuleEntity> ruleEntityList = RuleCache.getRules(ruleKey);
@@ -264,7 +217,7 @@ public class RuleParser {
             String parameterTypes = parameterTypesAttribute.getData().toString().trim();
             methodEntity.setParameterTypes(parameterTypes);
         }
-        
+
         Attribute cacheAttribute = element.attribute(CoroutineConstants.CACHE_ATTRIBUTE_NAME);
         if (cacheAttribute != null) {
             String cache = cacheAttribute.getData().toString().trim();
