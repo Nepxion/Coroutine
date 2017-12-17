@@ -23,7 +23,7 @@ public class ZookeeperRegistryLauncher extends CoroutineDelegateImpl implements 
 
     @Override
     public void start() throws Exception {
-        String address = properties.get(CoroutineConstants.ZOOKEEPER_ADDRESS_ATTRIBUTE_NAME);
+        String address = properties.getString(CoroutineConstants.ZOOKEEPER_ADDRESS_ATTRIBUTE_NAME);
 
         start(address);
     }

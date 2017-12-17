@@ -10,47 +10,43 @@ package com.nepxion.coroutine.common.property;
  * @version 1.0
  */
 
-import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Maps;
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
-import com.nepxion.coroutine.common.util.MathsUtil;
 
 public class CoroutineProperties implements Serializable {
     private static final long serialVersionUID = -2472070968260967737L;
-    public static final String DOT = ".";
-    public static final String LINE = "-";
 
-    private final Map<String, Object> map = Maps.newConcurrentMap();
+    private static final char ASTERISK = '*';
+
+    private final Map<String, String> map = Maps.newConcurrentMap();
 
     private String content;
 
-    public CoroutineProperties() {
-
+    public CoroutineProperties(String path, String encoding) throws IOException {
+        this(new StringBuilder(new CoroutineContent(path, encoding).getContent()), encoding);
     }
 
-    public CoroutineProperties(String path) throws Exception {
-        PropertiesConfiguration configuration = new PropertiesConfiguration(path);
-        for (Iterator<String> iterator = configuration.getKeys(); iterator.hasNext();) {
-            String key = iterator.next();
-            String value = configuration.getString(key);
-            put(key, value);
-        }
-
-        content = new CoroutineContent(path, CoroutineConstants.ENCODING_FORMAT).getContent().trim();
+    public CoroutineProperties(byte[] bytes, String encoding) throws IOException {
+        this(new StringBuilder(new String(bytes, encoding)), encoding);
     }
 
-    public CoroutineProperties(byte[] bytes) throws Exception {
-        InputStream inputStream = new ByteArrayInputStream(bytes);
+    public CoroutineProperties(StringBuilder stringBuilder, String encoding) throws IOException {
+        content = stringBuilder.toString();
+
+        InputStream inputStream = null;
         try {
+            inputStream = IOUtils.toInputStream(content, encoding);
             Properties properties = new Properties();
             properties.load(inputStream);
             for (Iterator<Object> iterator = properties.keySet().iterator(); iterator.hasNext();) {
@@ -63,81 +59,300 @@ public class CoroutineProperties implements Serializable {
                 IOUtils.closeQuietly(inputStream);
             }
         }
-
-        content = new String(bytes, CoroutineConstants.ENCODING_FORMAT).trim();
-    }
-
-    public Map<String, Object> getMap() {
-        return map;
     }
 
     public String getContent() {
         return content;
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T get(String key) {
-        return (T) map.get(key);
-    }
-
-    public void put(String key, Object value) {
+    public void put(String key, String value) {
         if (value == null) {
-            throw new IllegalArgumentException("Value is null for key=" + key);
+            throw new IllegalArgumentException("Value is null for key [" + key + "]");
         }
 
-        Long result = MathsUtil.calculate(value.toString());
+        Long result = calculate(value.toString());
         if (result != null) {
-            map.put(key, result);
+            map.put(key, String.valueOf(result));
         } else {
             map.put(key, value);
         }
     }
 
+    public Map<String, String> getMap() {
+        return map;
+    }
+
     public String getString(String key) {
-        Object value = map.get(key);
-        if (value == null) {
-            throw new IllegalArgumentException("Value is null for key=" + key);
+        if (!map.containsKey(key)) {
+            throw new IllegalArgumentException("Key [" + key + "] isn't found in properties");
         }
 
-        return String.valueOf(value);
+        return map.get(key);
     }
 
-    public int getInteger(String key) {
+    public String getString(String key, String defaultValue) {
         String value = getString(key);
-
-        return Integer.parseInt(value);
-    }
-
-    public long getLong(String key) {
-        String value = getString(key);
-
-        return Long.parseLong(value);
+        if (value != null) {
+            return value;
+        } else {
+            return defaultValue;
+        }
     }
 
     public boolean getBoolean(String key) {
         String value = getString(key);
-
-        return Boolean.valueOf(value);
+        if (value != null) {
+            try {
+                return Boolean.parseBoolean(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to boolean", e);
+            }
+        } else {
+            throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] is null");
+        }
     }
 
-    public void putString(String key, String value) {
-        map.put(key, value);
+    public boolean getBoolean(String key, boolean defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Boolean.parseBoolean(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to boolean", e);
+            }
+        } else {
+            return defaultValue;
+        }
     }
 
-    public void putInteger(String key, String value) {
-        map.put(key, Integer.parseInt(value));
+    public int getInteger(String key) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to int", e);
+            }
+        } else {
+            throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] is null");
+        }
     }
 
-    public void putLong(String key, String value) {
-        map.put(key, Long.parseLong(value));
+    public int getInteger(String key, int defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to int", e);
+            }
+        } else {
+            return defaultValue;
+        }
     }
 
-    public void putBoolean(String key, String value) {
-        map.put(key, Boolean.valueOf(value));
+    public long getLong(String key) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Long.parseLong(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to long", e);
+            }
+        } else {
+            throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] is null");
+        }
+    }
+
+    public long getLong(String key, long defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Long.parseLong(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to long", e);
+            }
+        } else {
+            return defaultValue;
+        }
+    }
+
+    public short getShort(String key, short defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Short.parseShort(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to short", e);
+            }
+        } else {
+            throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] is null");
+        }
+    }
+
+    public Short getShort(String key, Short defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Short.parseShort(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to short", e);
+            }
+        } else {
+            return defaultValue;
+        }
+    }
+
+    public byte getByte(String key) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Byte.parseByte(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to byte", e);
+            }
+        } else {
+            throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] is null");
+        }
+    }
+
+    public byte getByte(String key, byte defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Byte.parseByte(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to byte", e);
+            }
+        } else {
+            return defaultValue;
+        }
+    }
+
+    public double getDouble(String key) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Double.parseDouble(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to double", e);
+            }
+        } else {
+            throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] is null");
+        }
+    }
+
+    public double getDouble(String key, double defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Double.parseDouble(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to double", e);
+            }
+        } else {
+            return defaultValue;
+        }
+    }
+
+    public float getFloat(String key) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Float.parseFloat(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to float", e);
+            }
+        } else {
+            throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] is null");
+        }
+    }
+
+    public float getFloat(String key, float defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return Float.parseFloat(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to float", e);
+            }
+        } else {
+            return defaultValue;
+        }
+    }
+
+    public BigInteger getBigInteger(String key) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return BigInteger.valueOf(Long.parseLong(value));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to BigInteger", e);
+            }
+        } else {
+            throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] is null");
+        }
+    }
+
+    public BigInteger getBigInteger(String key, BigInteger defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return BigInteger.valueOf(Long.parseLong(value));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to BigInteger", e);
+            }
+        } else {
+            return defaultValue;
+        }
+    }
+
+    public BigDecimal getBigDecimal(String key) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return BigDecimal.valueOf(Double.parseDouble(value));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to BigDecimal", e);
+            }
+        } else {
+            throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] is null");
+        }
+    }
+
+    public BigDecimal getBigDecimal(String key, BigDecimal defaultValue) {
+        String value = getString(key);
+        if (value != null) {
+            try {
+                return BigDecimal.valueOf(Double.parseDouble(value));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Value [" + value + "] for key [" + key + "] can't be parsed to BigDecimal", e);
+            }
+        } else {
+            return defaultValue;
+        }
     }
 
     public void mergeProperties(CoroutineProperties properties) {
         map.putAll(properties.getMap());
+    }
+
+    private Long calculate(String value) {
+        if (StringUtils.isEmpty(value)) {
+            return null;
+        }
+
+        long result = 1;
+        try {
+            String[] array = StringUtils.split(value, ASTERISK);
+            for (String data : array) {
+                result *= Long.parseLong(data.trim());
+            }
+        } catch (NumberFormatException e) {
+            return null;
+        }
+
+        return result;
     }
 
     @Override
