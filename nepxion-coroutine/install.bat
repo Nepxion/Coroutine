@@ -15,8 +15,8 @@
 @title Nepxion Coroutine Framework Compiler
 @color 0a
 
-@echo Please ensure to config JAVA_HOME with Java 6
-@set JAVA_HOME=E:\Tool\JDK-1.6.0
+@echo Please ensure to config JAVA_HOME with Java 7
+@set JAVA_HOME=E:\Tool\JDK-1.7.0
 @echo Found JAVA_HOME=%JAVA_HOME%
 
 call mvn clean install -DskipTests
