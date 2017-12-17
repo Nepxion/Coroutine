@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>nepxion</groupId>
+        <groupId>com.nepxion</groupId>
         <artifactId>coroutine</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -16,10 +16,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>coroutine-monitor</artifactId>
         </dependency>
-		
+
         <dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>javax.mail</artifactId>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
         </dependency>
     </dependencies>
 </project>

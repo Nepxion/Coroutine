@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <groupId>nepxion</groupId>
+    <groupId>com.nepxion</groupId>
     <artifactId>coroutine</artifactId>
     <name>Nepxion Coroutine</name>
     <packaging>pom</packaging>
@@ -10,7 +10,7 @@
     <url>https://github.com/Nepxion/</url>
 
     <modules>
-        <module>coroutine-assembly</module>
+        <module>coroutine-assembly-all</module>
         <module>coroutine-common</module>
         <module>coroutine-data</module>
         <module>coroutine-event</module>
@@ -46,12 +46,18 @@
         <dom4j.version>1.6.1</dom4j.version>
         <log4j.version>2.3</log4j.version>
         <junit.version>4.12</junit.version>
-        <java.version>1.6</java.version>
+        <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>coroutine-assembly-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>coroutine-common</artifactId>
@@ -129,7 +135,6 @@
                 <artifactId>coroutine-serialization-protostuff</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>org.apache.commons</groupId>
