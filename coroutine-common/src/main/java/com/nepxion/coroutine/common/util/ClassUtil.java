@@ -30,6 +30,10 @@ public class ClassUtil {
     }
 
     public static Class<?>[] createParameterClasses(Object object, String methodName) {
+        if (object == null) {
+            throw new IllegalArgumentException("No bean found, are your sure to set application context file correctly?");
+        }
+
         Class<?> clazz = object.getClass();
 
         return createParameterClasses(clazz, methodName);
@@ -148,6 +152,10 @@ public class ClassUtil {
         }
 
         return "jar:file:" + jarPath + "!" + applicationContextPath;
+    }
+
+    public static String createAbsoluteApplicationContextPath(String applicationContextPath) throws Exception {
+        return "classpath*:" + applicationContextPath;
     }
 
     public static Object invoke(Object object, String methodName, Class<?>[] parameterTypes, Object[] parameters) throws Exception {
