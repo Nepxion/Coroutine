@@ -141,7 +141,7 @@ public class ClassUtil {
         return clazz.getProtectionDomain().getCodeSource().getLocation().getFile();
     }
 
-    public static String createAbsoluteApplicationContextPath(String className, String applicationContextPath) throws Exception {
+    public static String createJarApplicationContextPath(String className, String applicationContextPath) throws Exception {
         String jarPath = ClassUtil.createJarPath(className);
         if (!jarPath.startsWith("/")) {
             jarPath = "/" + jarPath;
@@ -154,7 +154,7 @@ public class ClassUtil {
         return "jar:file:" + jarPath + "!" + applicationContextPath;
     }
 
-    public static String createAbsoluteApplicationContextPath(String applicationContextPath) throws Exception {
+    public static String createApplicationContextPath(String applicationContextPath) throws Exception {
         return "classpath*:" + applicationContextPath;
     }
 

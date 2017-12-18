@@ -45,7 +45,7 @@ public class ClassTest {
         String path2 = ClassUtil.createJarPath("org.apache.curator.framework.CuratorFramework");
         LOG.info("Path2 : {}", path2);
         
-        String path3 = ClassUtil.createAbsoluteApplicationContextPath("org.apache.curator.framework.CuratorFramework", "a/b/applicationContext.xml");
+        String path3 = ClassUtil.createJarApplicationContextPath("org.apache.curator.framework.CuratorFramework", "a/b/applicationContext.xml");
         LOG.info("Path3 : {}", path3);
     }
 }

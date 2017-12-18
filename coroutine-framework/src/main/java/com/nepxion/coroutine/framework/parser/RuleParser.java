@@ -162,7 +162,8 @@ public class RuleParser extends Dom4JParser {
             } else {
                 String absoluteApplicationContextPath = null;
                 try {
-                    absoluteApplicationContextPath = ClassUtil.createAbsoluteApplicationContextPath(clazz, applicationContextPath);
+                    absoluteApplicationContextPath = ClassUtil.createApplicationContextPath(applicationContextPath);
+                    // absoluteApplicationContextPath = ClassUtil.createJarApplicationContextPath(clazz, applicationContextPath);
                 } catch (Exception e) {
                     LOG.error("Create absolute application context path failed", e);
                 }
