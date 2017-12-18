@@ -1,1 +1,0 @@
-repo下有kilim-1.0.0-jdk-1.6.0.jar和kilim-1.0.0-jdk-1.7.0.jar两个版本的jar，前者是基于JDK 1.6编译，后者是基于JDK 1.7编译，通过repo.bat把对应的jar装到Maven Repository

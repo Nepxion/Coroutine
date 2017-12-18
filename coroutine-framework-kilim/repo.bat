@@ -15,6 +15,6 @@
 @title Nepxion Coroutine
 @color 0a
 
-call mvn install:install-file -DgroupId=kilim -DartifactId=kilim -Dversion=1.0.0 -Dfile=repo/kilim-1.0.0-jdk-1.7.0.jar -Dpackaging=jar -DgeneratePom=true
+call mvn install:install-file -DgroupId=kilim -DartifactId=kilim -Dversion=1.0.1 -Dfile=repo/kilim/kilim/1.0.1/kilim-1.0.1.jar -Dpackaging=jar -DgeneratePom=true
 
 pause
