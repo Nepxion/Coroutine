@@ -1,18 +1,18 @@
 @echo on
 @echo =============================================================
 @echo $                                                           $
-@echo $            Nepxion Coroutine Framework Compiler           $
+@echo $                     Nepxion Coroutine                     $
 @echo $                                                           $
 @echo $                                                           $
 @echo $                                                           $
 @echo $  Nepxion Technologies All Right Reserved                  $
-@echo $  Copyright(C) 2016                                        $
+@echo $  Copyright(C) 2017                                        $
 @echo $                                                           $
 @echo =============================================================
 @echo.
 @echo off
 
-@title Nepxion Coroutine Framework Compiler
+@title Nepxion Coroutine
 @color 0a
 
 @echo Please ensure to config JAVA_HOME with Java 7

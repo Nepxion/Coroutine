@@ -1,24 +1,41 @@
-ï»¿call mvn dependency:tree
+@echo on
+@echo =============================================================
+@echo $                                                           $
+@echo $                     Nepxion Coroutine                     $
+@echo $                                                           $
+@echo $                                                           $
+@echo $                                                           $
+@echo $  Nepxion Technologies All Right Reserved                  $
+@echo $  Copyright(C) 2017                                        $
+@echo $                                                           $
+@echo =============================================================
+@echo.
+@echo off
 
-# æŸ¥çœ‹åŒ…ç»“æ„æ ‘
-# call mvn dependency:tree -Dverbose -Dincludes=org.apache.curator:curator-recipes
+@title Nepxion Coroutine
+@color 0a
 
-# å…¨éƒ¨åŒ…å¯¼å‡ºåˆ°lib
-# call mvn dependency:copy-dependencies -DoutputDirectory=lib
+call mvn dependency:tree
 
-# åªå¯¼å‡ºå…³è”åŒ…åˆ°lib
-# call mvn dependency:copy-dependencies -DoutputDirectory=lib -DincludeScope=compile
+REM ²é¿´°ü½á¹¹Ê÷
+REM call mvn dependency:tree -Dverbose -Dincludes=org.apache.curator:curator-recipes
 
-# å‡ºWARåŒ…
-# call mvn archetype:generate -DgroupId=nepxion -DartifactId=coroutine-common -Dversion=1.0.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeCatalog=internal
+REM È«²¿°üµ¼³öµ½lib
+REM call mvn dependency:copy-dependencies -DoutputDirectory=lib
 
-# å‡ºPOM
-# call mvn archetype:generate -DgroupId=nepxion -DartifactId=coroutine-common -DarchetypeArtifactId=maven-archetype-site-simple -DarchetypeCatalog=internal
+REM Ö»µ¼³ö¹ØÁª°üµ½lib
+REM call mvn dependency:copy-dependencies -DoutputDirectory=lib -DincludeScope=compile
 
-# å‡ºJARåŒ…
-# call mvn archetype:generate -DgroupId=nepxion -DartifactId=coroutine-common -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -DarchetypeCatalog=internal 
+REM ³öWAR°ü
+REM call mvn archetype:generate -DgroupId=nepxion -DartifactId=coroutine-common -Dversion=1.0.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeCatalog=internal
 
-# åŠ å…¥åˆ°æœ¬åœ°åº“
-# call mvn install:install-file -DgroupId=kilim -DartifactId=kilim -Dversion=1.0 -Dfile=lib/kilim-1.0.jar -Dpackaging=jar -DgeneratePom=true
+REM ³öPOM
+REM call mvn archetype:generate -DgroupId=nepxion -DartifactId=coroutine-common -DarchetypeArtifactId=maven-archetype-site-simple -DarchetypeCatalog=internal
+
+REM ³öJAR°ü
+REM call mvn archetype:generate -DgroupId=nepxion -DartifactId=coroutine-common -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -DarchetypeCatalog=internal 
+
+REM ¼ÓÈëµ½±¾µØ¿â
+REM call mvn install:install-file -DgroupId=kilim -DartifactId=kilim -Dversion=1.0 -Dfile=lib/kilim-1.0.jar -Dpackaging=jar -DgeneratePom=true
 
 pause
