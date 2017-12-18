@@ -188,7 +188,7 @@ public abstract class AbstractCoroutineLauncher extends CoroutineDelegateImpl im
 
     // 启动链式调用
     protected abstract void invoke(CoroutineId coroutineId, RuleEntity ruleEntity, String chainName, CoroutineCallback<CoroutineResult<Object>> callback) throws Exception;
-    
+
     // 启动子链式调用
     protected abstract CoroutineResult<Object> invokeSub(String id, String categoryName, String ruleName, String chainName, Object[] parameters, long timeout) throws Exception;
 }

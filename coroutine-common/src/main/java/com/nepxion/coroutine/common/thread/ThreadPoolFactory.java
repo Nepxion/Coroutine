@@ -29,10 +29,10 @@ import com.nepxion.coroutine.common.property.CoroutinePropertiesManager;
 
 public class ThreadPoolFactory {
     private static final Logger LOG = LoggerFactory.getLogger(ThreadPoolFactory.class);
-    
+
     public static ThreadPoolExecutor createThreadPoolExecutor(final String threadName, final int corePoolSize, final int maximumPoolSize, final long keepAliveTime, final boolean allowCoreThreadTimeOut) {
         LOG.info("Thread pool executor is created, threadName={}, corePoolSize={}, maximumPoolSize={}, keepAliveTime={}, allowCoreThreadTimeOut={}", threadName, corePoolSize, maximumPoolSize, keepAliveTime, allowCoreThreadTimeOut);
-        
+
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,
                 maximumPoolSize,
                 keepAliveTime,
@@ -54,7 +54,7 @@ public class ThreadPoolFactory {
 
     public static ThreadPoolExecutor createThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, boolean allowCoreThreadTimeOut) {
         LOG.info("Thread pool executor is created, corePoolSize={}, maximumPoolSize={}, keepAliveTime={}, allowCoreThreadTimeOut={}", corePoolSize, maximumPoolSize, keepAliveTime, allowCoreThreadTimeOut);
-        
+
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,
                 maximumPoolSize,
                 keepAliveTime,

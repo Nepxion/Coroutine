@@ -41,10 +41,10 @@ public class ClassTest {
     public void testJarPath() throws Exception {
         String path1 = ClassUtil.createJarPath(StringUtils.class);
         LOG.info("Path1 : {}", path1);
-        
+
         String path2 = ClassUtil.createJarPath("org.apache.curator.framework.CuratorFramework");
         LOG.info("Path2 : {}", path2);
-        
+
         String path3 = ClassUtil.createJarApplicationContextPath("org.apache.curator.framework.CuratorFramework", "a/b/applicationContext.xml");
         LOG.info("Path3 : {}", path3);
     }

@@ -15,8 +15,8 @@ import java.util.Map;
 
 public interface DService {
     String doThen(String value);
-    
+
     String doWhen(String value);
-    
+
     String doMerge(List<Map<String, Object>> value);
 }

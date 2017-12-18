@@ -20,9 +20,9 @@ import com.google.common.collect.Maps;
 public class ObjectCache {
     private static final ConcurrentMap<String, Object> OBJECT_MAP = Maps.newConcurrentMap();
     private static final ConcurrentMap<String, ApplicationContext> APPLICATION_CONTEXT_MAP = Maps.newConcurrentMap();
-    
+
     public static Object getObject(String key) {
-        return OBJECT_MAP.get(key); 
+        return OBJECT_MAP.get(key);
     }
 
     public static void putObject(String key, Object object) {
@@ -34,7 +34,7 @@ public class ObjectCache {
     public static ApplicationContext getApplicationContext(String key) {
         return APPLICATION_CONTEXT_MAP.get(key);
     }
-    
+
     public static void putApplicationContext(String key, ApplicationContext applicationContext) {
         if (applicationContext != null) {
             APPLICATION_CONTEXT_MAP.putIfAbsent(key, applicationContext);

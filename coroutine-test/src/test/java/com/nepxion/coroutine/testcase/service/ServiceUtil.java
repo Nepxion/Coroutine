@@ -29,27 +29,27 @@ public class ServiceUtil {
         if (LOG_PRINT) {
             LOG.info("串行返回结果：{}", value);
         }
-        
+
         return value;
     }
 
     public static String doWhen(String value, String service) {
         value += " -> " + service + getSuffix(value);
-        
+
         if (LOG_PRINT) {
             LOG.info("并行返回结果：{}", value);
         }
-        
+
         return value;
     }
 
     public static String doMerge(CoroutineList<Object> value, String service) {
         StringBuilder bulder = new StringBuilder();
-        
+
         if (LOG_PRINT) {
             LOG.info("并行汇聚结果：------------------------------");
         }
-        
+
         List<CoroutineEntry<Object>> list = value.getCoroutineEntryList();
         int i = 0;
         for (CoroutineEntry<Object> entry : list) {
@@ -70,24 +70,24 @@ public class ServiceUtil {
         if (LOG_PRINT) {
             LOG.info("-------------------------------------------");
         }
-        
+
         return "(" + bulder.toString() + ")";
     }
 
     public static String doMerge(List<Map<String, Object>> value, String service) {
         StringBuilder bulder = new StringBuilder();
-        
+
         if (LOG_PRINT) {
             LOG.info("并行汇聚结果：------------------------------");
         }
         for (int i = 0; i < value.size(); i++) {
             Map<String, Object> entry = value.get(i);
             Object result = entry.get("result");
-            
+
             if (LOG_PRINT) {
                 LOG.info("{}", entry);
             }
-            
+
             if (i == value.size() - 1) {
                 bulder.append(result + " -> " + service + getSuffix(result.toString()));
             } else {
@@ -97,7 +97,7 @@ public class ServiceUtil {
         if (LOG_PRINT) {
             LOG.info("-------------------------------------------");
         }
-        
+
         return "(" + bulder.toString() + ")";
     }
 

@@ -39,7 +39,7 @@ public class DependencyEntity extends ReferenceEntity {
     public void setRuleName(String ruleName) {
         this.ruleName = ruleName;
     }
-    
+
     public String getChainName() {
         return chainName;
     }

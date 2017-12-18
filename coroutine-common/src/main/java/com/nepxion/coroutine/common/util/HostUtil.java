@@ -36,11 +36,11 @@ public class HostUtil {
         } catch (SocketException e) {
             LOG.error("Socket exception", e);
         }
-        
+
         if (interfaces == null) {
             return null;
         }
-        
+
         while (interfaces.hasMoreElements()) {
             NetworkInterface interfaze = interfaces.nextElement();
             Enumeration<InetAddress> addresses = interfaze.getInetAddresses();

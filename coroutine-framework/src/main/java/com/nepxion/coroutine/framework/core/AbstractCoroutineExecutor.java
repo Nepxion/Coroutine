@@ -36,13 +36,13 @@ public abstract class AbstractCoroutineExecutor extends CoroutineDelegateImpl im
             String method = methodEntity.getMethod();
             Class<?>[] parameterClasses = methodEntity.getParameterClasses();
             boolean cache = methodEntity.isCache();
-            
+
             Object value = ClassUtil.invoke(object, method, parameterClasses, parameters);
             if (cache) {
                 String categoryName = result.getId().getCategoryName();
                 String ruleName = result.getId().getRuleName();
                 int index = methodEntity.getIndex();
-                
+
                 ServiceId serviceId = new ServiceId();
                 serviceId.setId(id);
                 serviceId.setCategoryName(categoryName);
@@ -67,14 +67,14 @@ public abstract class AbstractCoroutineExecutor extends CoroutineDelegateImpl im
 
         return null;
     }
-    
+
     public MonitorEntity createMonitorEntity(ExecutorType executorType, CoroutineId id, ReferenceEntity referenceEntity, String chainName) {
         MonitorEntity monitorEntity = new MonitorEntity();
         monitorEntity.setExecutorType(executorType);
         monitorEntity.setId(id);
         monitorEntity.setReferenceEntity(referenceEntity);
         monitorEntity.setChainName(chainName);
-        
+
         return monitorEntity;
     }
 }

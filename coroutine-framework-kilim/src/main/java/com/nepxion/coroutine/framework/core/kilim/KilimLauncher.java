@@ -34,7 +34,7 @@ public class KilimLauncher extends AbstractCoroutineLauncher {
         if (chainEntity == null) {
             CoroutineException e = new CoroutineException("No chain entity is found, chainName=" + chainName);
             LOG.error("Invoke failed", e);
-            
+
             throw e;
         }
 

@@ -50,7 +50,7 @@ public class PromiseParallelExecutor extends AbstractPromiseExecutor<MultipleRes
     public PromiseParallelExecutor() {
         setProperties(CoroutinePropertiesManager.getProperties());
     }
-    
+
     @SuppressWarnings("unchecked")
     @Override
     protected Promise<MultipleResults, OneReject, MasterProgress> chain(final CoroutineResult<Object> origin, RuleEntity ruleEntity, StepEntity stepEntity, final String chainName) throws Exception {
@@ -74,12 +74,12 @@ public class PromiseParallelExecutor extends AbstractPromiseExecutor<MultipleRes
 
                     MonitorEntity monitorEntity = PromiseParallelExecutor.this.createMonitorEntity(ExecutorType.PARALLEL, id, referenceEntity, chainName);
                     monitorEntity.setStartTime(System.currentTimeMillis());
-                    
+
                     Object value = null;
                     try {
                         // 反射调用
                         value = invoke(referenceEntity, origin);
-                        
+
                         monitorEntity.setReturnType(value != null ? value.getClass().getName() : null);
                         monitorEntity.setEndTime(System.currentTimeMillis());
                         MonitorLoader.startSuccess(monitorEntity);

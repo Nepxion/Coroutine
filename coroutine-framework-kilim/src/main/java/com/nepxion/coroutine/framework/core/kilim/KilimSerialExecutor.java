@@ -76,7 +76,7 @@ public class KilimSerialExecutor extends AbstractKilimExecutor {
                 while (true) {
                     // 阻塞协程
                     ReferenceEntity referenceEntity = mailbox.get();
-                    
+
                     MonitorEntity monitorEntity = KilimSerialExecutor.this.createMonitorEntity(ExecutorType.SERIAL, coroutineId, referenceEntity, chainName);
                     monitorEntity.setStartTime(System.currentTimeMillis());
 
@@ -84,7 +84,7 @@ public class KilimSerialExecutor extends AbstractKilimExecutor {
                     CoroutineResult<Object> coroutineResult = (CoroutineResult<Object>) CoroutineCache.getResult(result.getId());
                     if (CoroutineCache.hasException(coroutineResult)) {
                         Exception e = coroutineResult.getException();
-                        
+
                         monitorEntity.setException(e);
                         monitorEntity.setEndTime(System.currentTimeMillis());
                         MonitorLoader.startFailure(monitorEntity);
@@ -120,7 +120,7 @@ public class KilimSerialExecutor extends AbstractKilimExecutor {
                         } else {
                             CoroutineCache.setResult(result);
                         }
-                        
+
                         break;
                     }
                 }

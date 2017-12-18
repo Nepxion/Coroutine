@@ -89,7 +89,7 @@ public class KilimParallelExecutor extends AbstractKilimExecutor {
 
                     MonitorEntity monitorEntity = KilimParallelExecutor.this.createMonitorEntity(ExecutorType.PARALLEL, coroutineId, referenceEntity, chainName);
                     monitorEntity.setStartTime(System.currentTimeMillis());
-                    
+
                     Object value = null;
                     try {
                         // 反射调用
@@ -153,7 +153,7 @@ public class KilimParallelExecutor extends AbstractKilimExecutor {
     }
 
     // 解析返回对象集
-    protected CoroutineResult<Object> createResult(List<CoroutineEntry<Object>> value) {        
+    protected CoroutineResult<Object> createResult(List<CoroutineEntry<Object>> value) {
         boolean flag = properties.getBoolean(CoroutineConstants.PARALLEL_AGGREGATION_COUPLING);
         if (flag) {
             return createListResult(value);

@@ -41,9 +41,9 @@ public class CoroutineConstants {
 
     public static final String SYNC_TIMEOUT_ATTRIBUTE_NAME = "syncTimeout";
     public static final String ASYNC_SCAN_ATTRIBUTE_NAME = "asyncScan";
-    
+
     public static final String PARALLEL_AGGREGATION_COUPLING = "parallelAggregationCoupling";
-    
+
     public static final String COROUTINE_THREAD_POOL_CORE_POOL_SIZE_ATTRIBUTE_NAME = "coroutineThreadPoolCorePoolSize";
     public static final String COROUTINE_THREAD_POOL_MAXIMUM_POOL_SIZE_ATTRIBUTE_NAME = "coroutineThreadPoolMaximumPoolSize";
     public static final String COROUTINE_THREAD_POOL_KEEP_ALIVE_TIME_ATTRIBUTE_NAME = "coroutineThreadPoolKeepAliveTime";
@@ -64,12 +64,12 @@ public class CoroutineConstants {
     public static final String ZOOKEEPER_CONNECT_WAIT_TIME_ATTRIBUTE_NAME = "zookeeperConnectWaitTime";
 
     public static final String EVENT_BUS = "eventbus";
-    
+
     public static final String MONITOR_LOG_SUCCESS_PRINT = "monitorLogSuccessPrint";
     public static final String MONITOR_LOG_FAILURE_PRINT = "monitorLogFailurePrint";
-    
+
     public static final String MONITOR_MAIL_FAILURE_SEND = "monitorMailFailureSend";
-    
+
     public static final String SMTP_SSL_ATTRIBUTE_NAME = "smtpSsl";
     public static final String SMTP_HOST_ATTRIBUTE_NAME = "smtpHost";
     public static final String SMTP_USER_ATTRIBUTE_NAME = "smtpUser";
@@ -78,7 +78,7 @@ public class CoroutineConstants {
     public static final String SMTP_MAIL_TO_ATTRIBUTE_NAME = "smtpMailTo";
     public static final String SMTP_MAIL_CC_ATTRIBUTE_NAME = "smtpMailCC";
     public static final String SMTP_MAIL_BCC_ATTRIBUTE_NAME = "smtpMailBCC";
-    
+
     public static final String ENCODING_FORMAT = "UTF-8";
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 

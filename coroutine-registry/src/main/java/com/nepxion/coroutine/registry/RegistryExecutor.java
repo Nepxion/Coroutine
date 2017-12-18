@@ -39,7 +39,7 @@ public interface RegistryExecutor extends CoroutineDelegate {
 
     // 对规则目录进行监听
     void addCategoryListener(String categoryName) throws Exception;
-    
+
     // 对规则进行监听
     void addRuleListener(String categoryName, String ruleName) throws Exception;
 }

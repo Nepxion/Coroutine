@@ -37,10 +37,10 @@ public class CoroutineList<T> implements Serializable {
                 return coroutineEntry;
             }
         }
-        
+
         return null;
     }
-    
+
     @Override
     public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this);

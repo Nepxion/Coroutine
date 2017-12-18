@@ -29,7 +29,7 @@ import com.nepxion.coroutine.monitor.MonitorLoader;
 
 public class PromiseSerialExecutor extends AbstractPromiseExecutor<CoroutineResult<Object>, Exception, Void> {
     private static final Logger LOG = LoggerFactory.getLogger(PromiseSerialExecutor.class);
-    
+
     public PromiseSerialExecutor() {
         setProperties(CoroutinePropertiesManager.getProperties());
     }
@@ -108,12 +108,12 @@ public class PromiseSerialExecutor extends AbstractPromiseExecutor<CoroutineResu
 
                 MonitorEntity monitorEntity = PromiseSerialExecutor.this.createMonitorEntity(ExecutorType.SERIAL, id, referenceEntity, chainName);
                 monitorEntity.setStartTime(System.currentTimeMillis());
-                
+
                 // 监测外部是否有异常赋予链式调用
                 CoroutineResult<Object> coroutineResult = (CoroutineResult<Object>) CoroutineCache.getResult(result.getId());
                 if (CoroutineCache.hasException(coroutineResult)) {
                     Exception e = coroutineResult.getException();
-                    
+
                     monitorEntity.setException(e);
                     monitorEntity.setEndTime(System.currentTimeMillis());
                     MonitorLoader.startFailure(monitorEntity);

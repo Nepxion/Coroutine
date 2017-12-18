@@ -31,7 +31,7 @@ public class ChainEntity implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public List<StepEntity> getStepEntityList() {
         return stepEntityList;
     }

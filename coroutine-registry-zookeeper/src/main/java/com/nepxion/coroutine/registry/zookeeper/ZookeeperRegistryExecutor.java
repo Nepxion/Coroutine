@@ -140,7 +140,7 @@ public class ZookeeperRegistryExecutor extends CoroutineDelegateImpl implements 
         if (client == null) {
             throw new ZookeeperException("Zookeeper client is null");
         }
-        
+
         StringBuilder builder = createCategoryPath(categoryName);
         String path = builder.toString();
 
@@ -152,22 +152,22 @@ public class ZookeeperRegistryExecutor extends CoroutineDelegateImpl implements 
         if (client == null) {
             throw new ZookeeperException("Zookeeper client is null");
         }
-        
+
         StringBuilder builder = createCategoryPath(categoryName);
         String path = builder.toString();
 
         new ZookeeperCategoryListener(client, invoker, path);
     }
-    
+
     @Override
     public void addRuleListener(String categoryName, String ruleName) throws Exception {
         if (client == null) {
             throw new ZookeeperException("Zookeeper client is null");
         }
-        
+
         StringBuilder builder = createRulePath(categoryName, ruleName);
         String path = builder.toString();
-        
+
         new ZookeeperRuleListener(client, invoker, path);
     }
 

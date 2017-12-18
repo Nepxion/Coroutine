@@ -23,14 +23,14 @@ public abstract class ZookeeperPathChildrenCacheListener extends ZookeeperCacheL
 
         pathChildrenCache = new PathChildrenCache(client, path, false);
         pathChildrenCache.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
-        
+
         addListener();
     }
-    
+
     public void addListener() {
         pathChildrenCache.getListenable().addListener(this);
     }
-    
+
     public void removeListener() {
         pathChildrenCache.getListenable().removeListener(this);
     }
