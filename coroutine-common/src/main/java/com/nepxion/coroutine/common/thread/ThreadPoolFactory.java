@@ -27,12 +27,15 @@ import com.nepxion.coroutine.common.constant.CoroutineConstants;
 import com.nepxion.coroutine.common.property.CoroutineProperties;
 import com.nepxion.coroutine.common.property.CoroutinePropertiesManager;
 import com.nepxion.coroutine.common.util.HostUtil;
+import com.nepxion.coroutine.common.util.StringUtil;
 
 public class ThreadPoolFactory {
     private static final Logger LOG = LoggerFactory.getLogger(ThreadPoolFactory.class);
 
     public static ThreadPoolExecutor createThreadPoolExecutor(final String threadName, final int corePoolSize, final int maximumPoolSize, final long keepAliveTime, final boolean allowCoreThreadTimeOut) {
-        LOG.info("Thread pool executor is created, threadName={}, corePoolSize={}, maximumPoolSize={}, keepAliveTime={}, allowCoreThreadTimeOut={}", HostUtil.getLocalhost() + "-" + threadName + "-thread", corePoolSize, maximumPoolSize, keepAliveTime, allowCoreThreadTimeOut);
+        final String name = StringUtil.firstLetterToUpper(threadName) + "-" + HostUtil.getLocalhost() + "-thread";
+
+        LOG.info("Thread pool executor is created, threadName={}, corePoolSize={}, maximumPoolSize={}, keepAliveTime={}, allowCoreThreadTimeOut={}", name, corePoolSize, maximumPoolSize, keepAliveTime, allowCoreThreadTimeOut);
 
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,
                 maximumPoolSize,
@@ -44,7 +47,7 @@ public class ThreadPoolFactory {
 
                     @Override
                     public Thread newThread(Runnable runnable) {
-                        return new Thread(runnable, HostUtil.getLocalhost() + "-" + threadName + "-thread-" + number.getAndIncrement());
+                        return new Thread(runnable, name + "-" + number.getAndIncrement());
                     }
                 },
                 createRejectedPolicy());
