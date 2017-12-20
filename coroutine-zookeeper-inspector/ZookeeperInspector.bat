@@ -6,7 +6,7 @@
 @echo $                                                           $
 @echo $                                                           $
 @echo $  Nepxion Technologies All Right Reserved                  $
-@echo $  Copyright(C) 2016                                        $
+@echo $  Copyright(C) 2017                                        $
 @echo $                                                           $
 @echo =============================================================
 @echo.
@@ -35,4 +35,5 @@ goto QUIT
 "%JAVA_HOME%\bin\java" -Dfile.encoding=GBK -Ddefault.client.encoding=GBK -Duser.language=zh -Duser.region=CN -Djava.security.policy=java.policy -Djava.library.path=%PATH% -Xms128m -Xmx512m -classpath %CLASSPATH% org.apache.zookeeper.inspector.ZooInspector
 
 :QUIT
-pause;
+
+pause
