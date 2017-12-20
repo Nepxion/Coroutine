@@ -1,3 +1,3 @@
-## ½éÉÜ
-repo/kilim/kilim/1.0.0/kilim-1.0.0.jar »ùÓÚJDK 1.6±àÒë
-repo/kilim/kilim/1.0.0/kilim-1.0.0.jar »ùÓÚJDK 1.7±àÒë
+ï»¿## ä»‹ç»
+repo/kilim/kilim/1.0.0/kilim-1.0.0.jar åŸºäºJDK 1.6ç¼–è¯‘
+repo/kilim/kilim/1.0.0/kilim-1.0.0.jar åŸºäºJDK 1.7ç¼–è¯‘
