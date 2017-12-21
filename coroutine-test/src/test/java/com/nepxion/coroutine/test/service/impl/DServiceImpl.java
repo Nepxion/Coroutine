@@ -1,4 +1,4 @@
-package com.nepxion.coroutine.testcase.service;
+package com.nepxion.coroutine.test.service.impl;
 
 /**
  * <p>Title: Nepxion Coroutine</p>
@@ -11,6 +11,7 @@ package com.nepxion.coroutine.testcase.service;
  */
 
 import com.nepxion.coroutine.data.entity.CoroutineList;
+import com.nepxion.coroutine.test.service.DService;
 
 public class DServiceImpl implements DService {
     @Override
@@ -23,7 +24,7 @@ public class DServiceImpl implements DService {
 
 //        Integer.parseInt("c");
         
-        return ServiceUtil.doThen(value, "D");
+        return CoroutineInvoker.doThen(value, "D");
     }
 
     @Override
@@ -36,11 +37,11 @@ public class DServiceImpl implements DService {
 
 //        Integer.parseInt("c");
 
-        return ServiceUtil.doWhen(value, "D");
+        return CoroutineInvoker.doWhen(value, "D");
     }
 
     @Override
     public String doMerge(CoroutineList<Object> value) {
-        return ServiceUtil.doMerge(value, "D");
+        return CoroutineInvoker.doMerge(value, "D");
     }
 }

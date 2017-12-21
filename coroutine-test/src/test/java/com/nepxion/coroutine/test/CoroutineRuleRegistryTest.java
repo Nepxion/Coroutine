@@ -1,4 +1,4 @@
-package com.nepxion.coroutine.testcase.registry;
+package com.nepxion.coroutine.test;
 
 /**
  * <p>Title: Nepxion Coroutine</p>
@@ -20,11 +20,11 @@ import com.nepxion.coroutine.common.property.CoroutinePropertiesManager;
 import com.nepxion.coroutine.registry.RegistryLauncher;
 import com.nepxion.coroutine.registry.zookeeper.ZookeeperRegistryLauncher;
 
-public class RegistryConsoleTest {
-    private static final Logger LOG = LoggerFactory.getLogger(RegistryConsoleTest.class);
+public class CoroutineRuleRegistryTest {
+    private static final Logger LOG = LoggerFactory.getLogger(CoroutineRuleRegistryTest.class);
 
     @Test
-    public void test1() throws Exception {
+    public void testAddRule1() throws Exception {
         RegistryLauncher launcher = new ZookeeperRegistryLauncher();
         launcher.setProperties(CoroutinePropertiesManager.getProperties());
         launcher.start();
@@ -38,7 +38,7 @@ public class RegistryConsoleTest {
     }
 
     @Test
-    public void test2() throws Exception {
+    public void testAddRule2() throws Exception {
         RegistryLauncher launcher = new ZookeeperRegistryLauncher();
         launcher.setProperties(CoroutinePropertiesManager.getProperties());
         launcher.start();

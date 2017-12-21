@@ -1,4 +1,4 @@
-package com.nepxion.coroutine.testcase.service;
+package com.nepxion.coroutine.test.service;
 
 /**
  * <p>Title: Nepxion Coroutine</p>
@@ -12,7 +12,7 @@ package com.nepxion.coroutine.testcase.service;
 
 import com.nepxion.coroutine.data.entity.CoroutineList;
 
-public interface BService {
+public interface CService {
     String doThen(String value);
 
     String doWhen(String value);

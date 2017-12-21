@@ -30,19 +30,31 @@ public class CoroutineClientApplication {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(CoroutineClientApplication.class, args);
 
-        // 1. 从远程注册中心装载
-        // 启动和远程注册中心连接
-        // CoroutineManager.start();
-        // 解析远端规则
-        // CoroutineManager.parseRemote("Distribution PayRoute", "Distribution Rule");
+        // invokeRemote();
+        invokeLocal();
+    }
 
-        // 2. 从本地装载
-        // 解析本地规则，不支持子规则引用
+    public static void invokeRemote() throws Exception {
+        // 请确保Zookeeper有对应的规则（运行CoroutineRuleRegistry相关方法）
+
+        // 从远程注册中心装载
+        // 启动和远程注册中心连接
+        CoroutineManager.start();
+
+        // 解析远端规则（支持子规则引用）
+        CoroutineManager.parseRemote("Distribution PayRoute", "Distribution Rule");
+
+        invokeAsync();
+        invokeSync();
+    }
+
+    public static void invokeLocal() throws Exception {
+        // 从本地装载
+        // 解析本地规则（不支持子规则引用）
         CoroutineManager.parseLocal("Distribution PayRoute", "Distribution Rule", "rule.xml");
 
         invokeAsync();
-
-        // invokeSync();
+        invokeSync();
     }
 
     public static void invokeAsync() {

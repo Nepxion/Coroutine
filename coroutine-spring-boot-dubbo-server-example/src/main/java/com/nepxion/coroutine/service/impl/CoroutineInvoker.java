@@ -16,8 +16,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ServiceUtil {
-    private static final Logger LOG = LoggerFactory.getLogger(ServiceUtil.class);
+public class CoroutineInvoker {
+    private static final Logger LOG = LoggerFactory.getLogger(CoroutineInvoker.class);
     private static final boolean LOG_PRINT = true;
 
     public static String doThen(String value, String service) {

@@ -18,16 +18,16 @@ import com.nepxion.coroutine.service.AService;
 public class AServiceImpl implements AService {
     @Override
     public String doThen(String value) {
-        return ServiceUtil.doThen(value, "A");
+        return CoroutineInvoker.doThen(value, "A");
     }
 
     @Override
     public String doWhen(String value) {
-        return ServiceUtil.doWhen(value, "A");
+        return CoroutineInvoker.doWhen(value, "A");
     }
 
     @Override
     public String doMerge(List<Map<String, Object>> value) {
-        return ServiceUtil.doMerge(value, "A");
+        return CoroutineInvoker.doMerge(value, "A");
     }
 }

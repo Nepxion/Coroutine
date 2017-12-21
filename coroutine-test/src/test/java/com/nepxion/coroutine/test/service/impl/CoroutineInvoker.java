@@ -1,4 +1,4 @@
-package com.nepxion.coroutine.testcase.service;
+package com.nepxion.coroutine.test.service.impl;
 
 /**
  * <p>Title: Nepxion Coroutine</p>
@@ -19,8 +19,8 @@ import org.slf4j.LoggerFactory;
 import com.nepxion.coroutine.data.entity.CoroutineEntry;
 import com.nepxion.coroutine.data.entity.CoroutineList;
 
-public class ServiceUtil {
-    private static final Logger LOG = LoggerFactory.getLogger(ServiceUtil.class);
+public class CoroutineInvoker {
+    private static final Logger LOG = LoggerFactory.getLogger(CoroutineInvoker.class);
     private static final boolean LOG_PRINT = false;
 
     public static String doThen(String value, String service) {

@@ -1,4 +1,4 @@
-package com.nepxion.coroutine.testcase.service;
+package com.nepxion.coroutine.test.service.impl;
 
 /**
  * <p>Title: Nepxion Coroutine</p>
@@ -11,28 +11,21 @@ package com.nepxion.coroutine.testcase.service;
  */
 
 import com.nepxion.coroutine.data.entity.CoroutineList;
+import com.nepxion.coroutine.test.service.CService;
 
-public class BServiceImpl implements BService {
+public class CServiceImpl implements CService {
     @Override
     public String doThen(String value) {
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        
-//        Integer.parseInt("b");
-        
-        return ServiceUtil.doThen(value, "B");
+        return CoroutineInvoker.doThen(value, "C");
     }
 
     @Override
     public String doWhen(String value) {
-        return ServiceUtil.doWhen(value, "B");
+        return CoroutineInvoker.doWhen(value, "C");
     }
 
     @Override
     public String doMerge(CoroutineList<Object> value) {
-        return ServiceUtil.doMerge(value, "B");
+        return CoroutineInvoker.doMerge(value, "C");
     }
 }

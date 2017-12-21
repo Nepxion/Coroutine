@@ -1,4 +1,4 @@
-package com.nepxion.coroutine.testcase.registry;
+package com.nepxion.coroutine.test;
 
 /**
  * <p>Title: Nepxion Coroutine</p>
@@ -25,8 +25,8 @@ import com.nepxion.coroutine.event.eventbus.EventControllerFactory;
 import com.nepxion.coroutine.registry.RegistryLauncher;
 import com.nepxion.coroutine.registry.zookeeper.ZookeeperRegistryLauncher;
 
-public class RegistryListenerTest {
-    private static final Logger LOG = LoggerFactory.getLogger(RegistryListenerTest.class);
+public class CoroutineRuleListenerTest {
+    private static final Logger LOG = LoggerFactory.getLogger(CoroutineRuleListenerTest.class);
 
     @Test
     public void test() throws Exception {
@@ -37,7 +37,8 @@ public class RegistryListenerTest {
         launcher.start();
 
         // launcher.getRegistryExecutor().addCategoryListener("PayRoute");
-        launcher.getRegistryExecutor().addRuleListener("PayRoute", "Rule");
+        launcher.getRegistryExecutor().addRuleListener("PayRoute", "Rule1");
+        launcher.getRegistryExecutor().addRuleListener("PayRoute", "Rule2");
 
         System.in.read();
     }
