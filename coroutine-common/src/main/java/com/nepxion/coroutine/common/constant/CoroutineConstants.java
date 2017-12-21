@@ -63,7 +63,7 @@ public class CoroutineConstants {
     public static final String ZOOKEEPER_CONNECT_TIMEOUT_ATTRIBUTE_NAME = "zookeeperConnectTimeout";
     public static final String ZOOKEEPER_CONNECT_WAIT_TIME_ATTRIBUTE_NAME = "zookeeperConnectWaitTime";
 
-    public static final String EVENT_BUS = "eventbus";
+    public static final String EVENT_BUS = "eventBus";
 
     public static final String MONITOR_LOG_SUCCESS_PRINT = "monitorLogSuccessPrint";
     public static final String MONITOR_LOG_FAILURE_PRINT = "monitorLogFailurePrint";
