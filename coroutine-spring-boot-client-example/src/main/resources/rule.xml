@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coroutine>    
-    <rule version="1">        
+<coroutine>
+    <rule version="1">
         <component applicationContext="dubbo-client-context-coroutine.xml">
-            <class id="aService" class="com.nepxion.coroutine.service.AService">
+            <class id="aService" class="com.nepxion.coroutine.test.AService">
                 <method index="1" method="doThen"/>
                 <method index="2" method="doWhen"/>
                 <method index="3" method="doMerge"/>
             </class>
-            <class id="bService" class="com.nepxion.coroutine.service.BService">
+            <class id="bService" class="com.nepxion.coroutine.test.BService">
                 <method index="4" method="doThen"/>
                 <method index="5" method="doWhen"/>
                 <method index="6" method="doMerge"/>
             </class>
         </component>
-        <component applicationContext="dubbo-client-context-coroutine.xml">
-            <class id="cService" class="com.nepxion.coroutine.service.CService">
+        <component applicationContext="thunder-client-context-coroutine.xml">
+            <class id="cService" class="com.nepxion.coroutine.test.CService">
                 <method index="7" method="doThen"/>
                 <method index="8" method="doWhen"/>
                 <method index="9" method="doMerge"/>
             </class>
-            <class id="dService" class="com.nepxion.coroutine.service.DService">
+            <class id="dService" class="com.nepxion.coroutine.test.DService">
                 <method index="10" method="doThen"/>
                 <method index="11" method="doWhen"/>
                 <method index="12" method="doMerge"/>
             </class>
         </component>
-        
+
         <chain>
             <when index="2,5"/>
             <then index="9,10"/>

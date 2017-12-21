@@ -90,7 +90,7 @@ public class CoroutineClientApplication {
     @Bean
     public EmbeddedServletContainerFactory createEmbeddedServletContainerFactory() {
         TomcatEmbeddedServletContainerFactory tomcatFactory = new TomcatEmbeddedServletContainerFactory();
-        tomcatFactory.setPort(8081);
+        tomcatFactory.setPort(9081);
 
         return tomcatFactory;
     }

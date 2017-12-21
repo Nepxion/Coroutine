@@ -22,5 +22,11 @@
             <artifactId>coroutine-spring-boot-dubbo-server-example</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.nepxion</groupId>
+            <artifactId>coroutine-spring-boot-thunder-server-example</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

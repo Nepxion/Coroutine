@@ -23,15 +23,15 @@
                 <method index="12" method="doMerge"/>
             </class>
         </component>
-        
+
         <dependency index="13" category="PayRoute" rule="SubRule" chain="chain2-2" file="rule2.xml" timeout="5000"/>
-        
+
         <chain name="chain1-1">
             <then index="1,4"/>
             <when index="8,11"/>
             <then index="12,1,13"/>
         </chain>
-        
+
         <chain name="chain1-2">
             <then index="1,4"/>
             <when index="8,11"/>

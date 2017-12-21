@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coroutine>    
+<coroutine>
     <rule version="1">
         <component>
             <class class="com.nepxion.coroutine.testcase.service.AServiceImpl">
@@ -23,14 +23,14 @@
                 <method index="12" method="doMerge"/>
             </class>
         </component>
-        
+
         <chain name="chain2-1">
             <when index="2,5"/>
             <then index="9,10"/>
             <when index="8,11"/>
             <then index="3,4"/>
         </chain>
-        
+
         <chain name="chain2-2">
             <then index="1,4,7,10"/>
         </chain>

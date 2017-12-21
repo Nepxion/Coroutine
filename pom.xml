@@ -27,6 +27,7 @@
         <module>coroutine-test</module>
         <module>coroutine-spring-boot-client-example</module>
         <module>coroutine-spring-boot-dubbo-server-example</module>
+        <module>coroutine-spring-boot-thunder-server-example</module>
     </modules>
 
     <properties>

@@ -24,10 +24,4 @@
     
     <dubbo:service id="bServiceImpl" interface="com.nepxion.coroutine.service.BService" ref="_bServiceImpl"/>
     <bean name="_bServiceImpl" class="com.nepxion.coroutine.service.impl.BServiceImpl"/>
-    
-    <dubbo:service id="cServiceImpl" interface="com.nepxion.coroutine.service.CService" ref="_cServiceImpl"/>
-    <bean name="_cServiceImpl" class="com.nepxion.coroutine.service.impl.CServiceImpl"/>
-    
-    <dubbo:service id="dServiceImpl" interface="com.nepxion.coroutine.service.DService" ref="_dServiceImpl"/>
-    <bean name="_dServiceImpl" class="com.nepxion.coroutine.service.impl.DServiceImpl"/>    
 </beans>
