@@ -152,7 +152,12 @@ public class RuleParser extends Dom4JParser {
             id = idAttribute.getData().toString().trim();
         }
 
-        String clazz = element.attribute(CoroutineConstants.CLASS_ATTRIBUTE_NAME).getData().toString().trim();
+        String clazz = null;
+        Attribute classAttribute = element.attribute(CoroutineConstants.CLASS_ATTRIBUTE_NAME);
+        if (classAttribute != null) {
+            clazz = classAttribute.getData().toString().trim();
+        }
+
         String applicationContextPath = componentEntity.getApplicationContextPath();
         ApplicationContext applicationContext = componentEntity.getApplicationContext();
         if (StringUtils.isNotEmpty(applicationContextPath) && applicationContext == null) {
@@ -198,6 +203,7 @@ public class RuleParser extends Dom4JParser {
 
                 parseMethod(childElement, methodEntity);
 
+                methodEntity.setClassId(id);
                 methodEntity.setClazz(clazz);
                 methodEntity.setObject(object);
 

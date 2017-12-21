@@ -22,11 +22,20 @@ import com.nepxion.coroutine.data.cache.ObjectCache;
 public class MethodEntity extends ReferenceEntity {
     private static final long serialVersionUID = -7828680690422538386L;
 
+    private String classId;
     private String clazz;
     private String method;
     private String parameterTypes;
     private Class<?>[] parameterClasses;
     private boolean cache;
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
+    }
 
     public String getClazz() {
         return clazz;
@@ -67,13 +76,33 @@ public class MethodEntity extends ReferenceEntity {
         return parameterClasses;
     }
 
+    public String getKeyName() {
+        if (StringUtils.isEmpty(clazz) && StringUtils.isEmpty(classId)) {
+            throw new IllegalArgumentException("Class name and id can't all be empty");
+        }
+
+        return StringUtils.isNotEmpty(clazz) ? "class" : "classId";
+    }
+
+    public String getKey() {
+        if (StringUtils.isEmpty(clazz) && StringUtils.isEmpty(classId)) {
+            throw new IllegalArgumentException("Class name and id can't all be empty");
+        }
+
+        return StringUtils.isNotEmpty(clazz) ? clazz : classId;
+    }
+
     public Object getObject() {
-        return ObjectCache.getObject(clazz);
+        String key = getKey();
+
+        return ObjectCache.getObject(key);
     }
 
     // 该方法在处理Bean方法的时候，必须最后执行
     public void setObject(Object object) {
-        ObjectCache.putObject(clazz, object);
+        String key = getKey();
+
+        ObjectCache.putObject(key, object);
 
         // 当外部不传入parameterTypes，说明该方法不是多态，由内部反射创建parameterClasses
         if (this.parameterClasses == null) {
