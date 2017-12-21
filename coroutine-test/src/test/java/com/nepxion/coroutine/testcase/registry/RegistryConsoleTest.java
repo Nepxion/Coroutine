@@ -31,7 +31,8 @@ public class RegistryConsoleTest {
 
         launcher.getRegistryExecutor().registerRule("PayRoute", "Rule");
         launcher.getRegistryExecutor().persistRule("PayRoute", "Rule", new CoroutineContent("rule1.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
-        LOG.info("规则 : {}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "Rule"));
+
+        LOG.info("规则 : \n{}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "Rule"));
 
         System.in.read();
     }
@@ -39,23 +40,13 @@ public class RegistryConsoleTest {
     @Test
     public void test2() throws Exception {
         RegistryLauncher launcher = new ZookeeperRegistryLauncher();
+        launcher.setProperties(CoroutinePropertiesManager.getProperties());
         launcher.start();
 
         launcher.getRegistryExecutor().registerRule("PayRoute", "SubRule");
         launcher.getRegistryExecutor().persistRule("PayRoute", "SubRule", new CoroutineContent("rule2.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
-        LOG.info("规则 : {}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "SubRule"));
 
-        System.in.read();
-    }
-
-    @Test
-    public void test3() throws Exception {
-        RegistryLauncher launcher = new ZookeeperRegistryLauncher();
-        launcher.start();
-
-        launcher.getRegistryExecutor().registerRule("Distribution PayRoute", "Distribution Rule");
-        launcher.getRegistryExecutor().persistRule("Distribution PayRoute", "Distribution Rule", new CoroutineContent("rule3.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
-        LOG.info("规则 : {}", launcher.getRegistryExecutor().retrieveRule("Distribution PayRoute", "Distribution Rule"));
+        LOG.info("规则 : \n{}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "SubRule"));
 
         System.in.read();
     }
