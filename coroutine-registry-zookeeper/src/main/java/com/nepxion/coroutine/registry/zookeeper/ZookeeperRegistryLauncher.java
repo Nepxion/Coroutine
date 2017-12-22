@@ -10,22 +10,17 @@ package com.nepxion.coroutine.registry.zookeeper;
  * @version 1.0
  */
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 import com.nepxion.coroutine.common.constant.CoroutineConstants;
 import com.nepxion.coroutine.common.delegate.CoroutineDelegateImpl;
 import com.nepxion.coroutine.registry.RegistryEntity;
 import com.nepxion.coroutine.registry.RegistryExecutor;
 import com.nepxion.coroutine.registry.RegistryInitializer;
 import com.nepxion.coroutine.registry.RegistryLauncher;
-import com.nepxion.coroutine.registry.zookeeper.common.ZookeeperException;
 
 public class ZookeeperRegistryLauncher extends CoroutineDelegateImpl implements RegistryLauncher {
-    private RegistryInitializer registryInitializer;
-    private RegistryExecutor registryExecutor;
-
-    private static final Lock lock = new ReentrantLock();
+    private RegistryEntity registryEntity = new RegistryEntity();
+    private RegistryInitializer registryInitializer = new ZookeeperRegistryInitializer();
+    private RegistryExecutor registryExecutor = new ZookeeperRegistryExecutor();
 
     @Override
     public void start() throws Exception {
@@ -36,42 +31,17 @@ public class ZookeeperRegistryLauncher extends CoroutineDelegateImpl implements 
 
     @Override
     public void start(String address) throws Exception {
-        try {
-            lock.lock();
+        registryEntity.setAddress(address);
 
-            RegistryEntity registryEntity = new RegistryEntity();
-            registryEntity.setAddress(address);
+        registryInitializer.start(registryEntity, properties);
 
-            if (registryInitializer != null) {
-                throw new ZookeeperException("Registry initializer isn't null, it has been initialized already");
-            }
-
-            // 启动Zookeeper连接
-            registryInitializer = new ZookeeperRegistryInitializer();
-            registryInitializer.start(registryEntity, properties);
-
-            registryExecutor = new ZookeeperRegistryExecutor();
-            registryExecutor.setRegistryInitializer(registryInitializer);
-            registryExecutor.setProperties(properties);
-        } finally {
-            lock.unlock();
-        }
+        registryExecutor.setRegistryInitializer(registryInitializer);
+        registryExecutor.setProperties(properties);
     }
 
     @Override
     public void stop() throws Exception {
-        try {
-            lock.lock();
-
-            if (registryInitializer == null) {
-                throw new ZookeeperException("Registry initializer is null");
-            }
-
-            // 停止Zookeeper连接
-            registryInitializer.stop();
-        } finally {
-            lock.unlock();
-        }
+        registryInitializer.stop();
     }
 
     @Override
