@@ -20,14 +20,12 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Maps;
+import com.nepxion.coroutine.common.util.MathsUtil;
 
 public class CoroutineProperties implements Serializable {
     private static final long serialVersionUID = 1722927234615067236L;
-
-    private static final char ASTERISK = '*';
 
     private final Map<String, String> map = Maps.newLinkedHashMap();
 
@@ -70,7 +68,7 @@ public class CoroutineProperties implements Serializable {
             throw new IllegalArgumentException("Value is null for key [" + key + "]");
         }
 
-        Long result = calculate(value.toString());
+        Long result = MathsUtil.calculate(value.toString());
         if (result != null) {
             map.put(key, String.valueOf(result));
         } else {
@@ -335,24 +333,6 @@ public class CoroutineProperties implements Serializable {
 
     public void mergeProperties(CoroutineProperties properties) {
         map.putAll(properties.getMap());
-    }
-
-    private Long calculate(String value) {
-        if (StringUtils.isEmpty(value)) {
-            return null;
-        }
-
-        long result = 1;
-        try {
-            String[] array = StringUtils.split(value, ASTERISK);
-            for (String data : array) {
-                result *= Long.parseLong(data.trim());
-            }
-        } catch (NumberFormatException e) {
-            return null;
-        }
-
-        return result;
     }
 
     @Override
