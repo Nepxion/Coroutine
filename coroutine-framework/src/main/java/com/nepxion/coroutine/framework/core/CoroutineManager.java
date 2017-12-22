@@ -57,6 +57,10 @@ public class CoroutineManager {
         RegistryLoader.load().stop();
     }
 
+    public static boolean enabled() {
+        return RegistryLoader.load().enabled();
+    }
+
     public static void parseRemote(String categoryName, String ruleName) throws Exception {
         RegistryExecutor registryExecutor = RegistryLoader.load().getRegistryExecutor();
         if (registryExecutor == null) {

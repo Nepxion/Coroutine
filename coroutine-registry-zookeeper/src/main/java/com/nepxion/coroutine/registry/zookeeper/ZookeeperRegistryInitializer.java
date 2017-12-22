@@ -48,6 +48,11 @@ public class ZookeeperRegistryInitializer extends CoroutineDelegateImpl implemen
         invoker.close();
     }
 
+    @Override
+    public boolean enabled() {
+        return invoker.isInitialized();
+    }
+
     public ZookeeperInvoker getInvoker() {
         return invoker;
     }

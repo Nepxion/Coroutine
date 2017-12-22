@@ -23,6 +23,9 @@ public interface RegistryLauncher extends CoroutineDelegate {
     // 停止注册中心连接
     void stop() throws Exception;
 
+    // 注册中心模式激活模式
+    boolean enabled();
+
     // 获取注册中心执行器
     RegistryExecutor getRegistryExecutor();
 }

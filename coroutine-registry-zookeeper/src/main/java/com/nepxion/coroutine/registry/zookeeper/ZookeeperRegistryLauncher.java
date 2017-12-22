@@ -45,6 +45,11 @@ public class ZookeeperRegistryLauncher extends CoroutineDelegateImpl implements 
     }
 
     @Override
+    public boolean enabled() {
+        return registryInitializer.enabled();
+    }
+
+    @Override
     public RegistryExecutor getRegistryExecutor() {
         return registryExecutor;
     }

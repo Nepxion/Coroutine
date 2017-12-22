@@ -23,4 +23,7 @@ public interface RegistryInitializer extends CoroutineDelegate {
 
     // 停止注册中心的连接
     void stop() throws Exception;
+
+    // 注册中心模式激活模式
+    boolean enabled();
 }
