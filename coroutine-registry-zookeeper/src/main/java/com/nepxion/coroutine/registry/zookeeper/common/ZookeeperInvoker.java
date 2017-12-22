@@ -107,11 +107,11 @@ public class ZookeeperInvoker {
     // 检查ZooKeeper启动状态
     public static void validateStatus(CuratorFramework client) throws Exception {
         if (client == null) {
-            throw new IllegalArgumentException("Zookeeper isn't initialized");
+            throw new ZookeeperException("Zookeeper isn't initialized");
         }
 
         if (!isStarted(client)) {
-            throw new IllegalArgumentException("Zookeeper isn't started");
+            throw new ZookeeperException("Zookeeper isn't started");
         }
     }
 
