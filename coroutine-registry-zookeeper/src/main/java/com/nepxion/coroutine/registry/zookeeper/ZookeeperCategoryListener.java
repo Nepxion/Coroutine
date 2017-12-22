@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +35,8 @@ public class ZookeeperCategoryListener extends ZookeeperPathChildrenCacheListene
 
     private ZookeeperInvoker invoker;
 
-    public ZookeeperCategoryListener(CuratorFramework client, ZookeeperInvoker invoker, String path) throws Exception {
-        super(client, path);
+    public ZookeeperCategoryListener(ZookeeperInvoker invoker, String path) throws Exception {
+        super(invoker.getClient(), path);
 
         this.invoker = invoker;
     }
@@ -122,7 +121,7 @@ public class ZookeeperCategoryListener extends ZookeeperPathChildrenCacheListene
     }
 
     private String getRuleContent(String childPath) throws Exception {
-        byte[] data = invoker.getData(client, childPath);
+        byte[] data = invoker.getData(childPath);
         if (ArrayUtils.isNotEmpty(data)) {
             return new String(data, CoroutineConstants.ENCODING_FORMAT);
         } else {
@@ -132,7 +131,7 @@ public class ZookeeperCategoryListener extends ZookeeperPathChildrenCacheListene
 
     private Map<String, String> getRuleMap() throws Exception {
         Map<String, String> ruleMap = new HashMap<String, String>();
-        List<String> childPathList = invoker.getChildPathList(client, path);
+        List<String> childPathList = invoker.getChildPathList(path);
         for (String childPath : childPathList) {
             String ruleName = getRuleName(childPath);
             String ruleContent = getRuleContent(childPath);

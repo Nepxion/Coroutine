@@ -11,7 +11,6 @@ package com.nepxion.coroutine.registry.zookeeper;
  */
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.curator.framework.CuratorFramework;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,8 +27,8 @@ public class ZookeeperRuleListener extends ZookeeperNodeCacheListener {
 
     private ZookeeperInvoker invoker;
 
-    public ZookeeperRuleListener(CuratorFramework client, ZookeeperInvoker invoker, String path) throws Exception {
-        super(client, path);
+    public ZookeeperRuleListener(ZookeeperInvoker invoker, String path) throws Exception {
+        super(invoker.getClient(), path);
 
         this.invoker = invoker;
     }
@@ -58,7 +57,7 @@ public class ZookeeperRuleListener extends ZookeeperNodeCacheListener {
     }
 
     private String getRuleContent() throws Exception {
-        byte[] data = invoker.getData(client, path);
+        byte[] data = invoker.getData(path);
         if (ArrayUtils.isNotEmpty(data)) {
             return new String(data, CoroutineConstants.ENCODING_FORMAT);
         } else {

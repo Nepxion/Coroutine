@@ -10,8 +10,6 @@ package com.nepxion.coroutine.framework.core;
  * @version 1.0
  */
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,10 +26,8 @@ import com.nepxion.coroutine.registry.RegistryExecutor;
 import com.nepxion.coroutine.registry.RegistryLoader;
 
 public class CoroutineManager {
-
     private static final Logger LOG = LoggerFactory.getLogger(CoroutineManager.class);
     private static final CoroutineManager COROUTINE_MANAGER = new CoroutineManager();
-    private static final AtomicBoolean START = new AtomicBoolean(false);
 
     static {
         System.out.println("");
@@ -50,29 +46,15 @@ public class CoroutineManager {
     }
 
     public static void start() throws Exception {
-        if (START.get()) {
-            throw new IllegalArgumentException("Registry Center has already connected");
-        }
-
         RegistryLoader.load().start();
-
-        START.set(true);
     }
 
     public static void start(String address) throws Exception {
-        if (START.get()) {
-            throw new IllegalArgumentException("Registry Center has already connected");
-        }
-
         RegistryLoader.load().start(address);
-
-        START.set(true);
     }
 
     public static void stop() throws Exception {
         RegistryLoader.load().stop();
-
-        START.set(false);
     }
 
     public static void parseRemote(String categoryName, String ruleName) throws Exception {
