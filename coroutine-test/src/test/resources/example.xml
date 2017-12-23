@@ -9,25 +9,25 @@
         <!-- 1. 规则组件引用支持本地反射引用和远程分布式(例如Dubbo接口)引用 -->
         <!--    本地和远程在配置上的区别，是远程多了applicationContext和id的配置 -->
         <!--    applicationContext的配置值，有两种方式： -->
-        <!--    1) 读取claspath下的applicationContext。例如applicationContext="classpath:bApplicationContext"或者applicationContext="classpath*:bApplicationContext" -->
+        <!--    1) 读取classpath下的applicationContext。例如applicationContext="classpath:bApplicationContext"或者applicationContext="classpath*:bApplicationContext" -->
         <!--    2) 读取jar包里的applicationContext，不需要含有classpath，只需要给出正确的相对路径就可以了。例如applicationContext="b/bApplicationContext.xml" -->
         <!--    id为Spring Bean的id -->
-        <!-- 2. 一个组件(component)一般对应一个jar，而一个class视一个jar包里的接口或类，class的值必须为类全路径，class必须全局唯一。例如class="com.nepxion.coroutine.demo.AService" -->
+        <!-- 2. 一个组件(component)一般对应一个jar，而一个class视一个jar包里的接口或类，class的值必须为类全路径，class必须全局唯一。例如class="com.nepxion.coroutine.test.service.AService" -->
         <!-- 3. 当一个接口/类下，存在多态的方法(即方法名相同，参数类型不一样)，必须以参数类型作为区分 -->
         <component>
-            <class class="com.nepxion.coroutine.demo.AService">
+            <class class="com.nepxion.coroutine.test.service.impl.AServiceImpl">
                 <method index="1" method="doA" parameterTypes="java.lang.String,int"/>
                 <method index="2" method="doA" parameterTypes="java.lang.String"/>
             </class>
         </component>
 
         <component applicationContext="b/bApplicationContext.xml">
-            <class id="bService" class="com.nepxion.coroutine.demo.BService">
+            <class id="bService" class="com.nepxion.coroutine.test.service.BService">
                 <method index="3" method="doB"/>
             </class>
         </component>
         <component applicationContext="c/cApplicationContext.xml">
-            <class id="cService" class="com.nepxion.coroutine.demo.CService">
+            <class id="cService" class="com.nepxion.coroutine.test.service.CService">
                 <method index="4" method="doC"/>
             </class>
         </component>
