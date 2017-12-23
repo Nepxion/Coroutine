@@ -28,7 +28,7 @@ public class CoroutineRuleRegistry {
         launcher.start();
 
         launcher.getRegistryExecutor().registerRule("Distribution PayRoute", "Distribution Rule");
-        launcher.getRegistryExecutor().persistRule("Distribution PayRoute", "Distribution Rule", new CoroutineContent("rule.xml", CoroutineConstant.ENCODING_FORMAT).getContent());
+        launcher.getRegistryExecutor().persistRule("Distribution PayRoute", "Distribution Rule", new CoroutineContent("rule.xml", CoroutineConstant.ENCODING_UTF_8).getContent());
 
         LOG.info("规则 : \n{}", launcher.getRegistryExecutor().retrieveRule("Distribution PayRoute", "Distribution Rule"));
 

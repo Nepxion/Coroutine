@@ -104,7 +104,7 @@ public class ZookeeperRegistryExecutor extends CoroutineDelegateImpl implements 
         if (ArrayUtils.isNotEmpty(data)) {
             LOG.info("Retrieved property [{}]", path);
 
-            String ruleContent = new String(data, CoroutineConstant.ENCODING_FORMAT);
+            String ruleContent = new String(data, CoroutineConstant.ENCODING_UTF_8);
 
             return ruleContent;
         }

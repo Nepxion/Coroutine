@@ -30,7 +30,7 @@ public class CoroutineRuleRegistryTest {
         launcher.start();
 
         launcher.getRegistryExecutor().registerRule("PayRoute", "Rule");
-        launcher.getRegistryExecutor().persistRule("PayRoute", "Rule", new CoroutineContent("rule1.xml", CoroutineConstant.ENCODING_FORMAT).getContent());
+        launcher.getRegistryExecutor().persistRule("PayRoute", "Rule", new CoroutineContent("rule1.xml", CoroutineConstant.ENCODING_UTF_8).getContent());
 
         LOG.info("规则 : \n{}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "Rule"));
 
@@ -44,7 +44,7 @@ public class CoroutineRuleRegistryTest {
         launcher.start();
 
         launcher.getRegistryExecutor().registerRule("PayRoute", "SubRule");
-        launcher.getRegistryExecutor().persistRule("PayRoute", "SubRule", new CoroutineContent("rule2.xml", CoroutineConstant.ENCODING_FORMAT).getContent());
+        launcher.getRegistryExecutor().persistRule("PayRoute", "SubRule", new CoroutineContent("rule2.xml", CoroutineConstant.ENCODING_UTF_8).getContent());
 
         LOG.info("规则 : \n{}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "SubRule"));
 

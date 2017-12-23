@@ -59,7 +59,7 @@ public class ZookeeperRuleListener extends ZookeeperNodeCacheListener {
     private String getRuleContent() throws Exception {
         byte[] data = invoker.getData(path);
         if (ArrayUtils.isNotEmpty(data)) {
-            return new String(data, CoroutineConstant.ENCODING_FORMAT);
+            return new String(data, CoroutineConstant.ENCODING_UTF_8);
         } else {
             throw new ZookeeperException("Rule content is empty");
         }

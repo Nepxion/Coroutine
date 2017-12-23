@@ -79,7 +79,10 @@ public class CoroutineConstant {
     public static final String SMTP_MAIL_CC_ATTRIBUTE_NAME = "smtpMailCC";
     public static final String SMTP_MAIL_BCC_ATTRIBUTE_NAME = "smtpMailBCC";
 
-    public static final String ENCODING_FORMAT = "UTF-8";
+    public static final String ENCODING_UTF_8 = "UTF-8";
+    public static final String ENCODING_GBK = "GBK";
+    public static final String ENCODING_ISO_8859_1 = "ISO-8859-1";
+
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
     public static final int CPUS = Math.max(2, Runtime.getRuntime().availableProcessors());

@@ -12,6 +12,8 @@ package com.nepxion.coroutine.common.property;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -31,28 +33,38 @@ public class CoroutineProperties implements Serializable {
 
     private String content;
 
-    public CoroutineProperties(String path, String encoding) throws IOException {
-        this(new StringBuilder(new CoroutineContent(path, encoding).getContent()), encoding);
+    // 配置文件含中文，stringEncoding必须为GBK，readerEncoding必须为UTF-8，文本文件编码必须为ANSI
+    public CoroutineProperties(String path, String stringEncoding, String readerEncoding) throws IOException {
+        this(new CoroutineContent(path, stringEncoding).getContent(), readerEncoding);
     }
 
-    public CoroutineProperties(byte[] bytes, String encoding) throws IOException {
-        this(new StringBuilder(new String(bytes, encoding)), encoding);
+    // 配置文件含中文，stringEncoding必须为GBK，readerEncoding必须为UTF-8
+    public CoroutineProperties(byte[] bytes, String stringEncoding, String readerEncoding) throws IOException {
+        this(new String(bytes, stringEncoding), readerEncoding);
     }
 
-    public CoroutineProperties(StringBuilder stringBuilder, String encoding) throws IOException {
-        content = stringBuilder.toString();
+    // 配置文件含中文，encoding必须为UTF-8
+    public CoroutineProperties(String content, String encoding) throws IOException {
+        this.content = content;
 
         InputStream inputStream = null;
+        Reader reader = null;
         try {
             inputStream = IOUtils.toInputStream(content, encoding);
+            reader = new InputStreamReader(inputStream, encoding);
+
             Properties properties = new Properties();
-            properties.load(inputStream);
+            properties.load(reader);
             for (Iterator<Object> iterator = properties.keySet().iterator(); iterator.hasNext();) {
                 String key = iterator.next().toString();
                 String value = properties.getProperty(key);
                 put(key, value);
             }
         } finally {
+            if (reader != null) {
+                IOUtils.closeQuietly(reader);
+            }
+
             if (inputStream != null) {
                 IOUtils.closeQuietly(inputStream);
             }

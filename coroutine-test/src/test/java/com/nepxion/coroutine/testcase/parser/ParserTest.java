@@ -39,7 +39,7 @@ public class ParserTest {
         ruleKey.setRuleName("Rule");
 
         RuleParser parser = new RuleParser(ruleKey);
-        parser.parse(new CoroutineContent("rule1.xml", CoroutineConstant.ENCODING_FORMAT).getContent());
+        parser.parse(new CoroutineContent("rule1.xml", CoroutineConstant.ENCODING_UTF_8).getContent());
 
         LOG.info("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         LOG.info("<coroutine>");

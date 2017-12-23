@@ -123,7 +123,7 @@ public class ZookeeperCategoryListener extends ZookeeperPathChildrenCacheListene
     private String getRuleContent(String childPath) throws Exception {
         byte[] data = invoker.getData(childPath);
         if (ArrayUtils.isNotEmpty(data)) {
-            return new String(data, CoroutineConstant.ENCODING_FORMAT);
+            return new String(data, CoroutineConstant.ENCODING_UTF_8);
         } else {
             throw new ZookeeperException("Rule content is empty");
         }

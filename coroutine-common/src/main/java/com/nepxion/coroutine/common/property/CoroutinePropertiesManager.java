@@ -32,7 +32,7 @@ public class CoroutinePropertiesManager {
         try {
             LOG.info("Parse default property config file [{}]", DEFAULT_PATH);
 
-            properties = new CoroutineProperties(DEFAULT_PATH, CoroutineConstant.ENCODING_FORMAT);
+            properties = new CoroutineProperties(DEFAULT_PATH, CoroutineConstant.ENCODING_GBK, CoroutineConstant.ENCODING_UTF_8);
         } catch (Exception e) {
             LOG.error("Parse default property config file failed for [{}]", DEFAULT_PATH, e);
         }
@@ -42,7 +42,7 @@ public class CoroutinePropertiesManager {
         try {
             LOG.info("Parse ext property config file [{}]", EXT_PATH);
 
-            extProperties = new CoroutineProperties(EXT_PATH, CoroutineConstant.ENCODING_FORMAT);
+            extProperties = new CoroutineProperties(EXT_PATH, CoroutineConstant.ENCODING_GBK, CoroutineConstant.ENCODING_UTF_8);
         } catch (Exception e) {
             LOG.warn("Parse ext property config file failed for [{}], maybe file doesn't exist, ignore", EXT_PATH);
         }

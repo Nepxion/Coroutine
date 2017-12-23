@@ -75,7 +75,7 @@ public class CoroutineManager {
     }
 
     public static void parseLocal(String categoryName, String ruleName, String rulePath) throws Exception {
-        String ruleContent = new CoroutineContent(rulePath, CoroutineConstant.ENCODING_FORMAT).getContent();
+        String ruleContent = new CoroutineContent(rulePath, CoroutineConstant.ENCODING_UTF_8).getContent();
 
         COROUTINE_MANAGER.parse(categoryName, ruleName, ruleContent);
     }

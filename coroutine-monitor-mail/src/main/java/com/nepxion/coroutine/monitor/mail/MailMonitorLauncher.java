@@ -165,6 +165,6 @@ public class MailMonitorLauncher extends CoroutineDelegateImpl implements Monito
         builder.append("</body>");
         builder.append("</html>");
 
-        smtpExecutor.sendHtml(from, to, cc, bcc, subject, builder.toString(), CoroutineConstant.ENCODING_FORMAT);
+        smtpExecutor.sendHtml(from, to, cc, bcc, subject, builder.toString(), CoroutineConstant.ENCODING_UTF_8);
     }
 }
