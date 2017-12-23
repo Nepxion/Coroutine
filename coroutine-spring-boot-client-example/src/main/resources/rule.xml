@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
     <rule version="1">
-        <component applicationContext="dubbo-client-context-coroutine.xml">
+        <component applicationContext="classpath*:dubbo-client-context-coroutine.xml">
             <class id="aService">
                 <method index="1" method="doThen"/>
                 <method index="2" method="doWhen"/>
@@ -13,7 +13,7 @@
                 <method index="6" method="doMerge"/>
             </class>
         </component>
-        <component applicationContext="thunder-client-context-coroutine.xml">
+        <component applicationContext="classpath*:thunder-client-context-coroutine.xml">
             <class id="cService">
                 <method index="7" method="doThen"/>
                 <method index="8" method="doWhen"/>

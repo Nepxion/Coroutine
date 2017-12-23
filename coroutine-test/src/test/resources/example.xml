@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
     <!-- 规则定义 -->
-    <!-- 1. 规则目录即为注册中心的目录(category)节点名，规则名称即为存储当前规则内容的规则(rule)节点名 -->
+    <!-- 1. 规则目录即为注册中心的目录(category)节点名，规则名称即为存储当前规则内容的规则(rule)节点名；如果是本地规则，这两者可以随意定义。例如方法调用时，CoroutineManager.load().startSync("规则目录", "规则名称"...) -->
     <!-- 2. 协程(coroutine)节点下可以存在多个规则(rule)节点，以版本号(version)为区分，驱动过程采用最大版本号的规则，版本号必须全局唯一 -->
-    <!-- 3. 索引(index)号在当前规则下必须全局唯一 -->
     <rule version="1">
-        <!-- 规则组件定义，可以存在多个组件(component)节点 -->
-        <!-- 1. 规则组件引用支持本地反射引用和远程分布式(例如Dubbo接口)引用 -->
-        <!--    本地和远程在配置上的区别，是远程多了applicationContext和id的配置 -->
-        <!--    applicationContext的配置值，有两种方式： -->
-        <!--    1) 读取classpath下的applicationContext。例如applicationContext="classpath:bApplicationContext"或者applicationContext="classpath*:bApplicationContext" -->
-        <!--    2) 读取jar包里的applicationContext，不需要含有classpath，只需要给出正确的相对路径就可以了。例如applicationContext="b/bApplicationContext.xml" -->
-        <!--    id为Spring Bean的id -->
-        <!-- 2. 一个组件(component)一般对应一个jar，而一个class视一个jar包里的接口或类，class的值必须为类全路径，class必须全局唯一。例如class="com.nepxion.coroutine.test.service.AService" -->
-        <!-- 3. 当一个接口/类下，存在多态的方法(即方法名相同，参数类型不一样)，必须以参数类型作为区分 -->
+        <!-- 规则组件定义 -->
+        <!-- 规则组件支持本地引用和远程分布式(例如Dubbo接口)引用 -->
+
+        <!-- 1. 规则组件的本地引用方式，采用类反射机制 -->
+        <!--    class为类定义，class属性为类的全路径，例如class="com.nepxion.coroutine.test.service.impl.AServiceImpl" -->
+        <!--    index为索引号，在当前规则下必须全局唯一 -->
+        <!--    method为方法定义，method属性为对应方法名 -->
+        <!--    parameterTypes为参数类型定义，如果一个接口/类下，存在多态的方法(即方法名相同，参数类型不一样)，必须以参数类型作为区分 -->
         <component>
             <class class="com.nepxion.coroutine.test.service.impl.AServiceImpl">
                 <method index="1" method="doA" parameterTypes="java.lang.String,int"/>
                 <method index="2" method="doA" parameterTypes="java.lang.String"/>
             </class>
-        </component>
-
-        <component applicationContext="b/bApplicationContext.xml">
-            <class id="bService" class="com.nepxion.coroutine.test.service.BService">
+            <class class="com.nepxion.coroutine.test.service.impl.BServiceImpl">
                 <method index="3" method="doB"/>
             </class>
         </component>
-        <component applicationContext="c/cApplicationContext.xml">
-            <class id="cService" class="com.nepxion.coroutine.test.service.CService">
+
+        <!-- 2. 规则组件的远程分布式注入方式，采用接口注入机制方式 -->
+        <!--    applicationContext为标准的Spring xml路径配置方式，例如applicationContext="classpath*:cApplicationContext.xml"，applicationContext.xml名称必须全局唯一 -->
+        <!--    id为Spring Bean的id，id必须全局唯一 -->
+        <!--    index为索引号，在当前规则下必须全局唯一 -->
+        <!--    method为方法定义，method属性为对应方法名 -->
+        <!--    parameterTypes为参数类型定义，如果一个接口/类下，存在多态的方法(即方法名相同，参数类型不一样)，必须以参数类型作为区分 -->
+        <component applicationContext="classpath*:cApplicationContext.xml">
+            <class id="cService">
                 <method index="4" method="doC"/>
+            </class>
+        </component>
+        <component applicationContext="classpath*:dApplicationContext.xml">
+            <class id="dService">
+                <method index="5" method="doD"/>
             </class>
         </component>
 

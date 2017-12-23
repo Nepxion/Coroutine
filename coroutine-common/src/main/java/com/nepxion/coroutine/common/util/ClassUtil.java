@@ -155,7 +155,8 @@ public class ClassUtil {
     }
 
     public static String createApplicationContextPath(String applicationContextPath) throws Exception {
-        return "classpath*:" + applicationContextPath;
+        // return CoroutineConstant.CLASS_PATH_ATTRIBUTE_NAME + "*:" + applicationContextPath;
+        return applicationContextPath;
     }
 
     public static Object invoke(Object object, String methodName, Class<?>[] parameterTypes, Object[] parameters) throws Exception {
