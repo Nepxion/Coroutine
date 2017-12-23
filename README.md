@@ -40,7 +40,9 @@ try {
 ```
 
 ## 本地使用方式
+
 参照coroutine-test工程
+
 定义规则1
 ```java
 <?xml version="1.0" encoding="UTF-8"?>
@@ -301,7 +303,9 @@ public class CoroutineTest {
 ```
 
 ## 分布式使用方式，演示基于Spring Boot在Dubbo和Thunder框架中，调用的API聚合
+
 定义规则
+
 ```java
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
@@ -342,7 +346,9 @@ public class CoroutineTest {
 ```
 
 运行coroutine-spring-boot-dubbo-server-example下的DubboServerApplication.java
+
 运行coroutine-spring-boot-thunder-server-example下的ThunderServerApplication.java
+
 运行coroutine-spring-boot-client-example下的CoroutineClientApplication.java
 ```java
 package com.nepxion.coroutine;
