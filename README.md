@@ -39,7 +39,7 @@ try {
 }
 ```
 
-## 本地使用方式
+## 本地调用方式
 
 参照coroutine-test工程
 
@@ -302,7 +302,9 @@ public class CoroutineTest {
 ]
 ```
 
-## 分布式使用方式，演示基于Spring Boot在Dubbo和Thunder框架中，调用的API聚合
+## 分布式调用方式
+
+演示基于Spring Boot在Dubbo和Thunder框架中，调用的API聚合
 
 定义规则
 
