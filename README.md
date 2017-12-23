@@ -13,6 +13,10 @@
     7. 支持调用链追踪
     8. 异常捕获后智能处理链式调用的终止
 
+![Alt text](https://github.com/Nepxion/Coroutine/blob/master/Coroutine1.jpg)
+![Alt text](https://github.com/Nepxion/Coroutine/blob/master/Coroutine2.jpg)
+![Alt text](https://github.com/Nepxion/Coroutine/blob/master/Coroutine3.jpg)
+
 ## 调用方式
 异步调用
 ```java
@@ -304,7 +308,7 @@ public class CoroutineTest {
 
 ## 分布式调用方式
 
-演示基于Spring Boot在Dubbo和Thunder框架中，调用的API聚合
+基于Spring Boot在Dubbo和Thunder框架的协程调用，分布式API的聚合
 
 定义规则
 
