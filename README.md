@@ -25,6 +25,75 @@ Coroutine链式调用图
 
 ![Alt text](https://github.com/Nepxion/Coroutine/blob/master/Coroutine3.jpg)
 
+规则解释
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<coroutine>
+    <!-- 规则定义 -->
+    <!-- 1. 规则目录即为注册中心的目录(category)节点名，规则名称即为存储当前规则内容的规则(rule)节点名；如果是本地规则，这两者可以随意定义。例如方法调用时，CoroutineManager.load().startSync("规则目录", "规则名称"...) -->
+    <!-- 2. 协程(coroutine)节点下可以存在多个规则(rule)节点，以版本号(version)为区分，驱动过程采用最大版本号的规则，版本号必须全局唯一 -->
+    <rule version="1">
+        <!-- 规则组件定义 -->
+        <!-- 规则组件支持本地引用和远程分布式(例如Dubbo接口)引用 -->
+
+        <!-- 1. 规则组件的本地引用方式，采用类反射机制 -->
+        <!--    class为类定义，class属性为类的全路径，例如class="com.nepxion.coroutine.test.service.impl.AServiceImpl" -->
+        <!--    index为索引号，在当前规则下必须全局唯一 -->
+        <!--    method为方法定义，method属性为对应方法名 -->
+        <!--    parameterTypes为参数类型定义，如果一个接口/类下，存在多态的方法(即方法名相同，参数类型不一样)，必须以参数类型作为区分 -->
+        <component>
+            <class class="com.nepxion.coroutine.test.service.impl.AServiceImpl">
+                <method index="1" method="doA" parameterTypes="java.lang.String,int"/>
+                <method index="2" method="doA" parameterTypes="java.lang.String"/>
+            </class>
+            <class class="com.nepxion.coroutine.test.service.impl.BServiceImpl">
+                <method index="3" method="doB"/>
+            </class>
+        </component>
+
+        <!-- 2. 规则组件的远程分布式注入方式，采用接口注入机制方式 -->
+        <!--    applicationContext为标准的Spring xml路径配置方式，例如applicationContext="classpath*:cApplicationContext.xml"，applicationContext.xml名称必须全局唯一 -->
+        <!--    id为Spring Bean的id，id必须全局唯一 -->
+        <!--    index为索引号，在当前规则下必须全局唯一 -->
+        <!--    method为方法定义，method属性为对应方法名 -->
+        <!--    parameterTypes为参数类型定义，如果一个接口/类下，存在多态的方法(即方法名相同，参数类型不一样)，必须以参数类型作为区分 -->
+        <component applicationContext="classpath*:cApplicationContext.xml">
+            <class id="cService">
+                <method index="4" method="doC"/>
+            </class>
+        </component>
+        <component applicationContext="classpath*:dApplicationContext.xml">
+            <class id="dService">
+                <method index="5" method="doD"/>
+            </class>
+        </component>
+
+        <!-- 子规则依赖定义，可以存在多个依赖(dependency)节点 -->
+        <!-- 1. 子规则不能当前父规则，否则会引起死循环。例如父规则A，引用子规则B，子规则B又引用父规则A -->
+        <dependency index="5" category="A规则目录" rule="A-1规则" chain="a" timeout="5000"/>
+        <dependency index="6" category="A规则目录" rule="A-2规则" chain="b" timeout="5000"/>
+        <dependency index="7" category="B规则目录" rule="B-1规则" chain="c" timeout="5000"/>
+        <dependency index="8" category="B规则目录" rule="B-2规则" chain="d" timeout="5000"/>
+
+        <!-- 链式调用定义 -->
+        <!-- 可定义多个chain。调用端需要把name值传入，如果配置里name不配，则传入null即可 -->
+        <!-- 1. 并行(when)的索引(index)值列表，不需要区分次序 -->
+        <!-- 2. 串行(then)的索引(index)值列表，需要区分次序 -->
+        <chain name="x">
+            <then index="1,2"/>
+            <when index="3,4"/>
+            <then index="5,6,7,8"/>
+        </chain>
+
+        <chain name="y">
+            <then index="1,2"/>
+            <when index="3,4"/>
+            <then index="5,6,7,8"/>
+        </chain>
+    </rule>
+</coroutine>
+```
+
 ## 调用方式
 异步调用
 ```java
@@ -324,7 +393,7 @@ public class CoroutineTest {
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
     <rule version="1">
-        <component applicationContext="dubbo-client-context-coroutine.xml">
+        <component applicationContext="classpath*:dubbo-client-context-coroutine.xml">
             <class id="aService">
                 <method index="1" method="doThen"/>
                 <method index="2" method="doWhen"/>
@@ -336,7 +405,7 @@ public class CoroutineTest {
                 <method index="6" method="doMerge"/>
             </class>
         </component>
-        <component applicationContext="thunder-client-context-coroutine.xml">
+        <component applicationContext="classpath*:thunder-client-context-coroutine.xml">
             <class id="cService">
                 <method index="7" method="doThen"/>
                 <method index="8" method="doWhen"/>
