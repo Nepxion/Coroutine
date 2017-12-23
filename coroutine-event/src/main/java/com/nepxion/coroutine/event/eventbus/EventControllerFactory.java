@@ -17,7 +17,7 @@ import com.google.common.collect.Maps;
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.SubscriberExceptionHandler;
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.thread.ThreadPoolFactory;
 
 public final class EventControllerFactory {
@@ -65,7 +65,7 @@ public final class EventControllerFactory {
             case ASYNC:
                 EventController asyncEventController = ASYNC_CONTROLLER_MAP.get(identifier);
                 if (asyncEventController == null) {
-                    EventController newEventController = createAsyncController(ThreadPoolFactory.createThreadPoolExecutor(CoroutineConstants.EVENT_BUS, 2, 4, 15 * 60 * 1000, false));
+                    EventController newEventController = createAsyncController(ThreadPoolFactory.createThreadPoolExecutor(CoroutineConstant.EVENT_BUS, 2, 4, 15 * 60 * 1000, false));
                     asyncEventController = ASYNC_CONTROLLER_MAP.putIfAbsent(identifier, newEventController);
                     if (asyncEventController == null) {
                         asyncEventController = newEventController;

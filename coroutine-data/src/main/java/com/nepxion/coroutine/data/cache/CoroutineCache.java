@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.property.CoroutineProperties;
 import com.nepxion.coroutine.common.property.CoroutinePropertiesManager;
 import com.nepxion.coroutine.data.entity.CoroutineId;
@@ -30,7 +30,7 @@ public class CoroutineCache {
 
     static {
         CoroutineProperties properties = CoroutinePropertiesManager.getProperties();
-        long scan = properties.getLong(CoroutineConstants.ASYNC_SCAN_ATTRIBUTE_NAME);
+        long scan = properties.getLong(CoroutineConstant.ASYNC_SCAN_ATTRIBUTE_NAME);
 
         Thread scanThread = new Thread(new CoroutineScan(RESULT_MAP, scan), "Scan Cache Thread");
         scanThread.setDaemon(true);

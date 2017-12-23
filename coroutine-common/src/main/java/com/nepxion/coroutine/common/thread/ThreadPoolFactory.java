@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.property.CoroutineProperties;
 import com.nepxion.coroutine.common.property.CoroutinePropertiesManager;
 import com.nepxion.coroutine.common.util.HostUtil;
@@ -72,10 +72,10 @@ public class ThreadPoolFactory {
 
     private static BlockingQueue<Runnable> createBlockingQueue() {
         CoroutineProperties properties = CoroutinePropertiesManager.getProperties();
-        String queue = properties.getString(CoroutineConstants.THREAD_POOL_QUEUE_ATTRIBUTE_NAME);
+        String queue = properties.getString(CoroutineConstant.THREAD_POOL_QUEUE_ATTRIBUTE_NAME);
         ThreadQueueType queueType = ThreadQueueType.fromString(queue);
 
-        int queueCapacity = CoroutineConstants.CPUS * properties.getInteger(CoroutineConstants.THREAD_POOL_QUEUE_CAPACITY_ATTRIBUTE_NAME);
+        int queueCapacity = CoroutineConstant.CPUS * properties.getInteger(CoroutineConstant.THREAD_POOL_QUEUE_CAPACITY_ATTRIBUTE_NAME);
 
         switch (queueType) {
             case LINKED_BLOCKING_QUEUE:
@@ -91,7 +91,7 @@ public class ThreadPoolFactory {
 
     private static RejectedExecutionHandler createRejectedPolicy() {
         CoroutineProperties properties = CoroutinePropertiesManager.getProperties();
-        String rejectedPolicy = properties.getString(CoroutineConstants.THREAD_POOL_REJECTED_POLICY_ATTRIBUTE_NAME);
+        String rejectedPolicy = properties.getString(CoroutineConstant.THREAD_POOL_REJECTED_POLICY_ATTRIBUTE_NAME);
         ThreadRejectedPolicyType rejectedPolicyType = ThreadRejectedPolicyType.fromString(rejectedPolicy);
 
         switch (rejectedPolicyType) {

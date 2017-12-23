@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nepxion.coroutine.common.callback.CoroutineCallback;
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.delegate.CoroutineDelegateImpl;
 import com.nepxion.coroutine.common.util.RandomUtil;
 import com.nepxion.coroutine.data.cache.CoroutineCache;
@@ -124,7 +124,7 @@ public abstract class AbstractCoroutineLauncher extends CoroutineDelegateImpl im
     @Override
     public CoroutineResult<Object> startSync(String id, String categoryName, String ruleName, String chainName, Object[] parameters, long timeout, boolean last) throws Exception {
         if (timeout <= 0) {
-            LOG.warn("Sync timeout is invalid, use default value={}", properties.getLong(CoroutineConstants.SYNC_TIMEOUT_ATTRIBUTE_NAME));
+            LOG.warn("Sync timeout is invalid, use default value={}", properties.getLong(CoroutineConstant.SYNC_TIMEOUT_ATTRIBUTE_NAME));
         }
 
         return invokeSync(id, categoryName, ruleName, chainName, parameters, timeout, last);

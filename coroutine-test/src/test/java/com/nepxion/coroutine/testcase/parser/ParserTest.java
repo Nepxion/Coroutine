@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.property.CoroutineContent;
 import com.nepxion.coroutine.data.cache.RuleCache;
 import com.nepxion.coroutine.data.entity.ChainEntity;
@@ -39,7 +39,7 @@ public class ParserTest {
         ruleKey.setRuleName("Rule");
 
         RuleParser parser = new RuleParser(ruleKey);
-        parser.parse(new CoroutineContent("rule1.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
+        parser.parse(new CoroutineContent("rule1.xml", CoroutineConstant.ENCODING_FORMAT).getContent());
 
         LOG.info("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         LOG.info("<coroutine>");

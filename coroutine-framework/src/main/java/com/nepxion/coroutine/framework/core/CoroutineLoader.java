@@ -10,11 +10,11 @@ package com.nepxion.coroutine.framework.core;
  * @version 1.0
  */
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.spi.SpiLoader;
 
 public class CoroutineLoader {
-    private static final CoroutineLauncher COROUTINE_LAUNCHER = SpiLoader.loadDelegateFromProperties(CoroutineLauncher.class, CoroutineConstants.COROUTINE_LAUNCHER_ELEMENT_NAME);
+    private static final CoroutineLauncher COROUTINE_LAUNCHER = SpiLoader.loadDelegateFromProperties(CoroutineLauncher.class, CoroutineConstant.COROUTINE_LAUNCHER_ELEMENT_NAME);
 
     public static CoroutineLauncher load() {
         return COROUTINE_LAUNCHER;

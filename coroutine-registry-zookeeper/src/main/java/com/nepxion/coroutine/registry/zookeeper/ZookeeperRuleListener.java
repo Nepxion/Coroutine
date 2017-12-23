@@ -14,7 +14,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.event.RuleEvent;
 import com.nepxion.coroutine.event.RuleUpdatedEvent;
 import com.nepxion.coroutine.event.eventbus.EventControllerFactory;
@@ -59,7 +59,7 @@ public class ZookeeperRuleListener extends ZookeeperNodeCacheListener {
     private String getRuleContent() throws Exception {
         byte[] data = invoker.getData(path);
         if (ArrayUtils.isNotEmpty(data)) {
-            return new String(data, CoroutineConstants.ENCODING_FORMAT);
+            return new String(data, CoroutineConstant.ENCODING_FORMAT);
         } else {
             throw new ZookeeperException("Rule content is empty");
         }

@@ -10,7 +10,7 @@ package com.nepxion.coroutine.registry.zookeeper;
  * @version 1.0
  */
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.delegate.CoroutineDelegateImpl;
 import com.nepxion.coroutine.registry.RegistryEntity;
 import com.nepxion.coroutine.registry.RegistryExecutor;
@@ -24,7 +24,7 @@ public class ZookeeperRegistryLauncher extends CoroutineDelegateImpl implements 
 
     @Override
     public void start() throws Exception {
-        String address = properties.getString(CoroutineConstants.ZOOKEEPER_ADDRESS_ATTRIBUTE_NAME);
+        String address = properties.getString(CoroutineConstant.ZOOKEEPER_ADDRESS_ATTRIBUTE_NAME);
 
         start(address);
     }

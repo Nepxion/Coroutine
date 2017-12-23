@@ -10,7 +10,7 @@ package com.nepxion.coroutine.registry.zookeeper;
  * @version 1.0
  */
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.delegate.CoroutineDelegateImpl;
 import com.nepxion.coroutine.common.property.CoroutineProperties;
 import com.nepxion.coroutine.registry.RegistryEntity;
@@ -28,9 +28,9 @@ public class ZookeeperRegistryInitializer extends CoroutineDelegateImpl implemen
         }
 
         String address = registryEntity.getAddress();
-        int sessionTimeout = properties.getInteger(CoroutineConstants.ZOOKEEPER_SESSION_TIMOUT_ATTRIBUTE_NAME);
-        int connectTimeout = properties.getInteger(CoroutineConstants.ZOOKEEPER_CONNECT_TIMEOUT_ATTRIBUTE_NAME);
-        int connectWaitTime = properties.getInteger(CoroutineConstants.ZOOKEEPER_CONNECT_WAIT_TIME_ATTRIBUTE_NAME);
+        int sessionTimeout = properties.getInteger(CoroutineConstant.ZOOKEEPER_SESSION_TIMOUT_ATTRIBUTE_NAME);
+        int connectTimeout = properties.getInteger(CoroutineConstant.ZOOKEEPER_CONNECT_TIMEOUT_ATTRIBUTE_NAME);
+        int connectWaitTime = properties.getInteger(CoroutineConstant.ZOOKEEPER_CONNECT_WAIT_TIME_ATTRIBUTE_NAME);
 
         invoker.create(address, sessionTimeout, connectTimeout, connectWaitTime);
         invoker.startAndBlock();

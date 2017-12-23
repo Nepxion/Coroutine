@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nepxion.coroutine.common.callback.CoroutineCallback;
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.property.CoroutinePropertiesManager;
 import com.nepxion.coroutine.data.cache.CoroutineCache;
 import com.nepxion.coroutine.data.entity.CoroutineEntry;
@@ -154,7 +154,7 @@ public class KilimParallelExecutor extends AbstractKilimExecutor {
 
     // 解析返回对象集
     protected CoroutineResult<Object> createResult(List<CoroutineEntry<Object>> value) {
-        boolean flag = properties.getBoolean(CoroutineConstants.PARALLEL_AGGREGATION_COUPLING);
+        boolean flag = properties.getBoolean(CoroutineConstant.PARALLEL_AGGREGATION_COUPLING);
         if (flag) {
             return createListResult(value);
         } else {
@@ -195,19 +195,19 @@ public class KilimParallelExecutor extends AbstractKilimExecutor {
             ReferenceType referenceType = referenceEntity.getReferenceType();
 
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put(CoroutineConstants.ID_ATTRIBUTE_NAME, entry.getId().getId());
-            map.put(CoroutineConstants.RESULT_TYPES_ATTRIBUTE_NAME, entry.getResult());
-            map.put(CoroutineConstants.REFERENCE_TYPE_ATTRIBUTE_NAME, referenceType.toString());
-            map.put(CoroutineConstants.INDEX_ATTRIBUTE_NAME, referenceEntity.getIndex());
+            map.put(CoroutineConstant.ID_ATTRIBUTE_NAME, entry.getId().getId());
+            map.put(CoroutineConstant.RESULT_TYPES_ATTRIBUTE_NAME, entry.getResult());
+            map.put(CoroutineConstant.REFERENCE_TYPE_ATTRIBUTE_NAME, referenceType.toString());
+            map.put(CoroutineConstant.INDEX_ATTRIBUTE_NAME, referenceEntity.getIndex());
             if (referenceType == ReferenceType.COMPONENT_REFERENCE) {
                 MethodEntity methodEntity = (MethodEntity) referenceEntity;
-                map.put(CoroutineConstants.CLASS_ATTRIBUTE_NAME, methodEntity.getClazz());
-                map.put(CoroutineConstants.METHOD_ATTRIBUTE_NAME, methodEntity.getMethod());
-                map.put(CoroutineConstants.PARAMETER_TYPES_ATTRIBUTE_NAME, methodEntity.getParameterTypes());
+                map.put(CoroutineConstant.CLASS_ATTRIBUTE_NAME, methodEntity.getClazz());
+                map.put(CoroutineConstant.METHOD_ATTRIBUTE_NAME, methodEntity.getMethod());
+                map.put(CoroutineConstant.PARAMETER_TYPES_ATTRIBUTE_NAME, methodEntity.getParameterTypes());
             } else if (referenceType == ReferenceType.DEPENDENCY_REFERENCE) {
                 DependencyEntity dependencyEntity = (DependencyEntity) referenceEntity;
-                map.put(CoroutineConstants.CATEGORY_ATTRIBUTE_NAME, dependencyEntity.getCategoryName());
-                map.put(CoroutineConstants.RULE_ATTRIBUTE_NAME, dependencyEntity.getRuleName());
+                map.put(CoroutineConstant.CATEGORY_ATTRIBUTE_NAME, dependencyEntity.getCategoryName());
+                map.put(CoroutineConstant.RULE_ATTRIBUTE_NAME, dependencyEntity.getRuleName());
             }
 
             value.add(map);

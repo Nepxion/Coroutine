@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.util.ClassUtil;
 import com.nepxion.coroutine.common.xml.Dom4JParser;
 import com.nepxion.coroutine.data.cache.RuleCache;
@@ -63,7 +63,7 @@ public class RuleParser extends Dom4JParser {
             if (childElementObject instanceof Element) {
                 Element childElement = (Element) childElementObject;
 
-                int version = Integer.parseInt(childElement.attribute(CoroutineConstants.VERSION_ATTRIBUTE_NAME).getData().toString().trim());
+                int version = Integer.parseInt(childElement.attribute(CoroutineConstant.VERSION_ATTRIBUTE_NAME).getData().toString().trim());
                 if (RuleCache.isRuleExisted(ruleKey, version)) {
                     LOG.info("Rule has existed, categoryName={}, ruleName={}, version={}", ruleKey.getCategoryName(), ruleKey.getRuleName(), version);
 
@@ -96,19 +96,19 @@ public class RuleParser extends Dom4JParser {
             Object childElementObject = elementIterator.next();
             if (childElementObject instanceof Element) {
                 Element childElement = (Element) childElementObject;
-                if (StringUtils.equals(childElement.getName(), CoroutineConstants.COMPONENT_ATTRIBUTE_NAME)) {
+                if (StringUtils.equals(childElement.getName(), CoroutineConstant.COMPONENT_ATTRIBUTE_NAME)) {
                     ComponentEntity componentEntity = new ComponentEntity();
 
                     parseComponent(childElement, componentEntity);
 
                     componentEntityList.add(componentEntity);
-                } else if (StringUtils.equals(childElement.getName(), CoroutineConstants.DEPENDENCY_ATTRIBUTE_NAME)) {
+                } else if (StringUtils.equals(childElement.getName(), CoroutineConstant.DEPENDENCY_ATTRIBUTE_NAME)) {
                     DependencyEntity dependencyEntity = new DependencyEntity();
 
                     parseDependency(childElement, dependencyEntity);
 
                     dependencyEntityList.add(dependencyEntity);
-                } else if (StringUtils.equals(childElement.getName(), CoroutineConstants.CHAIN_ATTRIBUTE_NAME)) {
+                } else if (StringUtils.equals(childElement.getName(), CoroutineConstant.CHAIN_ATTRIBUTE_NAME)) {
                     ChainEntity chainEntity = new ChainEntity();
 
                     parseChain(childElement, chainEntity);
@@ -121,7 +121,7 @@ public class RuleParser extends Dom4JParser {
 
     @SuppressWarnings("rawtypes")
     private void parseComponent(Element element, ComponentEntity componentEntity) {
-        Attribute applicationContextAttribute = element.attribute(CoroutineConstants.APPLICATION_CONTEXT_ATTRIBUTE_NAME);
+        Attribute applicationContextAttribute = element.attribute(CoroutineConstant.APPLICATION_CONTEXT_ATTRIBUTE_NAME);
         if (applicationContextAttribute != null) {
             String applicationContextPath = applicationContextAttribute.getData().toString().trim();
             componentEntity.setApplicationContextPath(applicationContextPath);
@@ -147,13 +147,13 @@ public class RuleParser extends Dom4JParser {
     @SuppressWarnings("rawtypes")
     private void parseClass(Element element, ComponentEntity componentEntity, ClassEntity classEntity) {
         String id = null;
-        Attribute idAttribute = element.attribute(CoroutineConstants.ID_ATTRIBUTE_NAME);
+        Attribute idAttribute = element.attribute(CoroutineConstant.ID_ATTRIBUTE_NAME);
         if (idAttribute != null) {
             id = idAttribute.getData().toString().trim();
         }
 
         String clazz = null;
-        Attribute classAttribute = element.attribute(CoroutineConstants.CLASS_ATTRIBUTE_NAME);
+        Attribute classAttribute = element.attribute(CoroutineConstant.CLASS_ATTRIBUTE_NAME);
         if (classAttribute != null) {
             clazz = classAttribute.getData().toString().trim();
         }
@@ -161,7 +161,7 @@ public class RuleParser extends Dom4JParser {
         String applicationContextPath = componentEntity.getApplicationContextPath();
         ApplicationContext applicationContext = componentEntity.getApplicationContext();
         if (StringUtils.isNotEmpty(applicationContextPath) && applicationContext == null) {
-            if (applicationContextPath.toLowerCase().startsWith(CoroutineConstants.CLASS_PATH_ATTRIBUTE_NAME)) {
+            if (applicationContextPath.toLowerCase().startsWith(CoroutineConstant.CLASS_PATH_ATTRIBUTE_NAME)) {
                 applicationContext = new ClassPathXmlApplicationContext(applicationContextPath);
                 componentEntity.setApplicationContext(applicationContext);
             } else {
@@ -213,19 +213,19 @@ public class RuleParser extends Dom4JParser {
     }
 
     private void parseMethod(Element element, MethodEntity methodEntity) {
-        int index = Integer.parseInt(element.attribute(CoroutineConstants.INDEX_ATTRIBUTE_NAME).getData().toString().trim());
+        int index = Integer.parseInt(element.attribute(CoroutineConstant.INDEX_ATTRIBUTE_NAME).getData().toString().trim());
         methodEntity.setIndex(index);
 
-        String method = element.attribute(CoroutineConstants.METHOD_ATTRIBUTE_NAME).getData().toString().trim();
+        String method = element.attribute(CoroutineConstant.METHOD_ATTRIBUTE_NAME).getData().toString().trim();
         methodEntity.setMethod(method);
 
-        Attribute parameterTypesAttribute = element.attribute(CoroutineConstants.PARAMETER_TYPES_ATTRIBUTE_NAME);
+        Attribute parameterTypesAttribute = element.attribute(CoroutineConstant.PARAMETER_TYPES_ATTRIBUTE_NAME);
         if (parameterTypesAttribute != null) {
             String parameterTypes = parameterTypesAttribute.getData().toString().trim();
             methodEntity.setParameterTypes(parameterTypes);
         }
 
-        Attribute cacheAttribute = element.attribute(CoroutineConstants.CACHE_ATTRIBUTE_NAME);
+        Attribute cacheAttribute = element.attribute(CoroutineConstant.CACHE_ATTRIBUTE_NAME);
         if (cacheAttribute != null) {
             String cache = cacheAttribute.getData().toString().trim();
             methodEntity.setCache(Boolean.valueOf(cache));
@@ -233,23 +233,23 @@ public class RuleParser extends Dom4JParser {
     }
 
     private void parseDependency(Element element, DependencyEntity dependencyEntity) {
-        int index = Integer.parseInt(element.attribute(CoroutineConstants.INDEX_ATTRIBUTE_NAME).getData().toString().trim());
+        int index = Integer.parseInt(element.attribute(CoroutineConstant.INDEX_ATTRIBUTE_NAME).getData().toString().trim());
         dependencyEntity.setIndex(index);
 
-        String categoryName = element.attribute(CoroutineConstants.CATEGORY_ATTRIBUTE_NAME).getData().toString().trim();
+        String categoryName = element.attribute(CoroutineConstant.CATEGORY_ATTRIBUTE_NAME).getData().toString().trim();
         dependencyEntity.setCategoryName(categoryName);
 
-        String ruleName = element.attribute(CoroutineConstants.RULE_ATTRIBUTE_NAME).getData().toString().trim();
+        String ruleName = element.attribute(CoroutineConstant.RULE_ATTRIBUTE_NAME).getData().toString().trim();
         dependencyEntity.setRuleName(ruleName);
 
-        Attribute chainNameAttribute = element.attribute(CoroutineConstants.CHAIN_ATTRIBUTE_NAME);
+        Attribute chainNameAttribute = element.attribute(CoroutineConstant.CHAIN_ATTRIBUTE_NAME);
         if (chainNameAttribute != null) {
             String chainName = chainNameAttribute.getData().toString().trim();
             dependencyEntity.setChainName(chainName);
         }
 
         String filePath = null;
-        Attribute filePathAttribute = element.attribute(CoroutineConstants.FILE_ATTRIBUTE_NAME);
+        Attribute filePathAttribute = element.attribute(CoroutineConstant.FILE_ATTRIBUTE_NAME);
         if (filePathAttribute != null) {
             filePath = filePathAttribute.getData().toString().trim();
         }
@@ -268,7 +268,7 @@ public class RuleParser extends Dom4JParser {
             }
         }
 
-        Attribute timeoutAttribute = element.attribute(CoroutineConstants.TIMEOUT_ATTRIBUTE_NAME);
+        Attribute timeoutAttribute = element.attribute(CoroutineConstant.TIMEOUT_ATTRIBUTE_NAME);
         if (timeoutAttribute != null) {
             long timeout = Long.parseLong(timeoutAttribute.getData().toString().trim());
             dependencyEntity.setTimeout(timeout);
@@ -277,7 +277,7 @@ public class RuleParser extends Dom4JParser {
 
     @SuppressWarnings("rawtypes")
     private void parseChain(Element element, ChainEntity chainEntity) {
-        Attribute chainNameAttribute = element.attribute(CoroutineConstants.NAME_ATTRIBUTE_NAME);
+        Attribute chainNameAttribute = element.attribute(CoroutineConstant.NAME_ATTRIBUTE_NAME);
         if (chainNameAttribute != null) {
             String chainName = chainNameAttribute.getData().toString().trim();
             chainEntity.setName(chainName);
@@ -300,7 +300,7 @@ public class RuleParser extends Dom4JParser {
     }
 
     private void parseStep(Element element, StepEntity stepEntity) {
-        String indexValue = element.attribute(CoroutineConstants.INDEX_ATTRIBUTE_NAME).getData().toString().trim();
+        String indexValue = element.attribute(CoroutineConstant.INDEX_ATTRIBUTE_NAME).getData().toString().trim();
         String[] array = StringUtils.split(indexValue, ",");
         int[] index = new int[array.length];
         for (int i = 0; i < array.length; i++) {

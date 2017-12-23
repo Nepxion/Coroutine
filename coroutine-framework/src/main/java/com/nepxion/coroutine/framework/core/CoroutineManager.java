@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.eventbus.Subscribe;
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.property.CoroutineContent;
 import com.nepxion.coroutine.data.entity.RuleKey;
 import com.nepxion.coroutine.event.RuleEvent;
@@ -75,7 +75,7 @@ public class CoroutineManager {
     }
 
     public static void parseLocal(String categoryName, String ruleName, String rulePath) throws Exception {
-        String ruleContent = new CoroutineContent(rulePath, CoroutineConstants.ENCODING_FORMAT).getContent();
+        String ruleContent = new CoroutineContent(rulePath, CoroutineConstant.ENCODING_FORMAT).getContent();
 
         COROUTINE_MANAGER.parse(categoryName, ruleName, ruleContent);
     }

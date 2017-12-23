@@ -18,7 +18,7 @@ import org.apache.zookeeper.CreateMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.delegate.CoroutineDelegateImpl;
 import com.nepxion.coroutine.registry.RegistryExecutor;
 import com.nepxion.coroutine.registry.RegistryInitializer;
@@ -104,7 +104,7 @@ public class ZookeeperRegistryExecutor extends CoroutineDelegateImpl implements 
         if (ArrayUtils.isNotEmpty(data)) {
             LOG.info("Retrieved property [{}]", path);
 
-            String ruleContent = new String(data, CoroutineConstants.ENCODING_FORMAT);
+            String ruleContent = new String(data, CoroutineConstant.ENCODING_FORMAT);
 
             return ruleContent;
         }
@@ -139,7 +139,7 @@ public class ZookeeperRegistryExecutor extends CoroutineDelegateImpl implements 
     public StringBuilder createNamespacePath() {
         StringBuilder builder = new StringBuilder();
         builder.append("/");
-        builder.append(StringUtils.isEmpty(namespace) ? properties.getString(CoroutineConstants.NAMESPACE_ELEMENT_NAME) : namespace);
+        builder.append(StringUtils.isEmpty(namespace) ? properties.getString(CoroutineConstant.NAMESPACE_ELEMENT_NAME) : namespace);
 
         return builder;
     }

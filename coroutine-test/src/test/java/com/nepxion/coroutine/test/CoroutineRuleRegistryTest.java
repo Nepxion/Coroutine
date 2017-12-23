@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.property.CoroutineContent;
 import com.nepxion.coroutine.common.property.CoroutinePropertiesManager;
 import com.nepxion.coroutine.registry.RegistryLauncher;
@@ -30,7 +30,7 @@ public class CoroutineRuleRegistryTest {
         launcher.start();
 
         launcher.getRegistryExecutor().registerRule("PayRoute", "Rule");
-        launcher.getRegistryExecutor().persistRule("PayRoute", "Rule", new CoroutineContent("rule1.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
+        launcher.getRegistryExecutor().persistRule("PayRoute", "Rule", new CoroutineContent("rule1.xml", CoroutineConstant.ENCODING_FORMAT).getContent());
 
         LOG.info("规则 : \n{}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "Rule"));
 
@@ -44,7 +44,7 @@ public class CoroutineRuleRegistryTest {
         launcher.start();
 
         launcher.getRegistryExecutor().registerRule("PayRoute", "SubRule");
-        launcher.getRegistryExecutor().persistRule("PayRoute", "SubRule", new CoroutineContent("rule2.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
+        launcher.getRegistryExecutor().persistRule("PayRoute", "SubRule", new CoroutineContent("rule2.xml", CoroutineConstant.ENCODING_FORMAT).getContent());
 
         LOG.info("规则 : \n{}", launcher.getRegistryExecutor().retrieveRule("PayRoute", "SubRule"));
 

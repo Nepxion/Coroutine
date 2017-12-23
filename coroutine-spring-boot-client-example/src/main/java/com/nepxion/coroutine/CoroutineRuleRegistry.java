@@ -13,7 +13,7 @@ package com.nepxion.coroutine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.property.CoroutineContent;
 import com.nepxion.coroutine.common.property.CoroutinePropertiesManager;
 import com.nepxion.coroutine.registry.RegistryLauncher;
@@ -28,7 +28,7 @@ public class CoroutineRuleRegistry {
         launcher.start();
 
         launcher.getRegistryExecutor().registerRule("Distribution PayRoute", "Distribution Rule");
-        launcher.getRegistryExecutor().persistRule("Distribution PayRoute", "Distribution Rule", new CoroutineContent("rule.xml", CoroutineConstants.ENCODING_FORMAT).getContent());
+        launcher.getRegistryExecutor().persistRule("Distribution PayRoute", "Distribution Rule", new CoroutineContent("rule.xml", CoroutineConstant.ENCODING_FORMAT).getContent());
 
         LOG.info("规则 : \n{}", launcher.getRegistryExecutor().retrieveRule("Distribution PayRoute", "Distribution Rule"));
 

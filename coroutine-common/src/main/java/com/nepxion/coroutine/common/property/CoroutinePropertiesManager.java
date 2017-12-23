@@ -13,7 +13,7 @@ package com.nepxion.coroutine.common.property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 
 public class CoroutinePropertiesManager {
     private static final Logger LOG = LoggerFactory.getLogger(CoroutinePropertiesManager.class);
@@ -32,7 +32,7 @@ public class CoroutinePropertiesManager {
         try {
             LOG.info("Parse default property config file [{}]", DEFAULT_PATH);
 
-            properties = new CoroutineProperties(DEFAULT_PATH, CoroutineConstants.ENCODING_FORMAT);
+            properties = new CoroutineProperties(DEFAULT_PATH, CoroutineConstant.ENCODING_FORMAT);
         } catch (Exception e) {
             LOG.error("Parse default property config file failed for [{}]", DEFAULT_PATH, e);
         }
@@ -42,7 +42,7 @@ public class CoroutinePropertiesManager {
         try {
             LOG.info("Parse ext property config file [{}]", EXT_PATH);
 
-            extProperties = new CoroutineProperties(EXT_PATH, CoroutineConstants.ENCODING_FORMAT);
+            extProperties = new CoroutineProperties(EXT_PATH, CoroutineConstant.ENCODING_FORMAT);
         } catch (Exception e) {
             LOG.warn("Parse ext property config file failed for [{}], maybe file doesn't exist, ignore", EXT_PATH);
         }

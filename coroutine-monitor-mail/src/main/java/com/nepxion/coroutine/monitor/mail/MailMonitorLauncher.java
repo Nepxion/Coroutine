@@ -17,7 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nepxion.coroutine.common.constant.CoroutineConstants;
+import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.delegate.CoroutineDelegateImpl;
 import com.nepxion.coroutine.common.property.CoroutineProperties;
 import com.nepxion.coroutine.common.util.ExceptionUtil;
@@ -42,12 +42,12 @@ public class MailMonitorLauncher extends CoroutineDelegateImpl implements Monito
     public void setProperties(CoroutineProperties properties) {
         super.setProperties(properties);
 
-        boolean mailSend = properties.getBoolean(CoroutineConstants.MONITOR_MAIL_FAILURE_SEND);
+        boolean mailSend = properties.getBoolean(CoroutineConstant.MONITOR_MAIL_FAILURE_SEND);
         if (mailSend) {
-            String host = properties.getString(CoroutineConstants.SMTP_HOST_ATTRIBUTE_NAME);
-            String user = properties.getString(CoroutineConstants.SMTP_USER_ATTRIBUTE_NAME);
-            String password = properties.getString(CoroutineConstants.SMTP_PASSWORD_ATTRIBUTE_NAME);
-            boolean ssl = properties.getBoolean(CoroutineConstants.SMTP_SSL_ATTRIBUTE_NAME);
+            String host = properties.getString(CoroutineConstant.SMTP_HOST_ATTRIBUTE_NAME);
+            String user = properties.getString(CoroutineConstant.SMTP_USER_ATTRIBUTE_NAME);
+            String password = properties.getString(CoroutineConstant.SMTP_PASSWORD_ATTRIBUTE_NAME);
+            boolean ssl = properties.getBoolean(CoroutineConstant.SMTP_SSL_ATTRIBUTE_NAME);
             if (ssl) {
                 smtpExecutor = new SmtpSslExecutor(host, user, password);
             } else {
@@ -118,11 +118,11 @@ public class MailMonitorLauncher extends CoroutineDelegateImpl implements Monito
     }
 
     private void send(Map<String, Object> map) throws Exception {
-        String from = properties.getString(CoroutineConstants.SMTP_MAIL_FROM_ATTRIBUTE_NAME);
-        String to = properties.getString(CoroutineConstants.SMTP_MAIL_TO_ATTRIBUTE_NAME);
-        String cc = properties.getString(CoroutineConstants.SMTP_MAIL_CC_ATTRIBUTE_NAME);
-        String bcc = properties.getString(CoroutineConstants.SMTP_MAIL_BCC_ATTRIBUTE_NAME);
-        String namespace = properties.getString(CoroutineConstants.NAMESPACE_ELEMENT_NAME);
+        String from = properties.getString(CoroutineConstant.SMTP_MAIL_FROM_ATTRIBUTE_NAME);
+        String to = properties.getString(CoroutineConstant.SMTP_MAIL_TO_ATTRIBUTE_NAME);
+        String cc = properties.getString(CoroutineConstant.SMTP_MAIL_CC_ATTRIBUTE_NAME);
+        String bcc = properties.getString(CoroutineConstant.SMTP_MAIL_BCC_ATTRIBUTE_NAME);
+        String namespace = properties.getString(CoroutineConstant.NAMESPACE_ELEMENT_NAME);
         String subject = StringUtil.firstLetterToUpper(namespace) + "调用异常通知";
 
         StringBuilder builder = new StringBuilder();
@@ -165,6 +165,6 @@ public class MailMonitorLauncher extends CoroutineDelegateImpl implements Monito
         builder.append("</body>");
         builder.append("</html>");
 
-        smtpExecutor.sendHtml(from, to, cc, bcc, subject, builder.toString(), CoroutineConstants.ENCODING_FORMAT);
+        smtpExecutor.sendHtml(from, to, cc, bcc, subject, builder.toString(), CoroutineConstant.ENCODING_FORMAT);
     }
 }
