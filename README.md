@@ -1,9 +1,11 @@
-# Coroutine
+# Nepxion Coroutine
 [![Apache License 2](https://img.shields.io/badge/license-ASF2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-## 介绍
+Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring Boot的协程式驱动框架，提供分布式规则存储和动态规则变更通知
 
-    Coroutine是基于Kilim/Promise JDeferred的协程式驱动框架，基于Apache Zookeeper的分布式规则存储和动态规则变更通知
+## 介绍
+支持如下功能
+
     1. 基于微服务框架理念设计
     2. 支持同步/异步调用
     3. 支持串行/并行调用
@@ -13,6 +15,7 @@
     7. 支持调用链追踪
     8. 异常捕获后智能处理链式调用的终止
 
+## 架构
 协程工作场景图
 
 ![Alt text](https://github.com/Nepxion/Coroutine/blob/master/Coroutine1.jpg)
@@ -25,7 +28,7 @@ Coroutine链式调用图
 
 ![Alt text](https://github.com/Nepxion/Coroutine/blob/master/Coroutine3.jpg)
 
-规则解释
+## 规则
 ```java
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
@@ -94,7 +97,7 @@ Coroutine链式调用图
 </coroutine>
 ```
 
-## 调用方式
+## 示例
 异步调用
 ```java
 CoroutineManager.load().startAsync("PayRoute", "Rule", chainName, new String[] { "入参" }, false, new CoroutineCallback<CoroutineResult<Object>>() {
@@ -120,7 +123,7 @@ try {
 }
 ```
 
-## 本地调用方式
+### 本地调用方式
 
 参照coroutine-test工程
 
@@ -211,7 +214,7 @@ try {
 </coroutine>
 ```
 
-调用示例
+调用入口
 ```java
 package com.nepxion.coroutine.test;
 
@@ -383,12 +386,11 @@ public class CoroutineTest {
 ]
 ```
 
-## 分布式调用方式
+### 分布式调用方式
 
 基于Spring Boot在Dubbo和Thunder框架的协程调用，分布式API的聚合
 
 定义规则
-
 ```java
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
@@ -428,6 +430,7 @@ public class CoroutineTest {
 </coroutine>
 ```
 
+调用入口
 运行coroutine-spring-boot-dubbo-server-example下的DubboServerApplication.java
 
 运行coroutine-spring-boot-thunder-server-example下的ThunderServerApplication.java
