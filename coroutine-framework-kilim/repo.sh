@@ -1,7 +1,7 @@
 echo 'on'
 echo '============================================================='
 echo '$                                                           $'
-echo '$                      Nepxion Coroutine                     $'
+echo '$                     Nepxion Coroutine                     $'
 echo '$                                                           $'
 echo '$                                                           $'
 echo '$                                                           $'
