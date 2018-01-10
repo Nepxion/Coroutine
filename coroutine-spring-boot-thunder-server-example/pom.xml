@@ -25,6 +25,8 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>thunder-framework</artifactId>
             <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/thunder-framework-${project.version}.jar</systemPath>
         </dependency>
 
         <dependency>
