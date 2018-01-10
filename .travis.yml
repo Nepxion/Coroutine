@@ -2,5 +2,3 @@ language: java
 
 jdk:
   - openjdk7
-
-script: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
