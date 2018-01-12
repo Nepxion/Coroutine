@@ -36,7 +36,7 @@ public class CoroutineManager {
         System.out.println("║║ ╔╣╔╗║╔╣╔╗║║║║║║╠╣╔╗╣║═╣");
         System.out.println("║╚═╝║╚╝║║║╚╝║╚╝║║╚╣║║║║║═╣");
         System.out.println("╚═══╩══╩╝╚══╩══╝╚═╩╩╝╚╩══╝");
-        System.out.println("Nepxion Coroutine  v1.0.0.RELEASE");
+        System.out.println("Nepxion Coroutine  v1.0.0");
         System.out.println("");
 
         MonitorLoader.load();
