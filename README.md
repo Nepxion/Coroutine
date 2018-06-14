@@ -465,7 +465,7 @@ import com.nepxion.coroutine.common.callback.CoroutineCallback;
 import com.nepxion.coroutine.data.entity.CoroutineResult;
 import com.nepxion.coroutine.framework.core.CoroutineManager;
 
-@EnableAutoConfiguration
+@SpringBootApplication
 @ComponentScan(basePackages = { "com.nepxion.coroutine" })
 public class CoroutineClientApplication {
     private static final Logger LOG = LoggerFactory.getLogger(CoroutineClientApplication.class);

@@ -11,12 +11,13 @@ package com.nepxion.coroutine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 
-@EnableAutoConfiguration
+@SpringBootApplication
 @ImportResource({ "classpath*:thunder-server-context-coroutine.xml" })
 public class ThunderServerApplication {
     public static void main(String[] args) throws Exception {
