@@ -1,6 +1,7 @@
 # Nepxion Coroutine
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?label=license)](https://github.com/Nepxion/Coroutine/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/Nepxion/Coroutine.svg?branch=master)](https://travis-ci.org/Nepxion/Coroutine)
+[![Code Beat](http://codebeat.co/badges/9cc787f8-0170-44c9-a37f-2da9d4644033)](https://codebeat.co/projects/github-com-nepxion-coroutine-master)
 
 Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring Boot的协程式驱动框架，提供分布式规则存储和动态规则变更通知
 
