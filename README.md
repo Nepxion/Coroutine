@@ -4,6 +4,11 @@
 
 Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring Boot的协程式驱动框架，提供分布式规则存储和动态规则变更通知
 
+## 请联系我
+- 请加微信群或者微信
+
+![Alt text](https://github.com/Nepxion/Docs/blob/master/zxing-doc/微信群-1.jpg) ![Alt text](https://github.com/Nepxion/Docs/blob/master/zxing-doc/微信-1.jpg)  
+
 ## 介绍
 - 基于微服务框架理念设计
 - 支持同步/异步调用
