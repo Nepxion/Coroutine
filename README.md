@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/Nepxion/Coroutine.svg?branch=master)](https://travis-ci.org/Nepxion/Coroutine)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a4a3804cce6c450ca60fb864bef54654)](https://www.codacy.com/project/HaojunRen/Coroutine/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nepxion/Coroutine&amp;utm_campaign=Badge_Grade_Dashboard)
 
-Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring Boot的协程式驱动框架，提供分布式规则存储和动态规则变更通知
+Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring Boot的协程分布式调用的聚合框架，提供聚合规则存储和动态变更通知
 
 ## 请联系我
 ![Alt text](https://github.com/Nepxion/Docs/blob/master/zxing-doc/微信-1.jpg)
