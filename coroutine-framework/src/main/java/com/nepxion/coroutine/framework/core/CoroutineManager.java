@@ -29,15 +29,18 @@ public class CoroutineManager {
     private static final CoroutineManager COROUTINE_MANAGER = new CoroutineManager();
 
     static {
-        System.out.println("");
-        System.out.println("╔═══╗           ╔╗");
-        System.out.println("║╔═╗║          ╔╝╚╗");
-        System.out.println("║║ ╚╬══╦═╦══╦╗╔╬╗╔╬╦═╗╔══╗");
-        System.out.println("║║ ╔╣╔╗║╔╣╔╗║║║║║║╠╣╔╗╣║═╣");
-        System.out.println("║╚═╝║╚╝║║║╚╝║╚╝║║╚╣║║║║║═╣");
-        System.out.println("╚═══╩══╩╝╚══╩══╝╚═╩╩╝╚╩══╝");
-        System.out.println("Nepxion Coroutine  v1.0.0");
-        System.out.println("");
+        String logoShown = System.getProperty("nepxion.logo.shown", "true");
+        if (Boolean.valueOf(logoShown)) {
+            System.out.println("");
+            System.out.println("╔═══╗           ╔╗");
+            System.out.println("║╔═╗║          ╔╝╚╗");
+            System.out.println("║║ ╚╬══╦═╦══╦╗╔╬╗╔╬╦═╗╔══╗");
+            System.out.println("║║ ╔╣╔╗║╔╣╔╗║║║║║║╠╣╔╗╣║═╣");
+            System.out.println("║╚═╝║╚╝║║║╚╝║╚╝║║╚╣║║║║║═╣");
+            System.out.println("╚═══╩══╩╝╚══╩══╝╚═╩╩╝╚╩══╝");
+            System.out.println("Nepxion Coroutine  v1.0.0");
+            System.out.println("");
+        }
 
         MonitorLoader.load();
         RegistryLoader.load();
