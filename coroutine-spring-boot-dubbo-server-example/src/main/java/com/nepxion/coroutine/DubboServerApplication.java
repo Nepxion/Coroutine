@@ -10,8 +10,10 @@ package com.nepxion.coroutine;
  */
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
@@ -19,5 +21,13 @@ import org.springframework.context.annotation.ImportResource;
 public class DubboServerApplication {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(DubboServerApplication.class, args);
+    }
+
+    @Bean
+    public EmbeddedServletContainerFactory createEmbeddedServletContainerFactory() {
+        TomcatEmbeddedServletContainerFactory tomcatFactory = new TomcatEmbeddedServletContainerFactory();
+        tomcatFactory.setPort(9083);
+
+        return tomcatFactory;
     }
 }
