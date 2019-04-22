@@ -10,6 +10,8 @@ package com.nepxion.coroutine.common.constant;
  */
 
 public class CoroutineConstant {
+    public static final String COROUTINE_VERSION = "1.0.0";
+
     public static final String NAMESPACE_ELEMENT_NAME = "namespace";
 
     public static final String COROUTINE_LAUNCHER_ELEMENT_NAME = "coroutineLauncher";

@@ -13,6 +13,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.eventbus.Subscribe;
+import com.nepxion.banner.BannerConstant;
+import com.nepxion.banner.Description;
+import com.nepxion.banner.LogoBanner;
+import com.nepxion.banner.NepxionBanner;
 import com.nepxion.coroutine.common.constant.CoroutineConstant;
 import com.nepxion.coroutine.common.property.CoroutineContent;
 import com.nepxion.coroutine.data.entity.RuleKey;
@@ -23,14 +27,15 @@ import com.nepxion.coroutine.framework.parser.RuleParser;
 import com.nepxion.coroutine.monitor.MonitorLoader;
 import com.nepxion.coroutine.registry.RegistryExecutor;
 import com.nepxion.coroutine.registry.RegistryLoader;
+import com.taobao.text.Color;
 
 public class CoroutineManager {
     private static final Logger LOG = LoggerFactory.getLogger(CoroutineManager.class);
     private static final CoroutineManager COROUTINE_MANAGER = new CoroutineManager();
 
     static {
-        String logoShown = System.getProperty("nepxion.logo.shown", "true");
-        if (Boolean.valueOf(logoShown)) {
+        /*String bannerShown = System.getProperty(BannerConstant.BANNER_SHOWN, "true");
+        if (Boolean.valueOf(bannerShown)) {
             System.out.println("");
             System.out.println("╔═══╗           ╔╗");
             System.out.println("║╔═╗║          ╔╝╚╗");
@@ -38,9 +43,13 @@ public class CoroutineManager {
             System.out.println("║║ ╔╣╔╗║╔╣╔╗║║║║║║╠╣╔╗╣║═╣");
             System.out.println("║╚═╝║╚╝║║║╚╝║╚╝║║╚╣║║║║║═╣");
             System.out.println("╚═══╩══╩╝╚══╩══╝╚═╩╩╝╚╩══╝");
-            System.out.println("Nepxion Coroutine  v1.0.0");
+            System.out.println("Nepxion Coroutine  v" + CoroutineConstant.COROUTINE_VERSION);
             System.out.println("");
-        }
+        }*/
+
+        LogoBanner logoBanner = new LogoBanner(CoroutineManager.class, "/com/nepxion/coroutine/resource/logo.txt", "Welcome to Nepxion", 9, 5, new Color[] { Color.red, Color.green, Color.cyan, Color.blue, Color.yellow, Color.magenta, Color.red, Color.green, Color.cyan }, true);
+
+        NepxionBanner.show(logoBanner, new Description(BannerConstant.VERSION + ":", CoroutineConstant.COROUTINE_VERSION, 0, 1), new Description(BannerConstant.GITHUB + ":", BannerConstant.NEPXION_GITHUB + "/Coroutine", 0, 1));
 
         MonitorLoader.load();
         RegistryLoader.load();
