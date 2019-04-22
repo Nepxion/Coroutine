@@ -22,14 +22,6 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>thunder</artifactId>
-            <version>${thunder.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>thunder-framework</artifactId>
             <version>${thunder.version}</version>
         </dependency>

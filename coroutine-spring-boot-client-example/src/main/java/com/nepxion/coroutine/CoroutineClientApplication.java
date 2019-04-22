@@ -26,7 +26,7 @@ import com.nepxion.coroutine.data.entity.CoroutineResult;
 import com.nepxion.coroutine.framework.core.CoroutineManager;
 
 @SpringBootApplication
-@ComponentScan(basePackages = { "com.nepxion.coroutine" })
+@ComponentScan(basePackages = { "com.nepxion.coroutine.service" })
 public class CoroutineClientApplication {
     private static final Logger LOG = LoggerFactory.getLogger(CoroutineClientApplication.class);
 
