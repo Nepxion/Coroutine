@@ -589,3 +589,7 @@ public class CoroutineClientApplication {
   ruleName=Distribution Rule
 ], result=((Start[0] -> A[0] -> C[0] , Start[0] -> B[0] -> C[0]) -> D[0]) -> C[0]) -> A[0]) , (Start[0] -> A[0] -> C[0] , Start[0] -> B[0] -> C[0]) -> D[0]) -> D[0]) -> A[0])) -> B[0]))
 ```
+
+## Star走势图
+
+[![Stargazers over time](https://starchart.cc/Nepxion/Coroutine.svg)](https://starchart.cc/Nepxion/Coroutine)
