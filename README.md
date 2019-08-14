@@ -1,16 +1,12 @@
 # Nepxion Coroutine
-[![Total lines](https://tokei.rs/b1/github/Nepxion/Coroutine?category=lines)](https://tokei.rs/b1/github/Nepxion/Coroutine?category=lines)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?label=license)](https://github.com/Nepxion/Coroutine/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/Nepxion/Coroutine.svg?branch=master)](https://travis-ci.org/Nepxion/Coroutine)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a4a3804cce6c450ca60fb864bef54654)](https://www.codacy.com/project/HaojunRen/Coroutine/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nepxion/Coroutine&amp;utm_campaign=Badge_Grade_Dashboard)
+[![Total lines](https://tokei.rs/b1/github/Nepxion/Coroutine?category=lines)](https://tokei.rs/b1/github/Nepxion/Coroutine?category=lines)  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?label=license)](https://github.com/Nepxion/Coroutine/blob/master/LICENSE)  [![Build Status](https://travis-ci.org/Nepxion/Coroutine.svg?branch=master)](https://travis-ci.org/Nepxion/Coroutine)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a4a3804cce6c450ca60fb864bef54654)](https://www.codacy.com/project/HaojunRen/Coroutine/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nepxion/Coroutine&amp;utm_campaign=Badge_Grade_Dashboard)
 
 Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring Boot的协程分布式调用的聚合框架，提供聚合规则存储和动态变更通知
 
 ## 请联系我
 微信和公众号
 
-![Alt text](https://github.com/Nepxion/Docs/raw/master/zxing-doc/微信-1.jpg)
-![Alt text](https://github.com/Nepxion/Docs/raw/master/zxing-doc/公众号-1.jpg)
+![Alt text](https://github.com/Nepxion/Docs/raw/master/zxing-doc/微信-1.jpg)![Alt text](https://github.com/Nepxion/Docs/raw/master/zxing-doc/公众号-1.jpg)
 
 ## 介绍
 - 基于微服务框架理念设计
