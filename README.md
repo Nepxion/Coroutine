@@ -6,7 +6,7 @@ Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring B
 ## 请联系我
 微信和公众号
 
-![Alt text](https://github.com/HaojunRen/Docs/raw/master/zxing-doc/微信-1.jpg)![Alt text](https://github.com/HaojunRen/Docs/raw/master/zxing-doc/公众号-1.jpg)
+![Alt text](http://nepxion.gitee.io/docs/zxing-doc/微信-1.jpg)![Alt text](http://nepxion.gitee.io/docs/zxing-doc/公众号-1.jpg)
 
 ## 介绍
 - 基于微服务框架理念设计
@@ -21,15 +21,15 @@ Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring B
 ## 架构
 协程工作场景图
 
-![Alt text](https://github.com/HaojunRen/Docs/raw/master/coroutine-doc/Coroutine1.jpg)
+![Alt text](http://nepxion.gitee.io/docs/coroutine-doc/Coroutine1.jpg)
 
 Coroutine架构图
 
-![Alt text](https://github.com/HaojunRen/Docs/raw/master/coroutine-doc/Coroutine2.jpg)
+![Alt text](http://nepxion.gitee.io/docs/coroutine-doc/Coroutine2.jpg)
 
 Coroutine链式调用图
 
-![Alt text](https://github.com/HaojunRen/Docs/raw/master/coroutine-doc/Coroutine3.jpg)
+![Alt text](http://nepxion.gitee.io/docs/coroutine-doc/Coroutine3.jpg)
 
 ## 规则
 ```java
