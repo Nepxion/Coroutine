@@ -127,7 +127,6 @@ try {
 ```
 
 ### 本地调用方式
-
 参照coroutine-test工程
 
 定义规则1
@@ -389,7 +388,6 @@ public class CoroutineTest {
 ```
 
 ### 分布式调用方式
-
 基于Spring Boot在Dubbo和Thunder框架的协程调用，分布式API的聚合
 
 定义规则
@@ -587,5 +585,4 @@ public class CoroutineClientApplication {
 ```
 
 ## Star走势图
-
 [![Stargazers over time](https://starchart.cc/Nepxion/Coroutine.svg)](https://starchart.cc/Nepxion/Coroutine)
