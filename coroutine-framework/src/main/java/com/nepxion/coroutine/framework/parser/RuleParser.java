@@ -46,7 +46,6 @@ public class RuleParser extends Dom4JParser {
         this.ruleKey = ruleKey;
     }
 
-    @SuppressWarnings("rawtypes")
     @Override
     protected void parseRoot(Element element) {
         LOG.info("Start to parse rule, categoryName={}, ruleName={}", ruleKey.getCategoryName(), ruleKey.getRuleName());
@@ -57,30 +56,26 @@ public class RuleParser extends Dom4JParser {
             RuleCache.putRules(ruleKey, ruleEntityList);
         }
 
-        for (Iterator elementIterator = element.elementIterator(); elementIterator.hasNext();) {
-            Object childElementObject = elementIterator.next();
-            if (childElementObject instanceof Element) {
-                Element childElement = (Element) childElementObject;
+        for (Iterator<Element> elementIterator = element.elementIterator(); elementIterator.hasNext();) {
+            Element childElement = elementIterator.next();
 
-                int version = Integer.parseInt(childElement.attribute(CoroutineConstant.VERSION_ATTRIBUTE_NAME).getData().toString().trim());
-                if (RuleCache.isRuleExisted(ruleKey, version)) {
-                    LOG.info("Rule has existed, categoryName={}, ruleName={}, version={}", ruleKey.getCategoryName(), ruleKey.getRuleName(), version);
+            int version = Integer.parseInt(childElement.attribute(CoroutineConstant.VERSION_ATTRIBUTE_NAME).getData().toString().trim());
+            if (RuleCache.isRuleExisted(ruleKey, version)) {
+                LOG.info("Rule has existed, categoryName={}, ruleName={}, version={}", ruleKey.getCategoryName(), ruleKey.getRuleName(), version);
 
-                    break;
-                }
-
-                LOG.info("Rule is loaded, categoryName={}, ruleName={}, version={}", ruleKey.getCategoryName(), ruleKey.getRuleName(), version);
-
-                RuleEntity ruleEntity = new RuleEntity();
-                ruleEntity.setVersion(version);
-                ruleEntityList.add(ruleEntity);
-
-                parseRule(childElement, ruleEntity);
+                break;
             }
+
+            LOG.info("Rule is loaded, categoryName={}, ruleName={}, version={}", ruleKey.getCategoryName(), ruleKey.getRuleName(), version);
+
+            RuleEntity ruleEntity = new RuleEntity();
+            ruleEntity.setVersion(version);
+            ruleEntityList.add(ruleEntity);
+
+            parseRule(childElement, ruleEntity);
         }
     }
 
-    @SuppressWarnings("rawtypes")
     private void parseRule(Element element, RuleEntity ruleEntity) {
         List<ComponentEntity> componentEntityList = new ArrayList<ComponentEntity>();
         ruleEntity.setComponentEntityList(componentEntityList);
@@ -91,34 +86,31 @@ public class RuleParser extends Dom4JParser {
         List<ChainEntity> chainEntityList = new ArrayList<ChainEntity>();
         ruleEntity.setChainEntityList(chainEntityList);
 
-        for (Iterator elementIterator = element.elementIterator(); elementIterator.hasNext();) {
-            Object childElementObject = elementIterator.next();
-            if (childElementObject instanceof Element) {
-                Element childElement = (Element) childElementObject;
-                if (StringUtils.equals(childElement.getName(), CoroutineConstant.COMPONENT_ATTRIBUTE_NAME)) {
-                    ComponentEntity componentEntity = new ComponentEntity();
+        for (Iterator<Element> elementIterator = element.elementIterator(); elementIterator.hasNext();) {
+            Element childElement = elementIterator.next();
 
-                    parseComponent(childElement, componentEntity);
+            if (StringUtils.equals(childElement.getName(), CoroutineConstant.COMPONENT_ATTRIBUTE_NAME)) {
+                ComponentEntity componentEntity = new ComponentEntity();
 
-                    componentEntityList.add(componentEntity);
-                } else if (StringUtils.equals(childElement.getName(), CoroutineConstant.DEPENDENCY_ATTRIBUTE_NAME)) {
-                    DependencyEntity dependencyEntity = new DependencyEntity();
+                parseComponent(childElement, componentEntity);
 
-                    parseDependency(childElement, dependencyEntity);
+                componentEntityList.add(componentEntity);
+            } else if (StringUtils.equals(childElement.getName(), CoroutineConstant.DEPENDENCY_ATTRIBUTE_NAME)) {
+                DependencyEntity dependencyEntity = new DependencyEntity();
 
-                    dependencyEntityList.add(dependencyEntity);
-                } else if (StringUtils.equals(childElement.getName(), CoroutineConstant.CHAIN_ATTRIBUTE_NAME)) {
-                    ChainEntity chainEntity = new ChainEntity();
+                parseDependency(childElement, dependencyEntity);
 
-                    parseChain(childElement, chainEntity);
+                dependencyEntityList.add(dependencyEntity);
+            } else if (StringUtils.equals(childElement.getName(), CoroutineConstant.CHAIN_ATTRIBUTE_NAME)) {
+                ChainEntity chainEntity = new ChainEntity();
 
-                    chainEntityList.add(chainEntity);
-                }
+                parseChain(childElement, chainEntity);
+
+                chainEntityList.add(chainEntity);
             }
         }
     }
 
-    @SuppressWarnings("rawtypes")
     private void parseComponent(Element element, ComponentEntity componentEntity) {
         Attribute applicationContextAttribute = element.attribute(CoroutineConstant.APPLICATION_CONTEXT_ATTRIBUTE_NAME);
         if (applicationContextAttribute != null) {
@@ -129,21 +121,17 @@ public class RuleParser extends Dom4JParser {
         List<ClassEntity> classEntityList = new ArrayList<ClassEntity>();
         componentEntity.setClassEntityList(classEntityList);
 
-        for (Iterator elementIterator = element.elementIterator(); elementIterator.hasNext();) {
-            Object childElementObject = elementIterator.next();
-            if (childElementObject instanceof Element) {
-                Element childElement = (Element) childElementObject;
+        for (Iterator<Element> elementIterator = element.elementIterator(); elementIterator.hasNext();) {
+            Element childElement = elementIterator.next();
 
-                ClassEntity classEntity = new ClassEntity();
+            ClassEntity classEntity = new ClassEntity();
 
-                parseClass(childElement, componentEntity, classEntity);
+            parseClass(childElement, componentEntity, classEntity);
 
-                classEntityList.add(classEntity);
-            }
+            classEntityList.add(classEntity);
         }
     }
 
-    @SuppressWarnings("rawtypes")
     private void parseClass(Element element, ComponentEntity componentEntity, ClassEntity classEntity) {
         String id = null;
         Attribute idAttribute = element.attribute(CoroutineConstant.ID_ATTRIBUTE_NAME);
@@ -193,21 +181,18 @@ public class RuleParser extends Dom4JParser {
         classEntity.setClazz(clazz);
         classEntity.setMethodEntityList(methodEntityList);
 
-        for (Iterator elementIterator = element.elementIterator(); elementIterator.hasNext();) {
-            Object childElementObject = elementIterator.next();
-            if (childElementObject instanceof Element) {
-                Element childElement = (Element) childElementObject;
+        for (Iterator<Element> elementIterator = element.elementIterator(); elementIterator.hasNext();) {
+            Element childElement = elementIterator.next();
 
-                MethodEntity methodEntity = new MethodEntity();
+            MethodEntity methodEntity = new MethodEntity();
 
-                parseMethod(childElement, methodEntity);
+            parseMethod(childElement, methodEntity);
 
-                methodEntity.setClassId(id);
-                methodEntity.setClazz(clazz);
-                methodEntity.setObject(object);
+            methodEntity.setClassId(id);
+            methodEntity.setClazz(clazz);
+            methodEntity.setObject(object);
 
-                methodEntityList.add(methodEntity);
-            }
+            methodEntityList.add(methodEntity);
         }
     }
 
@@ -274,7 +259,6 @@ public class RuleParser extends Dom4JParser {
         }
     }
 
-    @SuppressWarnings("rawtypes")
     private void parseChain(Element element, ChainEntity chainEntity) {
         Attribute chainNameAttribute = element.attribute(CoroutineConstant.NAME_ATTRIBUTE_NAME);
         if (chainNameAttribute != null) {
@@ -285,16 +269,13 @@ public class RuleParser extends Dom4JParser {
         List<StepEntity> stepEntityList = new ArrayList<StepEntity>();
         chainEntity.setStepEntityList(stepEntityList);
 
-        for (Iterator elementIterator = element.elementIterator(); elementIterator.hasNext();) {
-            Object childElementObject = elementIterator.next();
-            if (childElementObject instanceof Element) {
-                Element childElement = (Element) childElementObject;
+        for (Iterator<Element> elementIterator = element.elementIterator(); elementIterator.hasNext();) {
+            Element childElement = elementIterator.next();
 
-                StepEntity stepEntity = new StepEntity();
-                stepEntityList.add(stepEntity);
+            StepEntity stepEntity = new StepEntity();
+            stepEntityList.add(stepEntity);
 
-                parseStep(childElement, stepEntity);
-            }
+            parseStep(childElement, stepEntity);
         }
     }
 
