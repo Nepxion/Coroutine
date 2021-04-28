@@ -6,7 +6,7 @@ Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring B
 ## 请联系我
 微信、钉钉、公众号和文档
 
-![](http://nepxion.gitee.io/docs/zxing-doc/微信-1.jpg)![](http://nepxion.gitee.io/docs/zxing-doc/钉钉-1.jpg)![](http://nepxion.gitee.io/docs/zxing-doc/公众号-1.jpg)![](http://nepxion.gitee.io/docs/zxing-doc/文档-1.jpg)
+![](http://nepxion.gitee.io/discovery/docs/zxing-doc/微信-1.jpg)![](http://nepxion.gitee.io/discovery/docs/zxing-doc/钉钉-1.jpg)![](http://nepxion.gitee.io/discovery/docs/zxing-doc/公众号-1.jpg)![](http://nepxion.gitee.io/discovery/docs/zxing-doc/文档-1.jpg)
 
 ## 介绍
 - 基于微服务框架理念设计
@@ -21,15 +21,15 @@ Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring B
 ## 架构
 协程工作场景图
 
-![](http://nepxion.gitee.io/docs/coroutine-doc/Coroutine1.jpg)
+![](http://nepxion.gitee.io/discovery/docs/coroutine-doc/Coroutine1.jpg)
 
 Coroutine架构图
 
-![](http://nepxion.gitee.io/docs/coroutine-doc/Coroutine2.jpg)
+![](http://nepxion.gitee.io/discovery/docs/coroutine-doc/Coroutine2.jpg)
 
 Coroutine链式调用图
 
-![](http://nepxion.gitee.io/docs/coroutine-doc/Coroutine3.jpg)
+![](http://nepxion.gitee.io/discovery/docs/coroutine-doc/Coroutine3.jpg)
 
 ## 规则
 ```java
