@@ -1,12 +1,9 @@
 # Nepxion Coroutine
 ![Total visits](https://komarev.com/ghpvc/?username=Nepxion&label=total%20visits&color=blue)  [![Total lines](https://tokei.rs/b1/github/Nepxion/Coroutine?category=lines)](https://tokei.rs/b1/github/Nepxion/Coroutine?category=lines)  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?label=license)](https://github.com/Nepxion/Coroutine/blob/master/LICENSE)  [![Build Status](https://travis-ci.org/Nepxion/Coroutine.svg?branch=master)](https://travis-ci.org/Nepxion/Coroutine)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a4a3804cce6c450ca60fb864bef54654)](https://www.codacy.com/project/HaojunRen/Coroutine/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nepxion/Coroutine&amp;utm_campaign=Badge_Grade_Dashboard)  [![Stars](https://img.shields.io/github/stars/Nepxion/Coroutine.svg?label=Stars&tyle=flat&logo=GitHub)](https://github.com/Nepxion/Coroutine/stargazers)  [![Stars](https://gitee.com/Nepxion/Coroutine/badge/star.svg)](https://gitee.com/nepxion/Coroutine/stargazers)
 
+<a href="https://github.com/Nepxion" tppabs="#" target="_blank"><img width="25" height="25" src="http://nepxion.gitee.io/discovery/docs/icon-doc/github.png"></a>&nbsp;  <a href="https://gitee.com/Nepxion" tppabs="#" target="_blank"><img width="25" height="25" src="http://nepxion.gitee.io/discovery/docs/icon-doc/gitee.png"></a>&nbsp;  <a href="https://search.maven.org/search?q=g:com.nepxion" tppabs="#" target="_blank"><img width="25" height="25" src="http://nepxion.gitee.io/discovery/docs/icon-doc/maven.png"></a>&nbsp;  <a href="http://nepxion.gitee.io/discovery/docs/zxing-doc/%E5%BE%AE%E4%BF%A1.jpg" tppabs="#" target="_blank"><img width="25" height="25" src="http://nepxion.gitee.io/discovery/docs/icon-doc/wechat.png"></a>&nbsp;  <a href="http://nepxion.gitee.io/discovery/docs/zxing-doc/%E9%92%89%E9%92%89.jpg" tppabs="#" target="_blank"><img width="25" height="25" src="http://nepxion.gitee.io/discovery/docs/icon-doc/dingding.png"></a>&nbsp;  <a href="http://nepxion.gitee.io/discovery/docs/zxing-doc/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" tppabs="#" target="_blank"><img width="25" height="25" src="http://nepxion.gitee.io/discovery/docs/icon-doc/gongzhonghao.png"></a>&nbsp;  <a href="mailto:1394997@qq.com" tppabs="#"><img width="25" height="25" src="http://nepxion.gitee.io/discovery/docs/icon-doc/email.png"></a>
+
 Nepxion Coroutine是一款基于Kilim + Promise JDeferred + Zookeeper + Spring Boot的协程分布式调用的聚合框架，提供聚合规则存储和动态变更通知
-
-## 请联系我
-微信、钉钉、公众号和文档
-
-![](http://nepxion.gitee.io/discovery/docs/zxing-doc/微信-1.jpg)![](http://nepxion.gitee.io/discovery/docs/zxing-doc/钉钉-1.jpg)![](http://nepxion.gitee.io/discovery/docs/zxing-doc/公众号-1.jpg)![](http://nepxion.gitee.io/discovery/docs/zxing-doc/文档-1.jpg)
 
 ## 介绍
 - 基于微服务框架理念设计
@@ -32,7 +29,7 @@ Coroutine链式调用图
 ![](http://nepxion.gitee.io/discovery/docs/coroutine-doc/Coroutine3.jpg)
 
 ## 规则
-```java
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
     <!-- 规则定义 -->
@@ -130,7 +127,7 @@ try {
 参照coroutine-test工程
 
 定义规则1
-```java
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
     <rule version="1">
@@ -175,7 +172,7 @@ try {
 ```
 
 定义规则2
-```java
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
     <rule version="1">
@@ -332,7 +329,7 @@ public class CoroutineTest {
 ```
 
 运行结果
-```java
+```
 2017-12-23 19:13:43.641 INFO [Coroutine-192.168.1.3-thread-1][com.nepxion.coroutine.data.cache.CoroutineCache:39] - Daemon thread for scanning cache starts...
 2017-12-23 19:13:43.656 INFO [Coroutine-192.168.1.3-thread-1][com.nepxion.coroutine.monitor.log.LogMonitorLauncher:55] - Serial completed, referenceType=componentReference, index=1, categoryName=PayRoute, ruleName=Rule, chainName=chain1-2, class=com.nepxion.coroutine.test.service.impl.AServiceImpl, method=doThen, parameterTypes=java.lang.String, returnType=java.lang.String, spentTime=3 ms, id=6fcb1456-fc34-49a0-9ad4-832fd5f3f375
 2017-12-23 19:13:43.656 INFO [Coroutine-192.168.1.3-thread-0][com.nepxion.coroutine.monitor.log.LogMonitorLauncher:55] - Serial completed, referenceType=componentReference, index=1, categoryName=PayRoute, ruleName=Rule, chainName=chain1-1, class=com.nepxion.coroutine.test.service.impl.AServiceImpl, method=doThen, parameterTypes=java.lang.String, returnType=java.lang.String, spentTime=3 ms, id=98c84565-ca73-42b8-a2e8-da4dee6df22a
@@ -391,7 +388,7 @@ public class CoroutineTest {
 基于Spring Boot在Dubbo和Thunder框架的协程调用，分布式API的聚合
 
 定义规则
-```java
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <coroutine>
     <rule version="1">
@@ -553,7 +550,7 @@ public class CoroutineClientApplication {
 ```
 
 运行结果
-```java
+```
 2017-12-23 19:20:28.905 INFO [Coroutine-192.168.1.3-thread-1][com.nepxion.coroutine.common.thread.ThreadPoolFactory:38] - Thread pool executor is created, threadName=Promise-192.168.1.3-thread, corePoolSize=64, maximumPoolSize=128, keepAliveTime=900000, allowCoreThreadTimeOut=false
 2017-12-23 19:20:29.052 INFO [Promise-192.168.1.3-thread-2][com.nepxion.coroutine.monitor.log.LogMonitorLauncher:55] - Parallel completed, referenceType=componentReference, index=5, categoryName=Distribution PayRoute, ruleName=Distribution Rule, chainName=null, classId=bService, method=doWhen, parameterTypes=java.lang.String, returnType=java.lang.String, spentTime=136 ms, id=956ab727-0e18-48aa-8334-1453c139fa23
 2017-12-23 19:20:29.052 INFO [Promise-192.168.1.3-thread-3][com.nepxion.coroutine.monitor.log.LogMonitorLauncher:55] - Parallel completed, referenceType=componentReference, index=5, categoryName=Distribution PayRoute, ruleName=Distribution Rule, chainName=null, classId=bService, method=doWhen, parameterTypes=java.lang.String, returnType=java.lang.String, spentTime=136 ms, id=b22a77b6-0776-49a1-a6bb-e15268ffd0c1
@@ -583,6 +580,11 @@ public class CoroutineClientApplication {
   ruleName=Distribution Rule
 ], result=((Start[0] -> A[0] -> C[0] , Start[0] -> B[0] -> C[0]) -> D[0]) -> C[0]) -> A[0]) , (Start[0] -> A[0] -> C[0] , Start[0] -> B[0] -> C[0]) -> D[0]) -> D[0]) -> A[0])) -> B[0]))
 ```
+
+## 请联系我
+微信、钉钉、公众号和文档
+
+![](http://nepxion.gitee.io/discovery/docs/zxing-doc/微信-1.jpg)![](http://nepxion.gitee.io/discovery/docs/zxing-doc/钉钉-1.jpg)![](http://nepxion.gitee.io/discovery/docs/zxing-doc/公众号-1.jpg)![](http://nepxion.gitee.io/discovery/docs/zxing-doc/文档-1.jpg)
 
 ## Star走势图
 [![Stargazers over time](https://starchart.cc/Nepxion/Coroutine.svg)](https://starchart.cc/Nepxion/Coroutine)
